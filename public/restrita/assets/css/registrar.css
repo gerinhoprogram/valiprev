@@ -1,0 +1,177 @@
+body {
+    overflow: hidden
+}
+
+#ver {
+    right: 30px;
+    top: 20px;
+    cursor: pointer;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    z-index: 999999999
+}
+
+.foguete1 {
+    animation: anim-foguete1 20s linear infinite;
+    font-size: 40pt;
+    position: absolute;
+    color: #7accd4;
+    transform: rotate(100deg);
+}
+
+.foguete2 {
+    animation: anim-foguete2 25s linear infinite;
+    font-size: 30pt;
+    position: absolute;
+    color: #7accd4;
+    transform: rotate(45deg);
+}
+
+.estrela1 {
+    animation: anim-estrela1 3s linear infinite;
+    color: yellow;
+    font-size: 30pt;
+    position: absolute;
+    top: 30px;
+    left: 100px
+}
+
+.estrela2 {
+    animation: anim-estrela2 5s linear infinite;
+    color: yellow;
+    font-size: 20pt;
+    position: absolute;
+    top: 250px;
+    left: 300px
+}
+
+.estrela3 {
+    animation: anim-estrela3 6s linear infinite;
+    color: yellow;
+    font-size: 25pt;
+    position: absolute;
+    top: 400px;
+    left: 600px
+}
+
+.estrela4 {
+    animation: anim-estrela4 2s linear infinite;
+    color: yellow;
+    font-size: 28pt;
+    position: absolute;
+    top: 400px;
+    left: 200px
+}
+
+.estrela5 {
+    animation: anim-estrela5 2s linear infinite;
+    color: yellow;
+    font-size: 28pt;
+    position: absolute;
+    bottom: 70px;
+    right: 300px
+}
+
+.estrela6 {
+    animation: anim-estrela6 2s linear infinite;
+    color: yellow;
+    font-size: 24pt;
+    position: absolute;
+    bottom: 100px;
+    right: 600px
+}
+
+@keyframes anim-foguete1 {
+    from {
+        bottom: -80px;
+        left: 500px;
+    }
+    to {
+        bottom: 500px;
+        left: 1000px
+    }
+}
+
+@keyframes anim-foguete2 {
+    from {
+        bottom: 0px;
+        left: 100px;
+    }
+    to {
+        bottom: 700px;
+        left: 100px
+    }
+}
+
+@keyframes anim-estrela1 {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 9;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes anim-estrela2 {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 9;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes anim-estrela3 {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 9;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes anim-estrela4 {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 9;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes anim-estrela5 {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 9;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes anim-estrela6 {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 9;
+    }
+    100% {
+        opacity: 0;
+    }
+}

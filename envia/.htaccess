@@ -1,0 +1,12 @@
+Options +FollowSymLinks
+Options -MultiViews
+
+IndexIgnore *
+Options -Indexes
+
+RewriteEngine On
+
+# #PÁGINAS SIMPLES
+RewriteRule ^index/?([a-zA-Z0-9-–_]+)?/?$ index.php?busca=$1 [QSA,L]
+RewriteRule ^ativar_senha/?([a-zA-Z0-9-–_]+)?/?$ ativar_senha.php?busca=$1 [QSA,L]
+RewriteRule ^recupera_login/?([a-zA-Z0-9-–_]+)?/?$ recupera_login.php?busca=$1 [QSA,L]
