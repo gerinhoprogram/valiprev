@@ -30,7 +30,7 @@ date_default_timezone_set('America/Sao_paulo');
   | a PHP script and you can easily do that on your own.
   |
  */
-$config['base_url'] = "http://".$_SERVER['HTTP_HOST']."/blog/";
+$config['base_url'] = "http://".$_SERVER['HTTP_HOST']."/valiprev/";
 
 /*
   |--------------------------------------------------------------------------

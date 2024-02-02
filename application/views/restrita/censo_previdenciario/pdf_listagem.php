@@ -13,7 +13,14 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                        <?php $this->load->view('restrita/layout/card-header'); ?>
+                        <div class="card-header d-block">
+						<h4><?php echo $titulo ?></h4>
+
+							<?php if($adicionar) :?>
+							<a onclick="loading()" href="<?php echo base_url('restrita/'.$this->router->fetch_class().'/pdf_adicionar/'.$pagina->pag_id) ?>" data-toggle="tooltip" data-placement="top" title="Adicionar novo registro" class="btn btn-success float-right"><i class="fas fa-plus"></i>&nbsp;Novo registro</a>
+							<?php endif?>
+						
+						</div>
                             <div class="card-body">
 
                                 <div class="table-responsive">
