@@ -51,7 +51,7 @@
 													<p>Nome da página: <?php echo $pagina->pag_nome; ?> (tag H1)</p>
 													<p>
 														<?=$pagina->pag_status ? '<span class="badge badge-success m-2">Página ativa</span>' : '<span class="badge badge-danger m-2">Página inativa</span>'?>
-														<?=$pagina->pag_pdf ? '<a href="'.base_url('restrita/'.$this->router->fetch_class().'/pdf_pagina/'.$pagina->pag_id).'"><span class="badge badge-info m-2">PDFs da página</span></a>' : ''?>
+														<?=$pagina->pag_pdf ? '<a href="'.base_url('restrita/'.$this->router->fetch_class().'/pdf_listagem/'.$pagina->pag_id).'"><span class="badge badge-info m-2">PDFs da página</span></a>' : ''?>
 
 													</p>
 

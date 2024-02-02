@@ -79,7 +79,12 @@ var App_sistema = function() {
 
                     if (response.erro === 0) {
 
-                        $('#box-foto-logo').html("<input type='hidden' name='logo_foto_troca' value='" + response.foto_nome + "' > <img src='" + BASE_URL + "uploads/paginas/censo_previdenciario/pdf" + response.foto_nome + "' style='height: 150px; width: 100%; object-fit: contain'> ");
+                        $('#box-foto-logo').html(
+							"<input type='hidden' name='logo_foto_troca' value='" + response.foto_nome + "' >"+
+							"<a href='" + BASE_URL + "uploads/paginas/censo_previdenciario/pdf/" + response.foto_nome + "'><i style='font-size: 25pt' class='far fa-file-pdf'></i></a>"+
+							"<input type='hidden' name='pdf_tamanho' value='"+response.tamanho+"'>"+
+							"<br>Tamanho: <span class='badge badge-info'>"+response.tamanho+"</span>"
+							);
                         $('#logo_foto_troca').html('<div class="p-1 mt-1 rounded bg-success text-white">' + response.mensagem + '</div>');
 
                     } else {

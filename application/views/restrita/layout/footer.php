@@ -1,16 +1,16 @@
       <?php if ($this->router->fetch_class() != 'login') : ?>
 
-      <?php if (class_exists($this->router->fetch_class())) : ?>
+      	<?php if (class_exists($this->router->fetch_class())) : ?>
 
-      <footer class="main-footer">
-      	<div class="footer-left">
-      		<a href="<?= base_url('restrita/home') ?>">NCWBrasil</a></a>
-      	</div>
-      	<div class="footer-right">
-      	</div>
-      </footer>
+      		<footer class="main-footer">
+      			<div class="footer-left">
+      				<a href="<?= base_url('restrita/home') ?>">NCWBrasil</a></a>
+      			</div>
+      			<div class="footer-right">
+      			</div>
+      		</footer>
 
-      <?php endif; ?>
+      	<?php endif; ?>
       <?php endif; ?>
 
 
@@ -20,7 +20,6 @@
 
       <script>
       	const BASE_URL = '<?php echo base_url() ?>';
-
       </script>
       <script src="<?php echo base_url('public/restrita/assets/js/app.min.js'); ?>"></script>
       <script src="<?php echo base_url('public/restrita/assets/js/scripts.js'); ?>"></script>
@@ -29,13 +28,12 @@
       <script src="<?= base_url('public/restrita/assets/bundles/izitoast/js/iziToast.min.js') ?>"></script>
 
       <?php if (isset($scripts)) : ?>
-      <?php foreach ($scripts as $script) : ?>
-      <script src="<?php echo base_url('public/restrita/' . $script); ?>"></script>
-      <?php endforeach; ?>
+      	<?php foreach ($scripts as $script) : ?>
+      		<script src="<?php echo base_url('public/restrita/' . $script); ?>"></script>
+      	<?php endforeach; ?>
       <?php endif; ?>
 
-      <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      	aria-hidden="true">
+      <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       	<div class="modal-dialog" role="document">
       		<div class="modal-content">
       			<div class="modal-header">
@@ -86,7 +84,7 @@
       		$('#loading').html('<div class="loader2"></div>');
       	}
 
-      	$('.delete').on("click", function (event) {
+      	$('.delete').on("click", function(event) {
 
       		event.preventDefault();
 
@@ -106,7 +104,7 @@
       					className: 'btn-primary'
       				}
       			},
-      			callback: function (result) {
+      			callback: function(result) {
 
       				if (result) {
       					iziToast.warning({
@@ -114,11 +112,11 @@
       						message: 'Estamos deletando os dados!',
       						position: 'topCenter'
       					});
-						  $('#loading').html('<div class="loader2"></div>');
+      					$('#loading').html('<div class="loader2"></div>');
       					window.location.href = redirect;
       				}
 
-					  
+
 
 
       			}
@@ -128,67 +126,66 @@
 
 
 
-		  $('.situacao').on("click", function (event) {
+      	$('.situacao').on("click", function(event) {
 
-		event.preventDefault();
+      		event.preventDefault();
 
-		var redirect = $(this).attr('href');
+      		var redirect = $(this).attr('href');
 
-		bootbox.confirm({
-			title: $(this).attr('data-confirm'),
-			centerVertical: true,
-			message: "<p class='text-danger'></p>",
-			buttons: {
-				confirm: {
-					label: 'Confirmar',
-					className: 'btn-success'
-				},
-				cancel: {
-					label: 'Cancelar',
-					className: 'btn-primary'
-				}
-			},
-			callback: function (result) {
+      		bootbox.confirm({
+      			title: $(this).attr('data-confirm'),
+      			centerVertical: true,
+      			message: "<p class='text-danger'></p>",
+      			buttons: {
+      				confirm: {
+      					label: 'Confirmar',
+      					className: 'btn-success'
+      				},
+      				cancel: {
+      					label: 'Cancelar',
+      					className: 'btn-primary'
+      				}
+      			},
+      			callback: function(result) {
 
-				if (result) {
-					iziToast.warning({
-						title: 'Aguarde!',
-						message: 'Estamos atualizando os dados!',
-						position: 'topCenter'
-					});
-					$('#loading').html('<div class="loader2"></div>');
-					window.location.href = redirect;
-				}
-
-				
-
-
-			}
-		});
-
-		});
+      				if (result) {
+      					iziToast.warning({
+      						title: 'Aguarde!',
+      						message: 'Estamos atualizando os dados!',
+      						position: 'topCenter'
+      					});
+      					$('#loading').html('<div class="loader2"></div>');
+      					window.location.href = redirect;
+      				}
 
 
 
+
+      			}
+      		});
+
+      	});
       </script>
       <?php if ($mensagem = $this->session->flashdata('sucesso')) {
-            echo "<script>
-        iziToast.success({
-        title: 'Ok!',
-        message: '" . $mensagem . "',
-        position: 'topCenter'
-      });</script>";
-        } ?>
+			echo "<script>
+				iziToast.success({
+				title: 'Ok!',
+				message: '" . $mensagem . "',
+				position: 'topCenter'
+			});</script>";
+			$_SESSION['sucesso'] = null;
+		} ?>
 
       <?php if ($mensagem = $this->session->flashdata('erro')) {
 
-            echo "<script>
+			echo "<script>
         iziToast.error({
         title: 'Erro!',
         message: '" . $mensagem . "',
         position: 'topCenter'
       });</script>";
-        } ?>
+	  $_SESSION['erro'] = null;
+		} ?>
 
       </body>
 
