@@ -17,7 +17,6 @@
       </div>
       </div>
 
-
       <script>
       	const BASE_URL = '<?php echo base_url() ?>';
       </script>

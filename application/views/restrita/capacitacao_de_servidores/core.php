@@ -75,25 +75,49 @@
 									</div>
 
 									<div class="form-row">
-										<div class="form-group md-12">
-										<a data-toggle="tooltip" data-placement="Top" title="Adicionar PDF" href="javascript:;" class="add_faq btn btn-success mt-2 mb-4"><i class="fa fa-plus-circle"></i> Adicionar nova dúvida</a>
-											<div class="input_fields_wrap form-row">
-												<?php if (isset($servidor)) : ?>
-													<?php foreach ($faq as $s) : ?>
-														<div class="form-group col-12">
-															
-															<label for="">Dúvida</label>
-															<input type="text" value="<?= $s->cep_titulo ?>" class="form-control mb-3" name="cep_titulo[]" />
-															<label for="">Resposta</label>
-															<textarea name="cep_texto[]" class="form-control texto_editor"><?= $s->cep_texto ?></textarea>
-															
-															<a href="#" class="btn btn-danger remove_seo mt-1">Remover</a>
-														</div>
-													<?php endforeach ?>
-												<?php endif ?>
+
+
+
+												<div class="form-group col-md-12">
+													<label>Carregar arquivos em PDF</label>
+													<div id="fileuploader"></div>
+													<div id="carregando"></div>
+													<div id="erro_uploaded" class="text-danger">
+													</div>
+													<small id="error_imagem" class="text-danger"></small>
+													<?= form_error('fotos_produtos', '<div class="text-danger">', '</div>'); ?>
+												</div>
+
 											</div>
-										</div>
-									</div>
+
+											<div class="form-row">
+												<div class="form-group col-md-12">
+													<div class="form-row" id="uploaded_image">
+
+														<?php if (isset($pdf)) : ?>
+															<?php foreach ($pdf as $p) : ?>
+
+																<div class="form-group col-md-3">
+
+
+																	<!-- <img src="<?= base_url('uploads/artigos/' . $p->foto_nome) ?>" alt="" style="height: 150px; width: 100%; object-fit: contain" class="img-thumbnail">
+																	<input type="text" placeholder="Título da foto" class="form-control mt-2" name="foto_titulo[]" value="<?= $p->foto_titulo ?>">
+																	<div class="custom-control custom-radio"><input type="radio" class="mt-2 mb-4" name="foto_principal" id="<?= $p->foto_nome ?>" <?= $p->foto_principal ? 'checked' : '' ?> value="<?= $p->foto_nome ?>"><label for="<?= $p->foto_nome ?>" class="mt-2 ml-2"><?= $p->foto_principal ? 'Foto principal' : '' ?></label></div>
+																	<input type="hidden" class="imagem" id="fotos" name="fotos_produtos[]" value="<?= $p->foto_nome ?>">
+																	<button type="button" class="btn btn-danger btn-remove" style="width: 45px">X</button> -->
+
+
+																</div>
+
+															<?php endforeach ?>
+														<?php else : ?>
+															
+														<?php endif ?>
+
+													</div>
+												</div>
+
+											</div>
 									
 
 

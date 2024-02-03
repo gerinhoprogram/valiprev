@@ -108,9 +108,18 @@ class Capacitacao_de_servidores extends CI_Controller
 
                 $data = array(
                     'titulo' => '<span class="text-success"><i class="fas fa-plus"></i>&nbsp; Nova capacitação de servidor</span>',
-                    // 'scripts' => array(
-                    //     'assets/js/categorias.js', 
-                    // ),
+                    'styles' => array(
+						'assets/jquery-upload-file/css/uploadfile.css',
+						'assets/bundles/select2/dist/css/select2.min.css',
+					),
+				   
+					'scripts' => array(
+						'assets/sweetalert2/sweetalert2.all.min.js',
+						'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
+						'assets/jquery-upload-file/js/capacitacao_de_servidores.js',
+						'assets/bundles/select2/dist/js/select2.full.min.js',
+					),
+					
                 );
 
                 $this->load->view('restrita/layout/header', $data);
@@ -172,6 +181,7 @@ class Capacitacao_de_servidores extends CI_Controller
                         $data = array(
                             'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar categoria: '.$categoria->categoria_pai_nome.'</span>',
                             'categoria' => $categoria,
+							'pdf' => $this->core_model->get_all('pdf_capacitacao_servidores'),
                             'scripts' => array(
                                 'assets/js/categorias.js', 
                             ),
@@ -193,74 +203,103 @@ class Capacitacao_de_servidores extends CI_Controller
         }
     }
 
-	public function upload_foto()
-	{
-
-		$mensagem_upload = "No máximo 3000 x 3000 pixels";
-
-		$this->session->set_userdata('mensagem_upload', $mensagem_upload);
-
-		$config['upload_path'] = './uploads/paginas/censo_previdenciario';
-		$config['allowed_types'] = 'jpg|png|JPG|PNG|jpeg|JPEG';
-		$config['encrypt_name'] = false;
-		$config['max_size'] = 4000; //Max 2M
-		$config['max_width'] = 3000;
-		$config['max_height'] = 3000;
-
-		$this->load->library('upload', $config);
-
-		if ($this->upload->do_upload('cont_foto')) {
-
-			$data = array(
-				'erro' => 0,
-				'uploaded_data' => $this->upload->data(),
-				'foto_nome' => $this->upload->data('file_name'),
-				'mensagem' => 'Foto foi enviada com sucesso',
-			);
-		} else {
-
-			$data = array(
-				'erro' => 3,
-				'mensagem' => $this->upload->display_errors('<span class="text-danger">', '</span>'),
-			);
-		}
-
-		echo json_encode($data);
-	}
-
 	public function upload_pdf()
-	{
+    {
 
-		$mensagem_upload = "No máximo 3000 x 3000 pixels";
+        $config['upload_path'] = './uploads/paginas/capacitacao-de-servidores/pdf';
+        $config['allowed_types'] = 'PDF|pdf';
+        $config['encrypt_name'] = false;
+        $config['max_size'] = 9000;
 
-		$this->session->set_userdata('mensagem_upload', $mensagem_upload);
+        $this->load->library('upload', $config);
 
-		$config['upload_path'] = './uploads/paginas/censo_previdenciario/pdf';
-		$config['allowed_types'] = 'PDF|pdf';
-		$config['encrypt_name'] = false;
-		$config['max_size'] = 9000;
+        if ($this->upload->do_upload('foto_produto')) {
 
-		$this->load->library('upload', $config);
+            $data = array(
+                'erro' => 0,
+                'uploaded_data' => $this->upload->data(),
+                'foto_nome' => $this->upload->data('file_name'),
+                'mensagem' => 'Foto foi enviada com sucesso',
+            );
+        } else {
 
-		if ($this->upload->do_upload('pdf_arquivo')) {
+            $data = array(
+                'erro' => 3,
+                'mensagem' => $this->upload->display_errors('<span class="text-danger">', '</span>'),
+            );
+        }
 
-			$data = array(
-				'erro' => 0,
-				'uploaded_data' => $this->upload->data(),
-				'foto_nome' => $this->upload->data('file_name'),
-				'mensagem' => 'Arquivo enviado com sucesso',
-				'tamanho' => $this->upload->data('file_size') . ' KB',
-			);
-		} else {
+        echo json_encode($data);
+    }
 
-			$data = array(
-				'erro' => 3,
-				'mensagem' => $this->upload->display_errors('<span class="text-danger">', '</span>'),
-			);
-		}
+	// public function upload_foto()
+	// {
 
-		echo json_encode($data);
-	}
+	// 	$mensagem_upload = "No máximo 3000 x 3000 pixels";
+
+	// 	$this->session->set_userdata('mensagem_upload', $mensagem_upload);
+
+	// 	$config['upload_path'] = './uploads/paginas/censo_previdenciario';
+	// 	$config['allowed_types'] = 'jpg|png|JPG|PNG|jpeg|JPEG';
+	// 	$config['encrypt_name'] = false;
+	// 	$config['max_size'] = 4000; //Max 2M
+	// 	$config['max_width'] = 3000;
+	// 	$config['max_height'] = 3000;
+
+	// 	$this->load->library('upload', $config);
+
+	// 	if ($this->upload->do_upload('cont_foto')) {
+
+	// 		$data = array(
+	// 			'erro' => 0,
+	// 			'uploaded_data' => $this->upload->data(),
+	// 			'foto_nome' => $this->upload->data('file_name'),
+	// 			'mensagem' => 'Foto foi enviada com sucesso',
+	// 		);
+	// 	} else {
+
+	// 		$data = array(
+	// 			'erro' => 3,
+	// 			'mensagem' => $this->upload->display_errors('<span class="text-danger">', '</span>'),
+	// 		);
+	// 	}
+
+	// 	echo json_encode($data);
+	// }
+
+	// public function upload_pdf()
+	// {
+
+	// 	$mensagem_upload = "No máximo 3000 x 3000 pixels";
+
+	// 	$this->session->set_userdata('mensagem_upload', $mensagem_upload);
+
+	// 	$config['upload_path'] = './uploads/paginas/censo_previdenciario/pdf';
+	// 	$config['allowed_types'] = 'PDF|pdf';
+	// 	$config['encrypt_name'] = false;
+	// 	$config['max_size'] = 9000;
+
+	// 	$this->load->library('upload', $config);
+
+	// 	if ($this->upload->do_upload('pdf_arquivo')) {
+
+	// 		$data = array(
+	// 			'erro' => 0,
+	// 			'uploaded_data' => $this->upload->data(),
+	// 			'foto_nome' => $this->upload->data('file_name'),
+	// 			'mensagem' => 'Arquivo enviado com sucesso',
+	// 			'tamanho' => $this->upload->data('file_size') . ' KB',
+	// 		);
+	// 	} else {
+
+	// 		$data = array(
+	// 			'erro' => 3,
+	// 			'mensagem' => $this->upload->display_errors('<span class="text-danger">', '</span>'),
+	// 		);
+	// 	}
+
+	// 	echo json_encode($data);
+	// }
 
 
 	public function pdf_listagem($pag_id = null)
