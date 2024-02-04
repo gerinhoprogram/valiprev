@@ -18,8 +18,13 @@ $(document).ready(function() {
                 $('#carregando').html('<div class="p-1 mt-1 mb-1 rounded bg-success text-white"><i class="fa fa-check" aria-hidden="true"></i> Fotos carregadas com sucesso!</div>');
 
                 $("#uploaded_image").append(
-					'<div class="form-group col-md-3">'+
-					'<a href="' + BASE_URL + 'uploads/paginas/capacitacao-de-servidores/pdf/' + data.uploaded_data['file_name'] + '" target="_blank"><i style="font-size: 25pt" class="far fa-file-pdf"></i></a><input type="text" class="form-control mt-2" placeholder="Título do documento" name="foto_titulo[]"><input type="hidden" name="fotos_produtos[]" value="' + data.foto_nome + '"><button type="button" class="btn btn-danger btn-remove" style="width: 45px">X</button></div>');
+					'<div class="form-group col-md-6">'+
+					'<a href="' + BASE_URL + 'uploads/paginas/capacitacao-de-servidores/pdf/' + data.uploaded_data['file_name'] + '" target="_blank"><i style="font-size: 25pt" class="far fa-file-pdf"></i></a>'+
+					'<input type="text" class="form-control mt-2" value="' + data.nome + '" name="pdf_titulo[]">'+
+					'<input type="text" class="form-control mt-2" readonly value="'+data.tamanho+'" name="pdf_tamanho[]">'+
+					'<input type="hidden" name="pdf_arquivo[]" value="' + data.foto_nome + '">'+
+					'<button type="button" class="btn btn-danger btn-remove mt-1" style="width: 45px">X</button>'+
+					'</div>');
 
             } else {
                 $('#carregando').html('');

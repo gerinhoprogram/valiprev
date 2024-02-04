@@ -97,16 +97,12 @@
 														<?php if (isset($pdf)) : ?>
 															<?php foreach ($pdf as $p) : ?>
 
-																<div class="form-group col-md-3">
-
-
-																	<!-- <img src="<?= base_url('uploads/artigos/' . $p->foto_nome) ?>" alt="" style="height: 150px; width: 100%; object-fit: contain" class="img-thumbnail">
-																	<input type="text" placeholder="Título da foto" class="form-control mt-2" name="foto_titulo[]" value="<?= $p->foto_titulo ?>">
-																	<div class="custom-control custom-radio"><input type="radio" class="mt-2 mb-4" name="foto_principal" id="<?= $p->foto_nome ?>" <?= $p->foto_principal ? 'checked' : '' ?> value="<?= $p->foto_nome ?>"><label for="<?= $p->foto_nome ?>" class="mt-2 ml-2"><?= $p->foto_principal ? 'Foto principal' : '' ?></label></div>
-																	<input type="hidden" class="imagem" id="fotos" name="fotos_produtos[]" value="<?= $p->foto_nome ?>">
-																	<button type="button" class="btn btn-danger btn-remove" style="width: 45px">X</button> -->
-
-
+																<div class="form-group col-md-6">
+																<a href="<?=BASE_URL('uploads/paginas/capacitacao-de-servidores/pdf/').$p->pdf_arquivo?>" target="_blank"><i style="font-size: 25pt" class="far fa-file-pdf"></i></a>
+																<input type="text" class="form-control mt-2" value="<?=$p->pdf_titulo ?>" name="pdf_titulo[]">
+																<input type="text" class="form-control mt-2" readonly value="<?=$p->pdf_tamanho ?>" name="pdf_tamanho[]">
+																<input type="hidden" name="pdf_arquivo[]" value="<?=$p->pdf_arquivo ?>">
+																<button type="button" class="btn btn-danger btn-remove mt-1" style="width: 45px">X</button>
 																</div>
 
 															<?php endforeach ?>

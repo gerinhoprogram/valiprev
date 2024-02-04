@@ -26,211 +26,252 @@ class Capacitacao_de_servidores extends CI_Controller
 
 		$pagina = $this->menu_principal_model->get_pagina_url('capacitacao-de-servidores');
 
-		if(!$area = areas()){
-            redirect('restrita');
-        }
+		if (!$area = areas()) {
+			redirect('restrita');
+		}
 
-        $login = [
-            'tipo' => 1,
-            'acao' => 'Acessou pagina: Capacitação de servidores'
-        ];
+		$login = [
+			'tipo' => 1,
+			'acao' => 'Acessou pagina: Capacitação de servidores'
+		];
 
-        insert_login($login);
+		insert_login($login);
 
-        $data = array(
-            'titulo' => 'Listagem dos servidores',
-            'styles' => array(
-                'assets/bundles/datatables/datatables.min.css',
-                'assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css',
-            ),
-            'scripts' => array(
-                'assets/bundles/datatables/datatables.min.js',
-                'assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js',
-                'assets/bundles/jquery-ui/jquery-ui.min.js',
-                'assets/js/page/datatables.js'
-            ),
-            'servidores' => $this->core_model->get_all('capacitacao_servidores'),
+		$data = array(
+			'titulo' => 'Listagem dos servidores',
+			'styles' => array(
+				'assets/bundles/datatables/datatables.min.css',
+				'assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css',
+			),
+			'scripts' => array(
+				'assets/bundles/datatables/datatables.min.js',
+				'assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js',
+				'assets/bundles/jquery-ui/jquery-ui.min.js',
+				'assets/js/page/datatables.js'
+			),
+			'servidores' => $this->core_model->get_all('capacitacao_servidores'),
 			'pagina' => $pagina,
-            'editar' => $area->editar,
-            'adicionar' => $area->adicionar,
-            'excluir' => $area->excluir,
-        );
+			'editar' => $area->editar,
+			'adicionar' => $area->adicionar,
+			'excluir' => $area->excluir,
+		);
 
-        $this->load->view('restrita/layout/header', $data);
-        $this->load->view('restrita/capacitacao_de_servidores/index');
-        $this->load->view('restrita/layout/footer');
+		$this->load->view('restrita/layout/header', $data);
+		$this->load->view('restrita/capacitacao_de_servidores/index');
+		$this->load->view('restrita/layout/footer');
 	}
 
-	public function core($serv_id = null) {
+	public function core($serv_id = null)
+	{
 
-        $area = areas();
+		$area = areas();
 
-        $serv_id = (int) $serv_id;
+		$serv_id = (int) $serv_id;
 
-        if (!$serv_id) {
+		if (!$serv_id) {
 
-            if($area->adicionar){
+			if ($area->adicionar) {
 
-                $this->form_validation->set_rules('serv_nome', 'Nome', 'trim|required|min_length[2]|max_length[150]');
+				$this->form_validation->set_rules('serv_nome', 'Nome', 'trim|required|min_length[2]|max_length[150]');
 
-            if ($this->form_validation->run()) {
+				if ($this->form_validation->run()) {
 
-                $data = elements(
-                        array(
-                            'serv_nome',
+					$data = elements(
+						array(
+							'serv_nome',
 							'serv_status'
-                        ), $this->input->post()
-                );
+						),
+						$this->input->post()
+					);
 
-                $data = html_escape($data);
+					$data = html_escape($data);
 
-                $this->core_model->insert('capacitacao_servidores', $data, true);
-                $last_id = $this->core_model->get_by_id('capacitacao_servidores', array('serv_id' => $this->session->userdata('last_id')));
+					$this->core_model->insert('capacitacao_servidores', $data, true);
+					$last_id = $this->core_model->get_by_id('capacitacao_servidores', array('serv_id' => $this->session->userdata('last_id')));
 
+						$titulo = $this->input->post('pdf_titulo');
+						$arquivo = $this->input->post('pdf_arquivo');
+						$tamanho = $this->input->post('pdf_tamanho');
 
-                $login = [
-                    'tipo' => 2,
-                    'acao' => 'Cadastrou servidor: '.$last_id->serv_nome
-                ];
-        
-                insert_login($login);
+						$total = count($arquivo);
 
-                $this->redirecionar();
+						for ($i = 0; $i < $total; $i++) {
 
-            } else {
+							$data = array(
+								'pdf_pagina_id' => $last_id->serv_id,
+								'pdf_titulo' => $titulo[$i],
+								'pdf_arquivo' => $arquivo[$i],
+								'pdf_tamanho' => $tamanho[$i],
+								'pdf_user' => $_SESSION['login']
+							);
+							$this->core_model->insert('pdf_capacitacao_servidores', $data);
+						}
 
-                $login = [
-                    'tipo' => 1,
-                    'acao' => 'Entrou para cadastrar nova capacitação de servidor'
-                ];
-        
-                insert_login($login);
+					$login = [
+						'tipo' => 2,
+						'acao' => 'Cadastrou servidor: ' . $last_id->serv_nome
+					];
 
-                $data = array(
-                    'titulo' => '<span class="text-success"><i class="fas fa-plus"></i>&nbsp; Nova capacitação de servidor</span>',
-                    'styles' => array(
-						'assets/jquery-upload-file/css/uploadfile.css',
-						'assets/bundles/select2/dist/css/select2.min.css',
-					),
-				   
-					'scripts' => array(
-						'assets/sweetalert2/sweetalert2.all.min.js',
-						'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
-						'assets/jquery-upload-file/js/capacitacao_de_servidores.js',
-						'assets/bundles/select2/dist/js/select2.full.min.js',
-					),
-					
-                );
+					insert_login($login);
 
-                $this->load->view('restrita/layout/header', $data);
-                $this->load->view('restrita/capacitacao_de_servidores/core');
-                $this->load->view('restrita/layout/footer');
-            }
+					$this->redirecionar();
+				} else {
 
-            }else{
-                $this->redirecionar();
-            }
+					$login = [
+						'tipo' => 1,
+						'acao' => 'Entrou para cadastrar nova capacitação de servidor'
+					];
 
-            
-        } else {
+					insert_login($login);
 
-            if($area->editar){
+					$data = array(
+						'titulo' => '<span class="text-success"><i class="fas fa-plus"></i>&nbsp; Nova capacitação de servidor</span>',
+						'styles' => array(
+							'assets/jquery-upload-file/css/uploadfile.css',
+							'assets/bundles/select2/dist/css/select2.min.css',
+						),
 
-                if (!$categoria = $this->core_model->get_by_id('categorias_pai', array('serv_id' => $serv_id))) {
-                    $this->session->set_flashdata('erro', 'Categoria não foi encontrada!');
-                    $this->redirecionar();
-                } else {
-    
-                    $this->form_validation->set_rules('serv_nome', 'Ícone', 'trim|required');
-                    $this->form_validation->set_rules('categoria_pai_nome', 'Nome da categoria', 'trim|required|min_length[2]|max_length[150]|callback_valida_nome_categoria');
-    
-                    if ($this->form_validation->run()) {
-    
-                        $data = elements(
-                            array(
-                                'categoria_pai_nome',
-                                'categoria_pai_ativa',
-                                'serv_nome'
-                            ), $this->input->post()
-                    );
-    
-                        $data['categoria_pai_meta_link'] = url_amigavel($data['categoria_pai_nome']);
-    
-                        $data = html_escape($data);
-    
-                        $this->core_model->update('categorias_pai', $data, array('serv_id' => $categoria->serv_id));
-                       
-                        $login = [
-                            'tipo' => 3,
-                            'acao' => 'Editou categoria principal: '.$categoria->categoria_pai_nome
-                        ];
-                
-                        insert_login($login);
+						'scripts' => array(
+							'assets/sweetalert2/sweetalert2.all.min.js',
+							'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
+							'assets/jquery-upload-file/js/capacitacao_de_servidores.js',
+							'assets/bundles/select2/dist/js/select2.full.min.js',
+						),
 
-                        $this->redirecionar();
-    
-                    } else {
+					);
 
-                        $login = [
-                            'tipo' => 1,
-                            'acao' => 'Entrou para editar categoria principal: '.$categoria->categoria_pai_nome
-                        ];
-                
-                        insert_login($login);
-    
-                        $data = array(
-                            'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar categoria: '.$categoria->categoria_pai_nome.'</span>',
-                            'categoria' => $categoria,
-							'pdf' => $this->core_model->get_all('pdf_capacitacao_servidores'),
-                            'scripts' => array(
-                                'assets/js/categorias.js', 
-                            ),
-                        );
-                        
-                        $data['icones'] = $this->categorias_model->get_all_icones('icones', true);
-    
-                        $this->load->view('restrita/layout/header', $data);
-                        $this->load->view('restrita/master/core');
-                        $this->load->view('restrita/layout/footer');
-                    }
-                }
+					$this->load->view('restrita/layout/header', $data);
+					$this->load->view('restrita/capacitacao_de_servidores/core');
+					$this->load->view('restrita/layout/footer');
+				}
+			} else {
+				$this->redirecionar();
+			}
+		} else {
 
-            }else{
-                $this->redirecionar();
-            }
+			if ($area->editar) {
 
-            
-        }
-    }
+				if (!$servidor = $this->core_model->get_by_id('capacitacao_servidores', array('serv_id' => $serv_id))) {
+					$this->session->set_flashdata('erro', 'Servidor não foi encontrado!');
+					$this->redirecionar();
+				} else {
+
+					$this->form_validation->set_rules('serv_nome', 'Nome', 'trim|required|min_length[2]|max_length[150]');
+
+					if ($this->form_validation->run()) {
+
+						$data = elements(
+							array(
+								'serv_nome',
+								'serv_status'
+							),
+							$this->input->post()
+						);
+
+						$data = html_escape($data);
+
+						$this->core_model->update('capacitacao_servidores', $data, array('serv_id' => $servidor->serv_id));
+
+						$log_query_delete = $this->core_model->delete('pdf_capacitacao_servidores', array('pdf_pagina_id' => $servidor->serv_id));
+
+						$titulo = $this->input->post('pdf_titulo');
+						$arquivo = $this->input->post('pdf_arquivo');
+						$tamanho = $this->input->post('pdf_tamanho');
+
+						$cont = 0;
+						foreach($arquivo as $a){
+							$cont++;
+						}
+
+						if($cont >= 1){
+							for ($i = 0; $i < $cont; $i++) {
+
+								$data = array(
+									'pdf_pagina_id' => $servidor->serv_id,
+									'pdf_titulo' => $titulo[$i],
+									'pdf_arquivo' => $arquivo[$i],
+									'pdf_tamanho' => $tamanho[$i],
+									'pdf_user' => $_SESSION['login']
+								);
+								$this->core_model->insert('pdf_capacitacao_servidores', $data);
+							}
+						}
+
+						$login = [
+							'tipo' => 3,
+							'acao' => 'Editou capacitação de servidores: ' . $servidor->serv_nome
+						];
+
+						insert_login($login);
+
+						$this->redirecionar();
+					} else {
+
+						$login = [
+							'tipo' => 1,
+							'acao' => 'Entrou para editar capacitação de servidores: ' . $servidor->serv_nome
+						];
+
+						insert_login($login);
+
+						$data = array(
+							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar categoria: ' . $servidor->serv_nome . '</span>',
+							'servidor' => $servidor,
+							'pdf' => $this->core_model->get_all('pdf_capacitacao_servidores', array('pdf_pagina_id' => $servidor->serv_id)),
+							'styles' => array(
+								'assets/jquery-upload-file/css/uploadfile.css',
+								'assets/bundles/select2/dist/css/select2.min.css',
+							),
+
+							'scripts' => array(
+								'assets/sweetalert2/sweetalert2.all.min.js',
+								'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
+								'assets/jquery-upload-file/js/capacitacao_de_servidores.js',
+								'assets/bundles/select2/dist/js/select2.full.min.js',
+							),
+						);
+
+						$this->load->view('restrita/layout/header', $data);
+						$this->load->view('restrita/capacitacao_de_servidores/core');
+						$this->load->view('restrita/layout/footer');
+					}
+				}
+			} else {
+				$this->redirecionar();
+			}
+		}
+	}
 
 	public function upload_pdf()
-    {
+	{
 
-        $config['upload_path'] = './uploads/paginas/capacitacao-de-servidores/pdf';
-        $config['allowed_types'] = 'PDF|pdf';
-        $config['encrypt_name'] = false;
-        $config['max_size'] = 9000;
+		$config['upload_path'] = './uploads/paginas/capacitacao-de-servidores/pdf';
+		$config['allowed_types'] = 'PDF|pdf';
+		$config['encrypt_name'] = false;
+		$config['max_size'] = 9000;
 
-        $this->load->library('upload', $config);
+		$this->load->library('upload', $config);
 
-        if ($this->upload->do_upload('foto_produto')) {
+		if ($this->upload->do_upload('foto_produto')) {
 
-            $data = array(
-                'erro' => 0,
-                'uploaded_data' => $this->upload->data(),
-                'foto_nome' => $this->upload->data('file_name'),
-                'mensagem' => 'Foto foi enviada com sucesso',
-            );
-        } else {
+			$data = array(
+				'erro' => 0,
+				'uploaded_data' => $this->upload->data(),
+				'foto_nome' => $this->upload->data('file_name'),
+				'mensagem' => 'Foto foi enviada com sucesso',
+				'tamanho' => $this->upload->data('file_size') . ' KB',
+				'nome' => $this->upload->data('raw_name')
+			);
+		} else {
 
-            $data = array(
-                'erro' => 3,
-                'mensagem' => $this->upload->display_errors('<span class="text-danger">', '</span>'),
-            );
-        }
+			$data = array(
+				'erro' => 3,
+				'mensagem' => $this->upload->display_errors('<span class="text-danger">', '</span>'),
+			);
+		}
 
-        echo json_encode($data);
-    }
+		echo json_encode($data);
+	}
 
 	// public function upload_foto()
 	// {
@@ -366,25 +407,24 @@ class Capacitacao_de_servidores extends CI_Controller
 		$this->form_validation->set_rules('pdf_descricao', 'Descrição', 'trim|max_length[150]');
 
 		if ($this->form_validation->run()) {
-				
-				$data = elements(
-					array(
-						'pdf_titulo',
-						'pdf_descricao',
-						'pdf_status',
-						'pdf_tamanho'
-					),
-					$this->input->post()
-				);
 
-				$data['pdf_arquivo'] = $this->input->post('logo_foto_troca');
-				$data['pdf_pagina_id'] = $pagina->pag_id;
-				$data['pdf_user'] = $_SESSION['login'];
+			$data = elements(
+				array(
+					'pdf_titulo',
+					'pdf_descricao',
+					'pdf_status',
+					'pdf_tamanho'
+				),
+				$this->input->post()
+			);
 
-				$this->core_model->insert('pdf_censo_previdenciario', $data);
-	
-				redirect('restrita/' . $this->router->fetch_class() . '/pdf_listagem/'.$pagina->pag_id);
-	
+			$data['pdf_arquivo'] = $this->input->post('logo_foto_troca');
+			$data['pdf_pagina_id'] = $pagina->pag_id;
+			$data['pdf_user'] = $_SESSION['login'];
+
+			$this->core_model->insert('pdf_censo_previdenciario', $data);
+
+			redirect('restrita/' . $this->router->fetch_class() . '/pdf_listagem/' . $pagina->pag_id);
 		}
 
 		$data = array(
@@ -420,36 +460,35 @@ class Capacitacao_de_servidores extends CI_Controller
 
 		$this->form_validation->set_rules('pdf_titulo', 'Título', 'trim|required|max_length[150]');
 
-		if(!$this->input->post('logo_foto_troca')){
+		if (!$this->input->post('logo_foto_troca')) {
 			$this->form_validation->set_rules('pdf_arquivo', 'Arquivo', 'trim|required|max_length[150]');
 		}
-		
+
 		$this->form_validation->set_rules('pdf_descricao', 'Descrição', 'trim|max_length[150]');
 
 		if ($this->form_validation->run()) {
-				
-				$data = elements(
-					array(
-						'pdf_titulo',
-						'pdf_descricao',
-						'pdf_status',
-						'pdf_tamanho'
-					),
-					$this->input->post()
-				);
 
-				$data['pdf_arquivo'] = $this->input->post('logo_foto_troca');
-				$data['pdf_pagina_id'] = $pagina->pag_id;
-				$data['pdf_user_update'] = $_SESSION['login'];
+			$data = elements(
+				array(
+					'pdf_titulo',
+					'pdf_descricao',
+					'pdf_status',
+					'pdf_tamanho'
+				),
+				$this->input->post()
+			);
 
-				$this->core_model->update('pdf_censo_previdenciario', $data, array('pdf_id' => $pdf->pdf_id));
-	
-				redirect('restrita/' . $this->router->fetch_class() . '/pdf_listagem/'.$pagina->pag_id);
-	
+			$data['pdf_arquivo'] = $this->input->post('logo_foto_troca');
+			$data['pdf_pagina_id'] = $pagina->pag_id;
+			$data['pdf_user_update'] = $_SESSION['login'];
+
+			$this->core_model->update('pdf_censo_previdenciario', $data, array('pdf_id' => $pdf->pdf_id));
+
+			redirect('restrita/' . $this->router->fetch_class() . '/pdf_listagem/' . $pagina->pag_id);
 		}
 
 		$data = array(
-			'titulo' => 'Editar PDF:' . $pdf->pdf_titulo .' da página: ' . $pagina->pag_nome,
+			'titulo' => 'Editar PDF:' . $pdf->pdf_titulo . ' da página: ' . $pagina->pag_nome,
 			'pagina' => $pagina,
 			'pdf' => $pdf,
 			'scripts' => array(
@@ -462,24 +501,27 @@ class Capacitacao_de_servidores extends CI_Controller
 		$this->load->view('restrita/layout/footer');
 	}
 
-	public function delete($pdf_id = null) {
+	public function delete($serv_id = null)
+	{
 
-        $pdf_id = (int) $pdf_id;
+		$serv_id = (int) $serv_id;
 
-        if (!$pdf_id || !$pdf = $this->core_model->get_by_id('pdf_censo_previdenciario', array('pdf_id' => $pdf_id))) {
-            $this->session->set_flashdata('erro', 'PDF não foi encontrado');
-            $this->redirecionar();
-        }
+		if (!$serv_id || !$servidor = $this->core_model->get_by_id('capacitacao_servidores', array('serv_id' => $serv_id))) {
+			$this->session->set_flashdata('erro', 'Servidor não foi encontrado');
+			$this->redirecionar();
+		}
 
-        $login = [
-            'tipo' => 4,
-            'acao' => 'Deletou pdf de Censo Previdenciário: '.$pdf->pdf_titulo
-        ];
+		$this->core_model->delete('capacitacao_servidores', array('serv_id' => $servidor->serv_id));
 
-        insert_login($login);
+		$this->core_model->delete('pdf_capacitacao_servidores', array('pdf_pagina_id' => $servidor->serv_id));
 
+		$login = [
+			'tipo' => 4,
+			'acao' => 'Deletou servidor: ' . $servidor->serv_nome
+		];
 
-        $this->core_model->delete('pdf_censo_previdenciario', array('pdf_id' => $pdf->pdf_id));
-        redirect('restrita/' . $this->router->fetch_class() . '/pdf_listagem/'.$pdf->pdf_pagina_id);
-    }
+		insert_login($login);
+		
+		redirect('restrita/' . $this->router->fetch_class());
+	}
 }
