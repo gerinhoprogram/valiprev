@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('Ação não permitida');
 
-class Capacitacao_de_servidores extends CI_Controller
+class Resolucoes_do_conselho_de_administracao extends CI_Controller
 {
 
 	public function __construct()
@@ -14,7 +14,11 @@ class Capacitacao_de_servidores extends CI_Controller
 		}
 
 		$this->load->model('menu_principal_model');
-		$this->url_pagina = 'capacitacao-de-servidores';
+		$this->url_pagina = 'resolucoes-do-conselho-de-administracao';
+		$this->pagina_titulo = 'Resoluções do conselho de administração';
+		$this->tabela_banco = 'pdf_resolucoes_do_conselho_de_administracao';
+		$this->view_folder = 'resolucoes_do_conselho_de_administracao';
+
 	}
 
 	public function redirecionar()
@@ -25,21 +29,21 @@ class Capacitacao_de_servidores extends CI_Controller
 	public function index()
 	{
 
-		$pagina = $this->menu_principal_model->get_pagina_url($this->url_pagina);
-
 		if (!$area = areas()) {
 			redirect('restrita');
 		}
 
+		$pagina = $this->menu_principal_model->get_pagina_url($this->url_pagina);
+
 		$login = [
 			'tipo' => 1,
-			'acao' => 'Acessou pagina: Capacitação de servidores'
+			'acao' => "Acessou a página: $this->pagina_titulo"
 		];
 
 		insert_login($login);
 
 		$data = array(
-			'titulo' => '<span class="text-info"><i class="fas fa-edit"></i>Capacitação de servidores</span>',
+			'titulo' => "<span class='text-info'><i class='fas fa-edit'></i> $this->pagina_titulo</span>",
 			'styles' => array(
 				'assets/bundles/datatables/datatables.min.css',
 				'assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css',
@@ -50,7 +54,7 @@ class Capacitacao_de_servidores extends CI_Controller
 				'assets/bundles/jquery-ui/jquery-ui.min.js',
 				'assets/js/page/datatables.js'
 			),
-			'servidores' => $this->core_model->get_all('capacitacao_servidores'),
+			'pdfs' => $this->core_model->get_all($this->tabela_banco),
 			'pagina' => $pagina,
 			'editar' => $area->editar,
 			'adicionar' => $area->adicionar,
@@ -58,28 +62,28 @@ class Capacitacao_de_servidores extends CI_Controller
 		);
 
 		$this->load->view('restrita/layout/header', $data);
-		$this->load->view('restrita/capacitacao_de_servidores/index');
+		$this->load->view("restrita/$this->view_folder/index");
 		$this->load->view('restrita/layout/footer');
 	}
 
-	public function core($serv_id = null)
+	public function core($pdf_id = null)
 	{
 
 		$area = areas();
 
-		$serv_id = (int) $serv_id;
+		$pdf_id = (int) $pdf_id;
 
-		if (!$serv_id) {
+		if (!$pdf_id) {
 
 			if ($area->adicionar) {
 
-				$this->form_validation->set_rules('serv_nome', 'Nome', 'trim|required|min_length[2]|max_length[150]');
+				$this->form_validation->set_rules('pdf_titulo', 'Nome', 'trim|required|min_length[2]|max_length[150]');
 
 				if ($this->form_validation->run()) {
 
 					$data = elements(
 						array(
-							'serv_nome',
+							'pdf_titulo',
 							'serv_status'
 						),
 						$this->input->post()
@@ -88,7 +92,7 @@ class Capacitacao_de_servidores extends CI_Controller
 					$data = html_escape($data);
 
 					$this->core_model->insert('capacitacao_servidores', $data, true);
-					$last_id = $this->core_model->get_by_id('capacitacao_servidores', array('serv_id' => $this->session->userdata('last_id')));
+					$last_id = $this->core_model->get_by_id('capacitacao_servidores', array('pdf_id' => $this->session->userdata('last_id')));
 
 						$titulo = $this->input->post('pdf_titulo');
 						$arquivo = $this->input->post('pdf_arquivo');
@@ -99,7 +103,7 @@ class Capacitacao_de_servidores extends CI_Controller
 						for ($i = 0; $i < $total; $i++) {
 
 							$data = array(
-								'pdf_pagina_id' => $last_id->serv_id,
+								'pdf_pagina_id' => $last_id->pdf_id,
 								'pdf_titulo' => $titulo[$i],
 								'pdf_arquivo' => $arquivo[$i],
 								'pdf_tamanho' => $tamanho[$i],
@@ -110,7 +114,7 @@ class Capacitacao_de_servidores extends CI_Controller
 
 					$login = [
 						'tipo' => 2,
-						'acao' => 'Cadastrou servidor: ' . $last_id->serv_nome
+						'acao' => 'Cadastrou servidor: ' . $last_id->pdf_titulo
 					];
 
 					insert_login($login);
@@ -152,18 +156,18 @@ class Capacitacao_de_servidores extends CI_Controller
 
 			if ($area->editar) {
 
-				if (!$servidor = $this->core_model->get_by_id('capacitacao_servidores', array('serv_id' => $serv_id))) {
+				if (!$servidor = $this->core_model->get_by_id('capacitacao_servidores', array('pdf_id' => $pdf_id))) {
 					$this->session->set_flashdata('erro', 'Servidor não foi encontrado!');
 					$this->redirecionar();
 				} else {
 
-					$this->form_validation->set_rules('serv_nome', 'Nome', 'trim|required|min_length[2]|max_length[150]');
+					$this->form_validation->set_rules('pdf_titulo', 'Nome', 'trim|required|min_length[2]|max_length[150]');
 
 					if ($this->form_validation->run()) {
 
 						$data = elements(
 							array(
-								'serv_nome',
+								'pdf_titulo',
 								'serv_status'
 							),
 							$this->input->post()
@@ -171,9 +175,9 @@ class Capacitacao_de_servidores extends CI_Controller
 
 						$data = html_escape($data);
 
-						$this->core_model->update('capacitacao_servidores', $data, array('serv_id' => $servidor->serv_id));
+						$this->core_model->update('capacitacao_servidores', $data, array('pdf_id' => $servidor->pdf_id));
 
-						$log_query_delete = $this->core_model->delete('pdf_capacitacao_servidores', array('pdf_pagina_id' => $servidor->serv_id));
+						$log_query_delete = $this->core_model->delete('pdf_capacitacao_servidores', array('pdf_pagina_id' => $servidor->pdf_id));
 
 						$titulo = $this->input->post('pdf_titulo');
 						$arquivo = $this->input->post('pdf_arquivo');
@@ -188,7 +192,7 @@ class Capacitacao_de_servidores extends CI_Controller
 							for ($i = 0; $i < $cont; $i++) {
 
 								$data = array(
-									'pdf_pagina_id' => $servidor->serv_id,
+									'pdf_pagina_id' => $servidor->pdf_id,
 									'pdf_titulo' => $titulo[$i],
 									'pdf_arquivo' => $arquivo[$i],
 									'pdf_tamanho' => $tamanho[$i],
@@ -200,7 +204,7 @@ class Capacitacao_de_servidores extends CI_Controller
 
 						$login = [
 							'tipo' => 3,
-							'acao' => 'Editou capacitação de servidores: ' . $servidor->serv_nome
+							'acao' => 'Editou capacitação de servidores: ' . $servidor->pdf_titulo
 						];
 
 						insert_login($login);
@@ -210,15 +214,15 @@ class Capacitacao_de_servidores extends CI_Controller
 
 						$login = [
 							'tipo' => 1,
-							'acao' => 'Entrou para editar capacitação de servidores: ' . $servidor->serv_nome
+							'acao' => 'Entrou para editar capacitação de servidores: ' . $servidor->pdf_titulo
 						];
 
 						insert_login($login);
 
 						$data = array(
-							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar categoria: ' . $servidor->serv_nome . '</span>',
+							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar categoria: ' . $servidor->pdf_titulo . '</span>',
 							'servidor' => $servidor,
-							'pdf' => $this->core_model->get_all('pdf_capacitacao_servidores', array('pdf_pagina_id' => $servidor->serv_id)),
+							'pdf' => $this->core_model->get_all('pdf_capacitacao_servidores', array('pdf_pagina_id' => $servidor->pdf_id)),
 							'styles' => array(
 								'assets/jquery-upload-file/css/uploadfile.css',
 								'assets/bundles/select2/dist/css/select2.min.css',
@@ -502,23 +506,23 @@ class Capacitacao_de_servidores extends CI_Controller
 		$this->load->view('restrita/layout/footer');
 	}
 
-	public function delete($serv_id = null)
+	public function delete($pdf_id = null)
 	{
 
-		$serv_id = (int) $serv_id;
+		$pdf_id = (int) $pdf_id;
 
-		if (!$serv_id || !$servidor = $this->core_model->get_by_id('capacitacao_servidores', array('serv_id' => $serv_id))) {
+		if (!$pdf_id || !$servidor = $this->core_model->get_by_id('capacitacao_servidores', array('pdf_id' => $pdf_id))) {
 			$this->session->set_flashdata('erro', 'Servidor não foi encontrado');
 			$this->redirecionar();
 		}
 
-		$this->core_model->delete('capacitacao_servidores', array('serv_id' => $servidor->serv_id));
+		$this->core_model->delete('capacitacao_servidores', array('pdf_id' => $servidor->pdf_id));
 
-		$this->core_model->delete('pdf_capacitacao_servidores', array('pdf_pagina_id' => $servidor->serv_id));
+		$this->core_model->delete('pdf_capacitacao_servidores', array('pdf_pagina_id' => $servidor->pdf_id));
 
 		$login = [
 			'tipo' => 4,
-			'acao' => 'Deletou servidor: ' . $servidor->serv_nome
+			'acao' => 'Deletou servidor: ' . $servidor->pdf_titulo
 		];
 
 		insert_login($login);

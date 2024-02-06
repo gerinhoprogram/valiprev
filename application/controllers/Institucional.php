@@ -105,4 +105,21 @@ class Institucional extends CI_Controller {
         $this->load->view('web/layout/footer');
     }
 
+	public function capacitacao_servidores() {
+
+        $data = array(
+			'titulo' => 'Capacitação de servidores',
+			'menu_principal' => $this->menu_principal(),
+			'pagina' => $this->menu_principal_model->get_pagina_url('censo-previdenciario'),
+			'servidores' => $this->core_model->get_all('capacitacao_servidores'),
+			'pdfs' => $this->core_model->get_all('pdf_capacitacao_servidores'),
+        );
+
+		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / ".$data['titulo'];
+
+        $this->load->view('web/layout/header', $data);
+        $this->load->view('web/institucional/capacitacao_servidores');
+        $this->load->view('web/layout/footer');
+    }
+
 }
