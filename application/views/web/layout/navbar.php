@@ -26,6 +26,7 @@
 																	<li>
 																		<a href="<?= base_url('/'.$men->men_url .'/'. $sub->pag_link.'/'.$pai->pag_link.'/'.$pai_2->pag_link) ?>">
 																		<?= $pai_2->pag_nome ?>
+																		</a>
 																	</li>
 																<?php endforeach ?>
 															</ul>
@@ -33,7 +34,7 @@
 													<?php else :?>
 														<li>
 															<a href="<?= base_url('/'.$men->men_url .'/'. $sub->pag_link.'/'.$pai->pag_link) ?>">
-															<?= $pai->pag_nome ?>0
+															<?= $pai->pag_nome ?>
 															</a>
 														</li>
 													<?php endif ?>

@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Valiprev extends CI_Controller {
+class Institucional extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -37,7 +37,7 @@ class Valiprev extends CI_Controller {
 
 
         $this->load->view('web/layout/header', $data);
-        $this->load->view('web/valiprev/index');
+        $this->load->view('web/institucional/index');
         $this->load->view('web/layout/footer');
     }
 
@@ -51,7 +51,7 @@ class Valiprev extends CI_Controller {
 		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / ".$data['titulo'];
 
         $this->load->view('web/layout/header', $data);
-        $this->load->view('web/valiprev/o_valiprev');
+        $this->load->view('web/institucional/o_valiprev');
         $this->load->view('web/layout/footer');
     }
 
@@ -66,7 +66,7 @@ class Valiprev extends CI_Controller {
 		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / ".$data['titulo'];
 
         $this->load->view('web/layout/header', $data);
-        $this->load->view('web/valiprev/presidencia');
+        $this->load->view('web/institucional/presidencia');
         $this->load->view('web/layout/footer');
     }
 
@@ -84,7 +84,7 @@ class Valiprev extends CI_Controller {
         );
 
         $this->load->view('web/layout/header', $data);
-        $this->load->view('web/valiprev/diretoria');
+        $this->load->view('web/institucional/diretoria');
         $this->load->view('web/layout/footer');
     }
 
@@ -94,13 +94,14 @@ class Valiprev extends CI_Controller {
 			'titulo' => 'Censo Previdenciário',
 			'menu_principal' => $this->menu_principal(),
 			'pagina' => $this->menu_principal_model->get_pagina_url('censo-previdenciario'),
-			'faq' => $this->core_model->get_all('faq_censo_previdenciario')
+			'faq' => $this->core_model->get_all('faq_censo_previdenciario'),
+			'pdfs' => $this->core_model->get_all('pdf_censo_previdenciario'),
         );
 
 		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / ".$data['titulo'];
 
         $this->load->view('web/layout/header', $data);
-        $this->load->view('web/valiprev/censo_previdenciario');
+        $this->load->view('web/institucional/censo_previdenciario');
         $this->load->view('web/layout/footer');
     }
 

@@ -4,6 +4,6 @@
 
 <section style='height: 300px; background: green'>
 
-<p>conteudo</p>
+<p><?=$titulo?></p>
 
 </section>

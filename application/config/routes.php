@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   | Examples:	my-controller/index	-> my_controller/index
   |		my-controller/my-method	-> my_controller/my_method
  */
-$route['default_controller'] = 'valiprev';
+$route['default_controller'] = 'home';
 $route['404_override'] = 'Custom_404';
 $route['translate_uri_dashes'] = FALSE;
 
@@ -58,7 +58,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['restrita'] = 'restrita/home/index';
 
 $route['detalhes/(:any)'] = 'detalhes/index/$1';
-$route['valiprev/o-valiprev'] = 'valiprev/o_valiprev';
-$route['valiprev/presidencia'] = 'valiprev/presidencia';
-$route['valiprev/diretoria/(:any)'] = 'valiprev/diretoria/$1';
-$route['valiprev/censo-previdenciario'] = 'valiprev/censo_previdenciario';
+$route['institucional/o-valiprev'] = 'institucional/o_valiprev';
+$route['institucional/presidencia'] = 'institucional/presidencia';
+$route['institucional/diretoria/(:any)'] = 'institucional/diretoria/$1';
+$route['institucional/censo-previdenciario'] = 'institucional/censo_previdenciario';
