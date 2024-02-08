@@ -122,4 +122,27 @@ class Institucional extends CI_Controller {
         $this->load->view('web/layout/footer');
     }
 
+    public function juridico($url = null) {
+
+        exit($url);
+
+        if(!$pagina = $this->menu_principal_model->get_pagina_url($url)){
+            exit('404');
+        }
+
+        $menu_principal = $this->menu_principal();
+
+        $data = array(
+			'titulo' => 'Resoluções do conselho de administração',
+			'pagina' => $this->menu_principal_model->get_pagina_url('resolucoes-do-conselho-de-administracao'),
+			'pdfs' => $this->core_model->get_all('pdf_resolucoes_do_conselho_de_administracao'),
+        );
+
+		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / ".$data['titulo'];
+
+        $this->load->view('web/layout/header', $data);
+        $this->load->view('web/institucional/resolucoes_do_conselho_de_administracao');
+        $this->load->view('web/layout/footer');
+    }
+
 }

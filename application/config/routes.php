@@ -57,9 +57,11 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['restrita'] = 'restrita/home/index';
 
-$route['detalhes/(:any)'] = 'detalhes/index/$1';
 $route['institucional/o-valiprev'] = 'institucional/o_valiprev';
 $route['institucional/presidencia'] = 'institucional/presidencia';
 $route['institucional/diretoria/(:any)'] = 'institucional/diretoria/$1';
 $route['institucional/censo-previdenciario'] = 'institucional/censo_previdenciario';
 $route['institucional/capacitacao-de-servidores'] = 'institucional/capacitacao_servidores';
+
+$route['transparencia/juridico/resolucoes/(:any)'] = 'transparencia/juridico/$1';
+$route['transparencia/juridico/portais'] = 'transparencia/portais';

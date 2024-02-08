@@ -67,8 +67,10 @@ class Menu_principal_model extends CI_Model {
 
         $this->db->join('paginas_nivel2', 'paginas_nivel2.cont_pagina_id = paginas.pag_id', 'left');
 
-        $this->db->where('pag_link', $url);
-        
+        if($url){
+            $this->db->where('pag_link', $url);
+        }
+
         return $this->db->get('paginas')->row();
     }
 

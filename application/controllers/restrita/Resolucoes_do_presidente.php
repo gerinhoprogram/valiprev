@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('Ação não permitida');
 
-class Resolucoes_do_conselho_de_administracao extends CI_Controller
+class Resolucoes_do_presidente extends CI_Controller
 {
 
 	public function __construct()
@@ -14,8 +14,8 @@ class Resolucoes_do_conselho_de_administracao extends CI_Controller
 		}
 
 		$this->load->model('menu_principal_model');
-		$this->url_pagina = 'resolucoes-do-conselho-de-administracao';
-		$this->pagina_titulo = 'Resoluções do conselho de administração';
+		$this->url_pagina = 'resolucoes-do-presidente';
+		$this->pagina_titulo = 'Resoluções do presidente';
 		$this->tabela_banco = 'pdf_resolucoes_do_conselho_de_administracao';
 		$this->view_folder = 'resolucoes_do_conselho_de_administracao';
 
@@ -123,7 +123,7 @@ class Resolucoes_do_conselho_de_administracao extends CI_Controller
 						'scripts' => array(
 							'assets/sweetalert2/sweetalert2.all.min.js',
 							'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
-							'assets/jquery-upload-file/js/resolucoes_do_conselho_de_administracao.js',
+							'assets/jquery-upload-file/js/resolucoes_do_presidente.js',
 							'assets/bundles/select2/dist/js/select2.full.min.js',
 						),
 
@@ -188,7 +188,7 @@ class Resolucoes_do_conselho_de_administracao extends CI_Controller
 							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar : ' . $pdf->pdf_titulo . '</span>',
 							'pdf' => $pdf,
 							'scripts' => array(
-								'assets/js/resolucoes_do_conselho_de_administracao.js'
+								'assets/js/resolucoes_do_presidente.js'
 							),
 						);
 
@@ -206,7 +206,7 @@ class Resolucoes_do_conselho_de_administracao extends CI_Controller
 	public function upload_pdf()
 	{
 
-		$config['upload_path'] = './uploads/paginas/resolucoes_do_conselho_de_administracao/pdf';
+		$config['upload_path'] = './uploads/paginas/resolucoes_do_presidente/pdf';
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;
@@ -237,7 +237,7 @@ class Resolucoes_do_conselho_de_administracao extends CI_Controller
 	public function upload_pdf_unico()
 	{
 
-		$config['upload_path'] = './uploads/paginas/resolucoes_do_conselho_de_administracao/pdf';
+		$config['upload_path'] = './uploads/paginas/resolucoes_do_presidente/pdf';
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;

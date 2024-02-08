@@ -27,6 +27,7 @@
                                     <table class="table table-striped table-artigos">
                                         <thead>
                                             <tr>
+                                                <th>ID</th>
                                                 <th>Título</th>
                                                 <th class="nosort text-center">Ações</th>
                                             </tr>
@@ -37,7 +38,11 @@
                                             <?php foreach ($pdfs as $pdf): ?>
 
                                                 <tr>
-                                                    <td><?php echo $pdf->pdf_titulo; ?></td>
+                                                    <td><?=$pdf->pdf_id?></td>
+                                                    <td><a class='badge badge-info' href="<?= base_url('uploads/paginas/resolucoes_do_conselho_de_administracao/pdf/'.$pdf->pdf_arquivo) ?>" target="_blank" rel="noopener noreferrer">
+                                                        <?php echo $pdf->pdf_titulo; ?>
+                                                         </a>
+                                                    </td>
 													
 													<td class="text-center">
                                                         <div class="dropdown">

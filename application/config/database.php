@@ -83,7 +83,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'ncwbrasil.sytes.net:3030',
+	'hostname' => 'localhost:3030',
 	'username' => 'root',
 	'password' => 'm0507c1106',
 	'database' => 'blog_ncw',
