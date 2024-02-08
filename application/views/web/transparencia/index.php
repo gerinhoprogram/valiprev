@@ -8,7 +8,7 @@
 		
 		<div class="colunas lg-12">
 			<?php foreach($paginas as $pag) :?>
-				<a href="<?=($pag->pag_link_externo ? $pag->pag_link : base_url('institucional/'.$pag->pag_link))?>"><p><?=$pag->pag_nome?></p></a>
+				<a href="<?=($pag->pag_link_externo ? $pag->pag_link : base_url('transparencia/'.$pag->pag_link))?>"><p><?=$pag->pag_nome?></p></a>
 			<?php endforeach ?>
 		</div>
 	</div>

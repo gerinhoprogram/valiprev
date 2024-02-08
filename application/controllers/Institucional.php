@@ -21,20 +21,16 @@ class Institucional extends CI_Controller {
 
     public function index() {
 
-		//echo CI_VERSION;
-
         $data = array(
-			'titulo' => 'Home',
-            // 'styles' => array(
-            //     'assets/css/estilo.css',
-            // ),
-            'scripts' => array(
-                
-            ),
+			'titulo' => 'Institucional',
 			'menu_principal' => $this->menu_principal(),
-			'sistema' => $this->footer_header()
+			'sistema' => $this->footer_header(),
+			'menu_principal' => $this->menu_principal(),
+			'paginas' => $this->core_model->get_all('paginas', array('pag_menu_id' => 1, 'pag_status' => 1, 'pag_nivel_1' => 1)),
+
         );
 
+		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / Institucional";
 
         $this->load->view('web/layout/header', $data);
         $this->load->view('web/institucional/index');
@@ -48,7 +44,7 @@ class Institucional extends CI_Controller {
 			'menu_principal' => $this->menu_principal(),
         );
 
-		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / ".$data['titulo'];
+		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / <a href='".base_url('institucional')."'> Institucional </a> / ".$data['titulo'];
 
         $this->load->view('web/layout/header', $data);
         $this->load->view('web/institucional/o_valiprev');
@@ -63,7 +59,8 @@ class Institucional extends CI_Controller {
 			'pagina' => $this->menu_principal_model->get_pagina_url('presidencia'),
         );
 
-		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / ".$data['titulo'];
+		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / <a href='".base_url('institucional')."'> Institucional </a> / ".$data['titulo'];
+
 
         $this->load->view('web/layout/header', $data);
         $this->load->view('web/institucional/presidencia');
@@ -72,20 +69,35 @@ class Institucional extends CI_Controller {
 
 	public function diretoria($url = null) {
 
-		if(!$pagina = $this->menu_principal_model->get_pagina_url($url)){
-				exit('404');
+		$menu = $this->menu_principal_model->get_pagina_url('diretoria');
+
+		if ($url && $pagina = $this->menu_principal_model->get_pagina_url($url)) {
+
+			$data = array(
+				'titulo' => $pagina->pag_nome,
+				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/diretoria') . "'>Diretoria</a> / $pagina->pag_nome",
+				'menu_principal' => $this->menu_principal(),
+				'pagina' => $pagina,
+			);
+
+			$this->load->view('web/layout/header', $data);
+			$this->load->view("web/institucional/diretoria");
+			$this->load->view('web/layout/footer');
+
+		} else {
+
+			$data = array(
+				'titulo' => $menu->pag_nome,
+				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/diretoria/') . "'>Diretoria</a>",
+				'menu_principal' => $this->menu_principal(),
+				'menu' => $menu,
+				'paginas' => $this->core_model->get_all('paginas', array('pag_pai' => $menu->pag_id))
+			);
+
+			$this->load->view('web/layout/header', $data);
+			$this->load->view("web/institucional/diretoria");
+			$this->load->view('web/layout/footer');
 		}
-
-        $data = array(
-			'titulo' => $pagina->pag_nome,
-			'breadcrumb' => "<a href='".base_url()."'>Início</a> / Diretoria / $pagina->pag_nome",
-			'menu_principal' => $this->menu_principal(),
-			'pagina' => $pagina
-        );
-
-        $this->load->view('web/layout/header', $data);
-        $this->load->view('web/institucional/diretoria');
-        $this->load->view('web/layout/footer');
     }
 
 	public function censo_previdenciario() {
@@ -98,7 +110,7 @@ class Institucional extends CI_Controller {
 			'pdfs' => $this->core_model->get_all('pdf_censo_previdenciario'),
         );
 
-		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / ".$data['titulo'];
+		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / ".$data['titulo'];
 
         $this->load->view('web/layout/header', $data);
         $this->load->view('web/institucional/censo_previdenciario');
@@ -115,34 +127,63 @@ class Institucional extends CI_Controller {
 			'pdfs' => $this->core_model->get_all('pdf_capacitacao_servidores'),
         );
 
-		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / ".$data['titulo'];
+		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / ".$data['titulo'];
 
         $this->load->view('web/layout/header', $data);
         $this->load->view('web/institucional/capacitacao_servidores');
         $this->load->view('web/layout/footer');
     }
 
-    public function juridico($url = null) {
+	public function conselhos() {
 
-        exit($url);
-
-        if(!$pagina = $this->menu_principal_model->get_pagina_url($url)){
-            exit('404');
-        }
-
-        $menu_principal = $this->menu_principal();
+		$menu = $this->menu_principal_model->get_pagina_url('conselhos');
 
         $data = array(
-			'titulo' => 'Resoluções do conselho de administração',
-			'pagina' => $this->menu_principal_model->get_pagina_url('resolucoes-do-conselho-de-administracao'),
-			'pdfs' => $this->core_model->get_all('pdf_resolucoes_do_conselho_de_administracao'),
+			'titulo' => 'Conselhos',
+			'menu_principal' => $this->menu_principal(),
+			'paginas' => $this->core_model->get_all('paginas', array('pag_status' => 1, 'pag_pai' => $menu->pag_id)),
         );
 
-		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / ".$data['titulo'];
+		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / ".$data['titulo'];
 
         $this->load->view('web/layout/header', $data);
-        $this->load->view('web/institucional/resolucoes_do_conselho_de_administracao');
+        $this->load->view('web/institucional/conselhos/index');
         $this->load->view('web/layout/footer');
     }
+
+	public function conselho_administrativo($url = null)
+	{
+
+		$menu = $this->menu_principal_model->get_pagina_url('conselho_administrativo');
+
+		if ($url && $pagina = $this->menu_principal_model->get_pagina_url($url)) {
+
+			$data = array(
+				'titulo' => $pagina->pag_nome,
+				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/conselho_administrativo/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ $pagina->pag_nome",
+				'menu_principal' => $this->menu_principal(),
+				'pagina' => $pagina,
+			);
+
+			$this->load->view('web/layout/header', $data);
+			$this->load->view("web/institucional/conselhos/conselho_administrativo/index");
+			$this->load->view('web/layout/footer');
+		} else {
+
+			$data = array(
+				'titulo' => $menu->pag_nome,
+				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos/') . "'>Conselhos</a> / $menu->pag_nome",
+				'menu_principal' => $this->menu_principal(),
+				'menu' => $menu,
+				'paginas' => $this->core_model->get_all('paginas', array('pag_pai_2' => $menu->pag_id))
+			);
+
+			$this->load->view('web/layout/header', $data);
+			$this->load->view("web/institucional/conselhos/conselho_administrativo/index");
+			$this->load->view('web/layout/footer');
+		}
+	}
+
+
 
 }

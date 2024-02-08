@@ -60,8 +60,16 @@ $route['restrita'] = 'restrita/home/index';
 $route['institucional/o-valiprev'] = 'institucional/o_valiprev';
 $route['institucional/presidencia'] = 'institucional/presidencia';
 $route['institucional/diretoria/(:any)'] = 'institucional/diretoria/$1';
+$route['institucional/diretoria'] = 'institucional/diretoria';
 $route['institucional/censo-previdenciario'] = 'institucional/censo_previdenciario';
 $route['institucional/capacitacao-de-servidores'] = 'institucional/capacitacao_servidores';
 
-$route['transparencia/juridico/resolucoes/(:any)'] = 'transparencia/juridico/$1';
+$route['institucional/conselhos/conselho-administrativo/(:any)'] = 'institucional/conselho_administrativo/$1';
+$route['institucional/conselhos/conselho-administrativo'] = 'institucional/conselho_administrativo';
+$route['institucional/conselhos'] = 'institucional/conselhos';
+
+$route['transparencia/juridico'] = 'transparencia/juridico';
+$route['transparencia/juridico/resolucoes/(:any)'] = 'transparencia/resolucoes/$1';
+$route['transparencia/juridico/resolucoes'] = 'transparencia/resolucoes';
 $route['transparencia/juridico/portais'] = 'transparencia/portais';
+

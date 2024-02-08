@@ -1,9 +1,16 @@
-
 <?php $this->load->view('web/layout/navbar'); ?>
-<?php $sistema = info_header_footer() ?>
 
-<section style='height: 300px; background: green'>
+<section>
 
-<p><?=$titulo?></p>
+	<?php $this->load->view('web/layout/cabecalho_pagina'); ?>
+
+	<div class="linha">
+		<div class="colunas lg-4">
+			
+		</div>
+		<div class="colunas lg-8">
+			
+		</div>
+	</div>
 
 </section>
