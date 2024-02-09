@@ -164,7 +164,6 @@ class Censo_previdenciario extends CI_Controller
 		echo json_encode($data);
 	}
 
-
 	public function pdf_listagem($pag_id = null)
 	{
 

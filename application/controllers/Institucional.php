@@ -141,6 +141,7 @@ class Institucional extends CI_Controller {
         $data = array(
 			'titulo' => 'Conselhos',
 			'menu_principal' => $this->menu_principal(),
+			'menu' => $menu,
 			'paginas' => $this->core_model->get_all('paginas', array('pag_status' => 1, 'pag_pai' => $menu->pag_id)),
         );
 
@@ -154,13 +155,13 @@ class Institucional extends CI_Controller {
 	public function conselho_administrativo($url = null)
 	{
 
-		$menu = $this->menu_principal_model->get_pagina_url('conselho_administrativo');
+		$menu = $this->menu_principal_model->get_pagina_url('conselho-administrativo');
 
-		if ($url && $pagina = $this->menu_principal_model->get_pagina_url($url)) {
+		if ($url && $pagina = $this->menu_principal_model->get_pagina_url_array(array('pag_link' => $url, 'pag_pai_2' => $menu->pag_id))) {
 
 			$data = array(
 				'titulo' => $pagina->pag_nome,
-				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/conselho_administrativo/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ $pagina->pag_nome",
+				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ $pagina->pag_nome",
 				'menu_principal' => $this->menu_principal(),
 				'pagina' => $pagina,
 			);
@@ -168,6 +169,7 @@ class Institucional extends CI_Controller {
 			$this->load->view('web/layout/header', $data);
 			$this->load->view("web/institucional/conselhos/conselho_administrativo/index");
 			$this->load->view('web/layout/footer');
+			
 		} else {
 
 			$data = array(

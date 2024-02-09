@@ -14,37 +14,50 @@
                     <div class="col-12">
                         <div class="card">
                         <div class="card-header d-block">
-									<h4><?php echo $titulo?></h4>
-								</div>
+						<h4><?php echo $titulo ?></h4>
+
+							<?php if($adicionar) :?>
+							<a onclick="loading()" href="<?php echo base_url('restrita/'.$this->router->fetch_class().'/core') ?>" data-toggle="tooltip" data-placement="top" title="Adicionar novo registro" class="btn btn-success float-right"><i class="fas fa-plus"></i>&nbsp;Novo registro</a>
+							<?php endif?>
+						
+						</div>
                             <div class="card-body">
 
                                 <div class="table-responsive">
                                     <table class="table table-striped table-artigos">
                                         <thead>
                                             <tr>
+												<th>Foto</th>
                                                 <th>Nome</th>
-												<th class="nosort text-center">Link externo</th>
-                                                <th class="nosort text-center">Status</th>
-                                                <?php if($excluir || $editar) :?>
+												<th>Cargo</th>
+												<th>Categoria</th>
+												<th>Conselho</th>
+
                                                 <th class="nosort text-center">Ações</th>
-                                                <?php endif ?>
                                             </tr>
                                         </thead>
                                         <tbody>
 
 
-                                            <?php foreach ($paginas as $pag): ?>
-
-												<?php $funcao = str_replace("-", "_", $pag->pag_link); ?>
+                                            <?php foreach ($conselheiros as $conselho): ?>
 
                                                 <tr>
+													<td>
+														<img src="<?= base_url('uploads/paginas/conselhos/conselheiros/'. $conselho->con_foto) ?>" alt="" style='height: 80px; object-fit: contain; width: 100%'>
+													</td>
                                                     <td>
-                                                    <?=$pag->pag_nome?>
-                                                    </td>
-													<td class="text-center"><?=($pag->pag_link_externo == 1 ? '<i class="fas fa-check text-success"></i>' : ''); ?></td>
-
-                                                    <td class="text-center"><?=($pag->pag_status == 1 ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'); ?></td>
-                                                   
+														<?= $conselho->con_nome ?>
+													</td>
+													<td>
+														<?= $conselho->con_cargo ?>
+													</td>
+													<td>
+														<?= $conselho->con_categoria ?>
+													</td>
+													<td>
+														<?= $conselho->pag_nome ?>
+													</td>
+													
 													<td class="text-center">
                                                         <div class="dropdown">
                                                             <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Opções</a>
@@ -52,14 +65,13 @@
 
                                                                     
                                                                     <?php if($editar) :?>
-                                                                    <a onclick="loading()" data-toggle="tooltip" data-placement="left" title="Editar informações" href="<?=base_url('restrita/' . $funcao); ?>" class="dropdown-item has-icon text-warning"><i class="fas fa-edit"></i> Editar</a>
-                                                                        <?php if($pag->pag_status) :?>
-                                                                            <a data-toggle="tooltip" data-placement="left" title="Inativar" href="<?= base_url('restrita/'.$this->router->fetch_class().'/situacao/' . $pag->pag_id); ?>" class="dropdown-item has-icon situacao text-info" data-confirm="Deseja inativar a página?"><i class="fas fa-redo"></i> Inativar</a>
+																		
+                                                                    		<a onclick="loading()" data-toggle="tooltip" data-placement="left" title="Editar informações" href="<?php echo base_url('restrita/' . $this->router->fetch_class() . '/core/' . $conselho->con_id); ?>" class="dropdown-item has-icon text-warning"><i class="fas fa-edit"></i> Editar</a>
+                                                                        
+                                                                    <?php endif ?>
 
-                                                                        <?php else :?>
-                                                                            <a data-toggle="tooltip" data-placement="left" title="Ativar" href="<?= base_url('restrita/'.$this->router->fetch_class().'/situacao/' . $pag->pag_id); ?>" class="dropdown-item has-icon situacao text-info" data-confirm="Deseja ativar a página?"><i class="fas fa-redo"></i> Ativar</a>
-
-                                                                            <?php endif ?>
+																	<?php if($excluir) :?>
+                                                                    <a data-toggle="tooltip" data-placement="left" title="Excluir permanente" href="<?= base_url('restrita/' . $this->router->fetch_class() . '/delete/' . $conselho->con_id); ?>" class="dropdown-item has-icon delete text-danger" data-confirm="Tem certeza da exclusão do registro?"><i class="fas fa-trash-alt"></i> Excluir</a>
                                                                     <?php endif ?>
 
                                                                     

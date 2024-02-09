@@ -74,6 +74,21 @@ class Menu_principal_model extends CI_Model {
         return $this->db->get('paginas')->row();
     }
 
+	public function get_pagina_url_array($condicoes = null){
+        $this->db->select([
+            'paginas.*',
+			'paginas_nivel2.*'
+        ]);
+
+        $this->db->join('paginas_nivel2', 'paginas_nivel2.cont_pagina_id = paginas.pag_id', 'left');
+
+        if($condicoes){
+            $this->db->where($condicoes);
+        }
+
+        return $this->db->get('paginas')->row();
+    }
+
 
 
 }

@@ -10,7 +10,7 @@
 
 			<div class="colunas lg-12">
 				<?php foreach ($paginas as $pag) : ?>
-					<a href="<?= ($pag->pag_link_externo ? $pag->pag_link : base_url('institucional/diretoria/' . $pag->pag_link)) ?>">
+					<a href="<?= ($pag->pag_link_externo ? $pag->pag_link : base_url('institucional/conselhos/'.$menu->pag_link.'/' . $pag->pag_link)) ?>">
 						<p><?= $pag->pag_nome ?></p>
 					</a>
 				<?php endforeach ?>
@@ -19,18 +19,13 @@
 
 	<?php else : ?>
 
+	
 		<div class="linha">
-			<div class="colunas lg-4">
-				<img src="<?= base_url('uploads/paginas/diretoria/') . $pagina->cont_foto ?>" alt="">
-			</div>
-			<div class="colunas lg-8">
-				<p><?= $pagina->cont_titulo ?></p>
-				<p><?= $pagina->cont_subtitulo ?></p>
-				<p>
-					<?= $pagina->cont_texto ?>
-				</p>
+
+			<div class="colunas lg-12">
 			</div>
 		</div>
+				
 
 	<?php endif ?>
 
