@@ -19,9 +19,9 @@ class Home extends CI_Controller {
             //     'assets/css/estilo.css',
             // ),
             'scripts' => array(
-                
+				'assets/js/banner_web.js',
             ),
-            'info_sistema' => $this->core_model->get_all('sistema', array('sistema_id' => 1)),
+            'info_sistema' => $this->core_model->get_by_id('sistema', array('sistema_id' => 1)),
 			'menu_principal' => $this->menu_principal_model->get_all(),
         );
 
