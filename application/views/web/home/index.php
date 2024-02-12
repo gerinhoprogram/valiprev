@@ -59,6 +59,24 @@
 		</div>
 	</div>
 	<div class="b_esquerdo" style="background: url(<?= base_url('uploads/home/valiprev.png') ?>) center center no-repeat;  background-size: cover"></div>
+</section>
 
 
+<section class="links-uteis">
+	<div class="linha">
+		<div class="colunas lg-12">
+			<h4>Links Úteis</h4>
+		</div>
+		<?php foreach ($links_uteis as $link) : ?>
+
+			<div class="colunas lg-2 md-4 pq-12">
+				<figure>
+					<a href="<?=$link->link_link?>" target="_blank" rel="noopener noreferrer" title="<?= $link->link_nome ?>">
+					<img src="<?= base_url('uploads/home/lins-uteis/' . $link->link_foto) ?>" alt="<?= $link->link_nome ?>" title="<?= $link->link_nome ?>">
+					</a>
+				</figure>
+			</div>
+
+		<?php endforeach ?>
+	</div>
 </section>

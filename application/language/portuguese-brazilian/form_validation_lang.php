@@ -1,13 +1,4 @@
-﻿<?php
-/**
- * System messages translation for CodeIgniter(tm)
- *
- * @author	CodeIgniter community
- * @copyright	Copyright (c) 2014-2019, British Columbia Institute of Technology (https://bcit.ca/)
- * @license	http://opensource.org/licenses/MIT	MIT License
- * @link	https://codeigniter.com
- */
-defined('BASEPATH') OR exit('No direct script access allowed');
+﻿<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 $lang['form_validation_required'] = 'O campo {field} é obrigatório.';
 $lang['form_validation_isset'] = 'O campo {field} deve conter um valor.';
@@ -40,3 +31,4 @@ $lang['form_validation_greater_than'] = 'O campo {field} deve conter um número 
 $lang['form_validation_greater_than_equal_to'] = 'O campo {field} deve conter um número maior ou igual que {param}.';
 $lang['form_validation_error_message_not_set'] = 'Não existe uma mensagem de erro para o campo com o nome {field}.';
 $lang['form_validation_in_list'] = 'O campo {field} deve ser um de: {param}.';
+?>

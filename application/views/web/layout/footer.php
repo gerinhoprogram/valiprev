@@ -1,18 +1,32 @@
-<?php $sistema = info_header_footer();?>
-<footer style="height: 300px; background-color: #ccc">
-<p>footer</p>
+<footer>
+	<div class="linhas">
+		<div class="colunas lg-4">
+			<h5>Fale conosco</h5>
+			<p><?= $info_sistema->sistema_telefone_fixo ?></p>
+			<p><?= $info_sistema->sistema_telefone_movel ?></p>
+			<p>
+			<p><?= $info_sistema->sistema_email ?></p>
+			</p>
+			<h5>Endereço</h5>
+			<p><?= $info_sistema->sistema_endereco ?></p>
+			<p><?= $info_sistema->sistema_bairro ?> | <?= $info_sistema->sistema_cep ?></p>
+			<h5>Endereço</h5>
+			<p><?= $info_sistema->sistema_horario_atendimento ?></p>
+		</div>
+		<div class="colunas lg-4">
+			<?php foreach($menu_home as $men_rodape) : ?>
+		</div>
 
-    <div id="copyright">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="site-info text-center">
-                        <p>© <?php echo date('Y'); ?><a target="_blank" rel="noopener noreferrer" href="<?= $sistema->sistema_link_site ?>" title="<?= $sistema->sistema_link_site ?>" aria-label="<?= $sistema->sistema_link_site ?>"> NCW Brasil</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+	</div>
+
+	<div class="linha">
+		<div class="colunas lg-12">
+			<div class="direitos-reservados">
+				<p>© <?php echo date('Y'); ?> Todos os direitos reservados</p>
+			</div>
+		</div>
+
+	</div>
 
 </footer>
 
@@ -24,18 +38,16 @@
 
 
 <script>
-    const BASE_URL = '<?php echo base_url() ?>';
+	const BASE_URL = '<?php echo base_url() ?>';
 </script>
 
 
 <?php if (isset($scripts)) : ?>
 
-    <?php foreach ($scripts as $script) : ?>
+	<?php foreach ($scripts as $script) : ?>
 
-        <script defer src="<?= base_url('public/restrita/' . $script); ?>"></script>
+		<script defer src="<?= base_url('public/restrita/' . $script); ?>"></script>
 
-    <?php endforeach; ?>
+	<?php endforeach; ?>
 
 <?php endif; ?>
-
-<script defer src="<?= base_url('public/web/assets/js/script.js'); ?>"></script>

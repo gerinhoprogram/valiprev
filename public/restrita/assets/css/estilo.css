@@ -447,12 +447,24 @@ a{
 	background-color: #f3f3f3;
 	padding: 40px 40px 40px 60px;
   }
-  h3{
+  h3, h4{
 	color: #3399ff;
 	margin-bottom: 20px;
   }
   .valiprev{
 	height: 100vh; display: flex;
+  }
+
+  .links-uteis{
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 30px;
+  }
+
+  .links-uteis img{
+	height: 80px;
+	object-fit: contain;
+	width: 100%
   }
 /* FIM HOME */
 
