@@ -19,10 +19,12 @@ class Home extends CI_Controller {
             //     'assets/css/estilo.css',
             // ),
             'scripts' => array(
-				'assets/js/banner_web.js',
+				// 'assets/js/banner_web.js',
             ),
             'info_sistema' => $this->core_model->get_by_id('sistema', array('sistema_id' => 1)),
 			'menu_principal' => $this->menu_principal_model->get_all(),
+			'menu_home' => $this->core_model->get_all_asc('menu_home', array('hom_status' => 1)),
+			'valiprev' => $this->core_model->get_by_id('paginas', array('pag_id' => 1)),
         );
 
 

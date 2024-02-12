@@ -27,6 +27,29 @@ class Core_model extends CI_Model {
         }
     }
 
+	public function get_all_asc($tabela = null, $condicoes = null, $limite = null) {
+
+
+        if ($tabela && $this->db->table_exists($tabela)) {
+
+            if (is_array($condicoes)) {
+
+                $this->db->where($condicoes);
+            }
+
+            if ($limite) {
+                $this->db->limit($limite);
+            }
+
+
+            $this->db->order_by(1, 'ASC');
+
+            return $this->db->get($tabela)->result();
+        } else {
+            return false;
+        }
+    }
+
     public function insert_login($tabela = null, $data = null) {
 
         if ($tabela && $this->db->table_exists($tabela) && is_array($data)) {
