@@ -64,6 +64,9 @@ $route['institucional/diretoria'] = 'institucional/diretoria';
 $route['institucional/censo-previdenciario'] = 'institucional/censo_previdenciario';
 $route['institucional/capacitacao-de-servidores'] = 'institucional/capacitacao_servidores';
 
+$route['institucional/conselhos/conselho-fiscal/(:any)'] = 'institucional/conselho_fiscal/$1';
+$route['institucional/conselhos/conselho-fiscal'] = 'institucional/conselho_fiscal';
+
 $route['institucional/conselhos/conselho-administrativo/(:any)'] = 'institucional/conselho_administrativo/$1';
 $route['institucional/conselhos/conselho-administrativo'] = 'institucional/conselho_administrativo';
 $route['institucional/conselhos'] = 'institucional/conselhos';

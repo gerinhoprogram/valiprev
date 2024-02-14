@@ -217,7 +217,7 @@ html {
 	}
 
 	.lg-2 {
-		width: 16.66667%
+		width: 16%
 	}
 
 	.lg-3 {
@@ -451,6 +451,7 @@ a{
 	color: #3399ff;
 	margin-bottom: 20px;
   }
+ 
   .valiprev{
 	height: 100vh; display: flex;
   }
@@ -477,10 +478,15 @@ a{
 
 hr{
 	margin-bottom: 40px;
+	margin-top: 10px;
 }
 
 footer{
 	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #332663;
+	color: #fff;
+	margin-top: 30px;
 }
 
 @media screen and (max-width: 980px) {

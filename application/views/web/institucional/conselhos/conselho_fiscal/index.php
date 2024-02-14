@@ -21,15 +21,15 @@
 
 		<div class="linha">
 			<div class="colunas lg-12">
-				<h4>O Conselho Administrativo</h4>
+				<h4>O Conselho Fiscal</h4>
 				<p>
-					O Conselho de Administração tem sua regulamentação prevista na Lei Nº 4877 de 11 de julho de 2013, que reorganiza e unifica o Regime Próprio de Previdência Social dos Servidores Municipais de Valinhos e dá outras providências.
+				O Conselho Fiscal é órgão fiscalizador dos atos de gestão do VALIPREV, para proteção dos interesses dessa entidade, criado pela Lei Nº 4877 de 11 de julho de 2013.
 				</p>
 				<p>
-					Decreto nº 10.672 de 04 de janeiro de 2021
+				Decreto nº 10.672 de 04 de janeiro de 2021
 				</p>
 				<p>
-					Triênio: 2021/2023
+				Triênio: 2021/2023
 				</p>
 			</div>
 		</div>
@@ -40,7 +40,7 @@
 			</div>
 
 			<?php foreach ($pagina as $pag) : ?>
-				<div class="colunas lg-4">
+				<div class="colunas lg-4 md-2 pq-12" style='height: 500px'>
 					<figure>
 						<img src="<?= base_url('uploads/paginas/conselhos/conselheiros/' . $pag->con_foto) ?>" alt="">
 					</figure>
