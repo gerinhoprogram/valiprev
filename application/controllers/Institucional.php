@@ -24,7 +24,7 @@ class Institucional extends CI_Controller {
         $data = array(
 			'titulo' => 'Institucional',
 			'menu_principal' => $this->menu_principal(),
-			'sistema' => $this->footer_header(),
+			'info_sistema' => $this->footer_header(),
 			'menu_principal' => $this->menu_principal(),
 			'paginas' => $this->core_model->get_all('paginas', array('pag_menu_id' => 1, 'pag_status' => 1, 'pag_nivel_1' => 1)),
 
@@ -42,6 +42,7 @@ class Institucional extends CI_Controller {
         $data = array(
 			'titulo' => 'O Valiprev',
 			'menu_principal' => $this->menu_principal(),
+			'info_sistema' => $this->footer_header(),
         );
 
 		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / <a href='".base_url('institucional')."'> Institucional </a> / ".$data['titulo'];
@@ -57,6 +58,7 @@ class Institucional extends CI_Controller {
 			'titulo' => 'Presidência',
 			'menu_principal' => $this->menu_principal(),
 			'pagina' => $this->menu_principal_model->get_pagina_url('presidencia'),
+			'info_sistema' => $this->footer_header(),
         );
 
 		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / <a href='".base_url('institucional')."'> Institucional </a> / ".$data['titulo'];
@@ -77,6 +79,7 @@ class Institucional extends CI_Controller {
 				'titulo' => $pagina->pag_nome,
 				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/diretoria') . "'>Diretoria</a> / $pagina->pag_nome",
 				'menu_principal' => $this->menu_principal(),
+				'info_sistema' => $this->footer_header(),
 				'pagina' => $pagina,
 			);
 
@@ -91,6 +94,7 @@ class Institucional extends CI_Controller {
 				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/diretoria/') . "'>Diretoria</a>",
 				'menu_principal' => $this->menu_principal(),
 				'menu' => $menu,
+				'info_sistema' => $this->footer_header(),
 				'paginas' => $this->core_model->get_all('paginas', array('pag_pai' => $menu->pag_id))
 			);
 
@@ -108,6 +112,7 @@ class Institucional extends CI_Controller {
 			'pagina' => $this->menu_principal_model->get_pagina_url('censo-previdenciario'),
 			'faq' => $this->core_model->get_all('faq_censo_previdenciario'),
 			'pdfs' => $this->core_model->get_all('pdf_censo_previdenciario'),
+			'info_sistema' => $this->footer_header(),
         );
 
 		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / ".$data['titulo'];
@@ -125,6 +130,7 @@ class Institucional extends CI_Controller {
 			'pagina' => $this->menu_principal_model->get_pagina_url('censo-previdenciario'),
 			'servidores' => $this->core_model->get_all('capacitacao_servidores'),
 			'pdfs' => $this->core_model->get_all('pdf_capacitacao_servidores'),
+			'info_sistema' => $this->footer_header(),
         );
 
 		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / ".$data['titulo'];
@@ -143,6 +149,7 @@ class Institucional extends CI_Controller {
 			'menu_principal' => $this->menu_principal(),
 			'menu' => $menu,
 			'paginas' => $this->core_model->get_all('paginas', array('pag_status' => 1, 'pag_pai' => $menu->pag_id)),
+			'info_sistema' => $this->footer_header(),
         );
 
 		$data['breadcrumb'] = "<a href='".base_url()."'>Início</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / ".$data['titulo'];
@@ -157,13 +164,26 @@ class Institucional extends CI_Controller {
 
 		$menu = $this->menu_principal_model->get_pagina_url('conselho-administrativo');
 
-		if ($url && $pagina = $this->menu_principal_model->get_pagina_url_array(array('pag_link' => $url, 'pag_pai_2' => $menu->pag_id))) {
+		if ($url && $pagina = $this->core_model->get_all('conselheiros', array('con_pagina_id' => $menu->pag_id))) {
 
 			$data = array(
-				'titulo' => $pagina->pag_nome,
-				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ $pagina->pag_nome",
+				'titulo' => $menu->pag_nome,
+				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ Conselheiros",
 				'menu_principal' => $this->menu_principal(),
 				'pagina' => $pagina,
+				'info_sistema' => $this->footer_header(),
+				'regimentos' => $this->core_model->get_all('regimentos_internos', array('reg_pagina_id' => $menu->pag_id)),
+				'atas' => $this->core_model->get_all('atas', array('ata_pagina_id' => $menu->pag_id)),
+
+				'styles' => array(
+					'assets/css/conselhos.css',
+				),
+				'scripts' => array(
+					'assets/js/app.min.js',
+					'assets/bundles/datatables/datatables.min.js',
+					'assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js',
+					'assets/js/page/datatables.js'
+				),
 			);
 
 			$this->load->view('web/layout/header', $data);
@@ -177,6 +197,7 @@ class Institucional extends CI_Controller {
 				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos/') . "'>Conselhos</a> / $menu->pag_nome",
 				'menu_principal' => $this->menu_principal(),
 				'menu' => $menu,
+				'info_sistema' => $this->footer_header(),
 				'paginas' => $this->core_model->get_all('paginas', array('pag_pai_2' => $menu->pag_id))
 			);
 

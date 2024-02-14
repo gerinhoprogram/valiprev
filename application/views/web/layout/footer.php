@@ -1,5 +1,5 @@
 <footer>
-	<div class="linhas">
+	<div class="linha">
 		<div class="colunas lg-4">
 			<h5>Fale conosco</h5>
 			<p><?= $info_sistema->sistema_telefone_fixo ?></p>
@@ -14,7 +14,7 @@
 			<p><?= $info_sistema->sistema_horario_atendimento ?></p>
 		</div>
 		<div class="colunas lg-4">
-			<?php foreach($menu_home as $men_rodape) : ?>
+			
 		</div>
 
 	</div>

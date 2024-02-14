@@ -184,8 +184,8 @@ $(".table-artigos").dataTable({
     "order": [],
 
     "lengthMenu": [
-        [30, 50, 100, -1],
-        [30, 50, 100, "Todos"]
+        [10, 50, 100, -1],
+        [10, 50, 100, "Todos"]
     ],
 
     deferRender: true,
@@ -196,7 +196,7 @@ $(".table-artigos").dataTable({
 });
 
 
-$(".table-home").dataTable({
+$(".table-web").dataTable({
 
     'oLanguage': DATATABLE_PTBR,
     "order": [], //Remove a ordenação padrão do plugin

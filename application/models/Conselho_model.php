@@ -30,4 +30,17 @@ class Conselho_model extends CI_Model {
         return $this->db->get('regimentos_internos')->result();
     }
 
+	public function get_all_atas() {
+
+
+        $this->db->select([
+            'atas.*',
+			'paginas.*'
+        ]);
+
+        $this->db->join('paginas', 'paginas.pag_id = atas.ata_pagina_id');
+
+        return $this->db->get('atas')->result();
+    }
+
 }

@@ -13,7 +13,7 @@ function insert_login($data = null):void{
     $data['log_usuario_id'] = (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 0);
     $data['ip'] = (isset($_SESSION['ip_usuario']) ? $_SESSION['ip_usuario'] : get_client_ip());
 
-    $CI->core_model->insert_login('logs', $data);  
+    //$CI->core_model->insert_login('logs', $data);  
 }
 
 

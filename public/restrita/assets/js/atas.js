@@ -78,4 +78,27 @@ jQuery(document).ready(function() {
 
     App_sistema.init();
 
+
+		$(window).keydown(function() {
+	
+		});
+	
+		$(document).on("input", "#titulo", function() {
+			var limite = 150;
+			var informativo = "caracteres restantes.";
+			var caracteresDigitados = $(this).val().length;
+			var caracteresRestantes = limite - caracteresDigitados;
+	
+			if (caracteresRestantes <= 0) {
+				var comentario = $("input[name=titulo]").val();
+				$("input[name=titulo]").val(comentario.substr(0, limite));
+				$(".titulo").text("0 " + informativo);
+			} else {
+				$(".titulo").text("(" + caracteresRestantes + " " + informativo + ")");
+			}
+		});
+	
+		App_categorias.init();
+
+
 });

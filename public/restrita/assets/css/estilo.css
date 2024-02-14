@@ -475,6 +475,14 @@ a{
 	height: 300px
 }
 
+hr{
+	margin-bottom: 40px;
+}
+
+footer{
+	padding-top: 40px;
+}
+
 @media screen and (max-width: 980px) {
 	
 	.b_esquerdo{
