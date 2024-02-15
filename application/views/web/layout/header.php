@@ -87,3 +87,7 @@
 		</div>
 	</div>
 </div>
+<!-- 
+<script async src="https://cse.google.com/cse.js?cx=a7e2a6246065b4a33">
+</script>
+<div class="gcse-search"></div> -->

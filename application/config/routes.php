@@ -75,4 +75,10 @@ $route['transparencia/juridico'] = 'transparencia/juridico';
 $route['transparencia/juridico/resolucoes/(:any)'] = 'transparencia/resolucoes/$1';
 $route['transparencia/juridico/resolucoes'] = 'transparencia/resolucoes';
 $route['transparencia/juridico/portais'] = 'transparencia/portais';
-
+$route['transparencia/certidoes-crp'] = 'transparencia/certidoes';
+$route['transparencia/contratos'] = 'transparencia/contratos';
+$route['transparencia/planos-de-capacitacao'] = 'transparencia/planos_de_capacitacao';
+$route['transparencia/relatorio-de-governanca-corporativa'] = 'transparencia/relatorio_de_governanca_corporativa';
+$route['transparencia/controle-interno'] = 'transparencia/controle_interno';
+$route['transparencia/tce-sp'] = 'transparencia/tce';
+$route['transparencia/dacao-em-pagamento'] = 'transparencia/dacao_em_pagamento';
