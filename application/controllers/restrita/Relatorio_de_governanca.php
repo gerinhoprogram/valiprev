@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('Ação não permitida');
 
-class Contratos extends CI_Controller
+class Relatorio_de_governanca extends CI_Controller
 {
 
 	public function __construct()
@@ -14,10 +14,11 @@ class Contratos extends CI_Controller
 		}
 
 		$this->load->model('menu_principal_model');
-		$this->url_pagina = 'contratos';
-		$this->pagina_titulo = 'Contratos';
+		$this->url_pagina = 'relatorio-de-governanca-corporativa';
+		$this->pagina_titulo = 'Relatório de governança corporativa';
 		$this->tabela_banco = 'certidoes';
-		$this->view_folder = 'contratos';
+		$this->view_folder = 'relatorio_de_governanca';
+		$this->folder_upload = './uploads/paginas/relatorio_de_governanca/pdf'
 
 	}
 
@@ -209,7 +210,7 @@ class Contratos extends CI_Controller
 	public function upload_pdf()
 	{
 
-		$config['upload_path'] = './uploads/paginas/contratos/pdf';
+		$config['upload_path'] = $this->folder_upload();
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;
@@ -240,7 +241,7 @@ class Contratos extends CI_Controller
 	public function upload_pdf_unico()
 	{
 
-		$config['upload_path'] = './uploads/paginas/contratos/pdf';
+		$config['upload_path'] = $this->folder_upload();
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;

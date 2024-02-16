@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('Ação não permitida');
 
-class Contratos extends CI_Controller
+class Planos_de_capacitacao extends CI_Controller
 {
 
 	public function __construct()
@@ -14,10 +14,10 @@ class Contratos extends CI_Controller
 		}
 
 		$this->load->model('menu_principal_model');
-		$this->url_pagina = 'contratos';
-		$this->pagina_titulo = 'Contratos';
+		$this->url_pagina = 'planos-de-capacitacao';
+		$this->pagina_titulo = 'Planos de capacitação';
 		$this->tabela_banco = 'certidoes';
-		$this->view_folder = 'contratos';
+		$this->view_folder = 'planos_de_capacitacao';
 
 	}
 
