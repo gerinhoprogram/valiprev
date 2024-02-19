@@ -18,7 +18,7 @@ class Relatorio_de_governanca extends CI_Controller
 		$this->pagina_titulo = 'Relatório de governança corporativa';
 		$this->tabela_banco = 'certidoes';
 		$this->view_folder = 'relatorio_de_governanca';
-		$this->folder_upload = './uploads/paginas/relatorio_de_governanca/pdf'
+		$this->folder_upload = './uploads/paginas/relatorio_de_governanca/pdf';
 
 	}
 
@@ -126,7 +126,7 @@ class Relatorio_de_governanca extends CI_Controller
 						'scripts' => array(
 							'assets/sweetalert2/sweetalert2.all.min.js',
 							'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
-							'assets/jquery-upload-file/js/certidoes.js',
+							'assets/jquery-upload-file/js/relatorio_de_governanca.js',
 							'assets/bundles/select2/dist/js/select2.full.min.js',
 						),
 
@@ -192,7 +192,7 @@ class Relatorio_de_governanca extends CI_Controller
 							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar : ' . $pdf->pdf_titulo . '</span>',
 							'pdf' => $pdf,
 							'scripts' => array(
-								'assets/js/resolucoes_do_conselho_de_administracao.js'
+								'assets/js/relatorio_de_governanca.js'
 							),
 						);
 

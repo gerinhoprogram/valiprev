@@ -125,7 +125,7 @@ class Planos_de_capacitacao extends CI_Controller
 						'scripts' => array(
 							'assets/sweetalert2/sweetalert2.all.min.js',
 							'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
-							'assets/jquery-upload-file/js/certidoes.js',
+							'assets/jquery-upload-file/js/planos_capacitacao.js',
 							'assets/bundles/select2/dist/js/select2.full.min.js',
 						),
 
@@ -191,7 +191,7 @@ class Planos_de_capacitacao extends CI_Controller
 							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar : ' . $pdf->pdf_titulo . '</span>',
 							'pdf' => $pdf,
 							'scripts' => array(
-								'assets/js/resolucoes_do_conselho_de_administracao.js'
+								'assets/js/planos_capacitacao.js'
 							),
 						);
 
@@ -209,7 +209,7 @@ class Planos_de_capacitacao extends CI_Controller
 	public function upload_pdf()
 	{
 
-		$config['upload_path'] = './uploads/paginas/contratos/pdf';
+		$config['upload_path'] = './uploads/paginas/planos_capacitacao/pdf';
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;
@@ -240,7 +240,7 @@ class Planos_de_capacitacao extends CI_Controller
 	public function upload_pdf_unico()
 	{
 
-		$config['upload_path'] = './uploads/paginas/contratos/pdf';
+		$config['upload_path'] = './uploads/paginas/planos_capacitacao/pdf';
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;

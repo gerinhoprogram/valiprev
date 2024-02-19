@@ -39,7 +39,7 @@
 
                                                 <tr>
                                                     <td><?=$pdf->pdf_id?></td>
-                                                    <td><a class='badge badge-info' href="<?= base_url('uploads/paginas/contratos/pdf/'.$pdf->pdf_arquivo) ?>" target="_blank" rel="noopener noreferrer">
+                                                    <td><a class='badge badge-info' href="<?= base_url('uploads/paginas/controle_interno/pdf/'.$pdf->pdf_arquivo) ?>" target="_blank" rel="noopener noreferrer">
                                                         <?php echo $pdf->pdf_titulo; ?>
                                                          </a>
                                                     </td>

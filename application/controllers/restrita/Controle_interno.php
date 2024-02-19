@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('Ação não permitida');
 
-class Certidoes extends CI_Controller
+class Controle_interno extends CI_Controller
 {
 
 	public function __construct()
@@ -14,10 +14,11 @@ class Certidoes extends CI_Controller
 		}
 
 		$this->load->model('menu_principal_model');
-		$this->url_pagina = 'certidoes-crp';
-		$this->pagina_titulo = 'Certidões / CRP';
+		$this->url_pagina = 'controle-interno';
+		$this->pagina_titulo = 'Controle interno';
 		$this->tabela_banco = 'certidoes';
-		$this->view_folder = 'certidoes';
+		$this->view_folder = 'controle_interno';
+		$this->folder_upload = './uploads/paginas/controle_interno/pdf';
 
 	}
 
@@ -82,6 +83,7 @@ class Certidoes extends CI_Controller
 				$titulo = $this->input->post('pdf_titulo');
 				$arquivo = $this->input->post('pdf_arquivo');
 				$tamanho = $this->input->post('pdf_tamanho');
+				$ano = $this->input->post('pdf_ano');
 
 				if($titulo && $arquivo && $tamanho){
 
@@ -97,7 +99,8 @@ class Certidoes extends CI_Controller
 							'pdf_titulo' => $titulo[$i],
 							'pdf_arquivo' => $arquivo[$i],
 							'pdf_tamanho' => $tamanho[$i],
-							'pdf_user' => $_SESSION['login']
+							'pdf_user' => $_SESSION['login'],
+							'pdf_ano' => $ano
 						);
 						$this->core_model->insert($this->tabela_banco, $data);
 					}
@@ -123,7 +126,7 @@ class Certidoes extends CI_Controller
 						'scripts' => array(
 							'assets/sweetalert2/sweetalert2.all.min.js',
 							'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
-							'assets/jquery-upload-file/js/certidoes.js',
+							'assets/jquery-upload-file/js/controle_interno.js',
 							'assets/bundles/select2/dist/js/select2.full.min.js',
 						),
 
@@ -156,7 +159,8 @@ class Certidoes extends CI_Controller
 						$data = elements(
 							array(
 								'pdf_titulo',
-								'pdf_arquivo'
+								'pdf_arquivo',
+								'pdf_ano'
 							),
 							$this->input->post()
 						);
@@ -188,7 +192,7 @@ class Certidoes extends CI_Controller
 							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar : ' . $pdf->pdf_titulo . '</span>',
 							'pdf' => $pdf,
 							'scripts' => array(
-								'assets/js/certidoes.js'
+								'assets/js/controle_interno.js'
 							),
 						);
 
@@ -206,7 +210,7 @@ class Certidoes extends CI_Controller
 	public function upload_pdf()
 	{
 
-		$config['upload_path'] = './uploads/paginas/certidoes/pdf';
+		$config['upload_path'] = './uploads/paginas/controle_interno/pdf';
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;
@@ -237,7 +241,7 @@ class Certidoes extends CI_Controller
 	public function upload_pdf_unico()
 	{
 
-		$config['upload_path'] = './uploads/paginas/certidoes/pdf';
+		$config['upload_path'] = './uploads/paginas/controle_interno/pdf';
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;

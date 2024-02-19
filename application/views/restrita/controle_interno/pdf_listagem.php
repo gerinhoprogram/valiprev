@@ -17,7 +17,7 @@
 						<h4><?php echo $titulo ?></h4>
 
 							<?php if($adicionar) :?>
-							<a onclick="loading()" href="<?php echo base_url('restrita/'.$this->router->fetch_class().'/core') ?>" data-toggle="tooltip" data-placement="top" title="Adicionar novo registro" class="btn btn-success float-right"><i class="fas fa-plus"></i>&nbsp;Novo registro</a>
+							<a onclick="loading()" href="<?php echo base_url('restrita/'.$this->router->fetch_class().'/pdf_adicionar/'.$pagina->pag_id) ?>" data-toggle="tooltip" data-placement="top" title="Adicionar novo registro" class="btn btn-success float-right"><i class="fas fa-plus"></i>&nbsp;Novo registro</a>
 							<?php endif?>
 						
 						</div>
@@ -27,8 +27,10 @@
                                     <table class="table table-striped table-artigos">
                                         <thead>
                                             <tr>
-                                                <th>ID</th>
                                                 <th>Título</th>
+												<th>Tamanho</th>
+												<th>Criação</th>
+                                                <th class="nosort text-center">Status</th>
                                                 <th class="nosort text-center">Ações</th>
                                             </tr>
                                         </thead>
@@ -38,12 +40,11 @@
                                             <?php foreach ($pdfs as $pdf): ?>
 
                                                 <tr>
-                                                    <td><?=$pdf->pdf_id?></td>
-                                                    <td><a class='badge badge-info' href="<?= base_url('uploads/paginas/contratos/pdf/'.$pdf->pdf_arquivo) ?>" target="_blank" rel="noopener noreferrer">
-                                                        <?php echo $pdf->pdf_titulo; ?>
-                                                         </a>
-                                                    </td>
-													
+                                                    <td><?php echo $pdf->pdf_titulo; ?></td>
+													<td><?php echo $pdf->pdf_tamanho; ?></td>
+													<td><?php echo formata_data_banco_com_hora($pdf->pdf_data) ?></td>
+                                                    <td class="text-center"><?php echo ($pdf->pdf_status? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>'); ?></td>
+
 													<td class="text-center">
                                                         <div class="dropdown">
                                                             <a href="#" data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Opções</a>
@@ -51,9 +52,9 @@
 
                                                                     
                                                                     <?php if($editar) :?>
-																		
-                                                                    		<a onclick="loading()" data-toggle="tooltip" data-placement="left" title="Editar informações" href="<?php echo base_url('restrita/' . $this->router->fetch_class() . '/core/' . $pdf->pdf_id); ?>" class="dropdown-item has-icon text-warning"><i class="fas fa-edit"></i> Editar</a>
+                                                                    		<a onclick="loading()" data-toggle="tooltip" data-placement="left" title="Editar informações" href="<?php echo base_url('restrita/' . $this->router->fetch_class() . '/pdf_editar/'. $pagina->pag_id .'/' . $pdf->pdf_id); ?>" class="dropdown-item has-icon text-warning"><i class="fas fa-edit"></i> Editar</a>
                                                                         
+                                                                    		<a onclick="loading()" data-toggle="tooltip" data-placement="left" title="Ver arquivo" href="<?php echo base_url('uploads/paginas/censo_previdenciario/pdf/'). $pdf->pdf_arquivo; ?>" class="dropdown-item has-icon text-info"><i class="fas fa-edit"></i> Ver arquivo</a>
                                                                     <?php endif ?>
 
 																	<?php if($excluir) :?>

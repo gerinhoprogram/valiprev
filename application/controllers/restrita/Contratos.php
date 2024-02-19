@@ -18,6 +18,7 @@ class Contratos extends CI_Controller
 		$this->pagina_titulo = 'Contratos';
 		$this->tabela_banco = 'certidoes';
 		$this->view_folder = 'contratos';
+		$this->uploads_folder = './uploads/paginas/contratos/pdf';
 
 	}
 
@@ -125,7 +126,7 @@ class Contratos extends CI_Controller
 						'scripts' => array(
 							'assets/sweetalert2/sweetalert2.all.min.js',
 							'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
-							'assets/jquery-upload-file/js/certidoes.js',
+							'assets/jquery-upload-file/js/contratos.js',
 							'assets/bundles/select2/dist/js/select2.full.min.js',
 						),
 
@@ -191,7 +192,7 @@ class Contratos extends CI_Controller
 							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar : ' . $pdf->pdf_titulo . '</span>',
 							'pdf' => $pdf,
 							'scripts' => array(
-								'assets/js/resolucoes_do_conselho_de_administracao.js'
+								'assets/js/contratos.js'
 							),
 						);
 
@@ -209,7 +210,7 @@ class Contratos extends CI_Controller
 	public function upload_pdf()
 	{
 
-		$config['upload_path'] = './uploads/paginas/contratos/pdf';
+		$config['upload_path'] = $this->uploads_folder;
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;
@@ -240,7 +241,7 @@ class Contratos extends CI_Controller
 	public function upload_pdf_unico()
 	{
 
-		$config['upload_path'] = './uploads/paginas/contratos/pdf';
+		$config['upload_path'] = $this->uploads_folder();
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;
@@ -255,7 +256,8 @@ class Contratos extends CI_Controller
 				'foto_nome' => $this->upload->data('file_name'),
 				'mensagem' => 'Arquivo enviado com sucesso',
 				'tamanho' => $this->upload->data('file_size') . ' KB',
-				'nome' => $this->upload->data('client_name')
+				'nome' => $this->upload->data('client_name'),
+				'uploads_folder' => $this->uploads_folder()
 			);
 		} else {
 

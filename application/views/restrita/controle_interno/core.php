@@ -65,7 +65,7 @@
 												<div id="box-foto-logo">
 													
 													<input type="hidden" name="foto_produto" value="<?= $pdf->pdf_arquivo ?>">
-													<a href="<?= base_url('uploads/paginas/relatorio_de_governanca/pdf/' . $pdf->pdf_arquivo) ?>"><i style="font-size: 25pt" class='far fa-file-pdf'></i></a>
+													<a href="<?= base_url('uploads/paginas/controle_interno/pdf/' . $pdf->pdf_arquivo) ?>"><i style="font-size: 25pt" class='far fa-file-pdf'></i></a>
 													<input type="hidden" name="pdf_tamanho" value="<?= $pdf->pdf_tamanho ?>">
 													<br>Tamanho: <span class="badge badge-info"><?=$pdf->pdf_tamanho?></span>
 												
