@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('Ação não permitida');
 
-class Tce extends CI_Controller
+class Dacao extends CI_Controller
 {
 
 	public function __construct()
@@ -14,11 +14,11 @@ class Tce extends CI_Controller
 		}
 
 		$this->load->model('menu_principal_model');
-		$this->url_pagina = 'tce-sp';
-		$this->pagina_titulo = 'TCE SP';
+		$this->url_pagina = 'dacao-em-pagamento';
+		$this->pagina_titulo = 'Dação';
 		$this->tabela_banco = 'certidoes';
-		$this->view_folder = 'tce';
-		$this->folder_upload = './uploads/paginas/tce/pdf';
+		$this->view_folder = 'dacao';
+		$this->folder_upload = './uploads/paginas/dacao/pdf';
 
 	}
 
@@ -126,7 +126,7 @@ class Tce extends CI_Controller
 						'scripts' => array(
 							'assets/sweetalert2/sweetalert2.all.min.js',
 							'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
-							'assets/jquery-upload-file/js/tce.js',
+							'assets/jquery-upload-file/js/dacao.js',
 							'assets/bundles/select2/dist/js/select2.full.min.js',
 						),
 
@@ -192,7 +192,7 @@ class Tce extends CI_Controller
 							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar : ' . $pdf->pdf_titulo . '</span>',
 							'pdf' => $pdf,
 							'scripts' => array(
-								'assets/js/tce.js'
+								'assets/js/dacao.js'
 							),
 						);
 
@@ -210,7 +210,7 @@ class Tce extends CI_Controller
 	public function upload_pdf()
 	{
 
-		$config['upload_path'] = './uploads/paginas/tce/pdf';
+		$config['upload_path'] = './uploads/paginas/dacao/pdf';
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;
@@ -241,7 +241,7 @@ class Tce extends CI_Controller
 	public function upload_pdf_unico()
 	{
 
-		$config['upload_path'] = './uploads/paginas/tce/pdf';
+		$config['upload_path'] = './uploads/paginas/dacao/pdf';
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;
