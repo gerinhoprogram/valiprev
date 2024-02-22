@@ -3,7 +3,7 @@
 		<h1><?= $titulo ?></h1>
 	</div>
 	<div class="colunas lg-6 md-6 pq-12">
-			<p style='float: right'><?=$breadcrumb?></p>
+			<p class='bread'><?=$breadcrumb?></p>
 	</div>
 	<div class="colunas lg-12">
 		<hr>

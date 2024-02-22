@@ -28,7 +28,7 @@ class Transparencia extends CI_Controller
 			'menu_principal' => $this->menu_principal(),
 			'info_sistema' => $this->footer_header(),
 			'paginas' => $this->core_model->get_all('paginas', array('pag_menu_id' => 2, 'pag_status' => 1, 'pag_nivel_1' => 1)),
-			'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / Transparência",
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / Transparência",
 
 		);
 
@@ -42,7 +42,7 @@ class Transparencia extends CI_Controller
 	{
 		$data = array(
 			'titulo' => 'Jurídico',
-			'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Jurídico",
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Jurídico",
 			'menu_principal' => $this->menu_principal(),
 			'paginas' => $this->core_model->get_all('paginas', array('pag_pai' => 10))
 		);
@@ -61,7 +61,7 @@ class Transparencia extends CI_Controller
 
 			$data = array(
 				'titulo' => $pagina->pag_nome,
-				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/juridico') . "'>Jurídico</a> / <a href='" . base_url('transparencia/juridico/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ $pagina->pag_nome",
+				'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/juridico') . "'>Jurídico</a> / <a href='" . base_url('transparencia/juridico/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ $pagina->pag_nome",
 				'menu_principal' => $this->menu_principal(),
 				'pagina' => $pagina,
 				'pdfs' => $this->core_model->get_all('pdf_resolucoes_do_conselho_de_administracao', array('pdf_pagina_id' => $pagina->pag_id))
@@ -74,7 +74,7 @@ class Transparencia extends CI_Controller
 
 			$data = array(
 				'titulo' => $menu->pag_nome,
-				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/juridico/') . "'>Jurídico</a> / $menu->pag_nome",
+				'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/juridico/') . "'>Jurídico</a> / $menu->pag_nome",
 				'menu_principal' => $this->menu_principal(),
 				'menu' => $menu,
 				'paginas' => $this->core_model->get_all('paginas', array('pag_pai_2' => $menu->pag_id))
@@ -103,7 +103,7 @@ class Transparencia extends CI_Controller
 			),
 			'menu_principal' => $this->menu_principal(),
 			'sistema' => $this->footer_header(),
-			'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Portais",
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Portais",
 
 		);
 
@@ -129,7 +129,7 @@ class Transparencia extends CI_Controller
 			),
 			'menu_principal' => $this->menu_principal(),
 			'info_sistema' => $this->footer_header(),
-			'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Certidões / CRP",
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Certidões / CRP",
 
 		);
 
@@ -155,7 +155,7 @@ class Transparencia extends CI_Controller
 			),
 			'menu_principal' => $this->menu_principal(),
 			'info_sistema' => $this->footer_header(),
-			'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Contratos",
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Contratos",
 
 		);
 
@@ -181,7 +181,7 @@ class Transparencia extends CI_Controller
 			),
 			'menu_principal' => $this->menu_principal(),
 			'info_sistema' => $this->footer_header(),
-			'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Planos de capacitação",
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Planos de capacitação",
 
 		);
 
@@ -207,7 +207,7 @@ class Transparencia extends CI_Controller
 			),
 			'menu_principal' => $this->menu_principal(),
 			'info_sistema' => $this->footer_header(),
-			'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Relatório de governança corporativa",
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Relatório de governança corporativa",
 
 		);
 
@@ -233,7 +233,7 @@ class Transparencia extends CI_Controller
 			),
 			'menu_principal' => $this->menu_principal(),
 			'info_sistema' => $this->footer_header(),
-			'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Controle interno",
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Controle interno",
 
 		);
 
@@ -259,7 +259,7 @@ class Transparencia extends CI_Controller
 			),
 			'menu_principal' => $this->menu_principal(),
 			'info_sistema' => $this->footer_header(),
-			'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / TCE-SP",
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / TCE-SP",
 
 		);
 
@@ -285,7 +285,7 @@ class Transparencia extends CI_Controller
 			),
 			'menu_principal' => $this->menu_principal(),
 			'info_sistema' => $this->footer_header(),
-			'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Dação em pagamento - Aporte",
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> <a href='" . base_url('transparencia/') . "'>/Transparência</a> / Dação em pagamento - Aporte",
 
 		);
 

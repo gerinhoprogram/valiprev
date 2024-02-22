@@ -12,7 +12,9 @@ html {
 	margin: 0;
 	padding: 0;
 	font-size: 15pt;
-	line-height: 18pt;
+	line-height: 20pt;
+	font-family: "Roboto", sans-serif;
+  font-weight: 400;
 }
 
 *,
@@ -21,7 +23,8 @@ html {
 	-webkit-box-sizing: inherit;
 	box-sizing: inherit;
 	margin: 0;
-	padding: 0
+	padding: 0;
+	animation: 0.5s;
 }
 
 .linha {
@@ -311,13 +314,14 @@ a{
 
 .nav__list a {
 	display: block;
-	color: #333;
+	color: #332663;
 	text-decoration: none;
 	font-weight: 700;
 	font-size: 15pt;
 	line-height: 16pt;
 	padding: 0 15px;
 }
+
 
 .nav__list li {
 	position: relative;
@@ -326,8 +330,16 @@ a{
 	padding: 0;
 }
 
-.nav__list li:hover {
-	background-color: gray;
+.nav__list li:hover a{
+	color:#3399ff
+}
+
+.nav__list .submenu li:hover a{
+	background-color: #3399ff
+}
+
+.nav__list li ul li:hover a{
+	background-color: #332663
 }
 
 .nav__list ul {
@@ -335,35 +347,60 @@ a{
 	position: absolute;
 	top: 100%;
 	left: 0;
-	background-color: #fff;
 	padding: 0;
 	list-style: none;
+	border: 1px solid #3399ff;
+	background-color: #3399ff;
 }
 
 .nav__list ul li {
 	float: none;
-	width: 200px;
+	width: 230px;
 }
 
 .nav__list ul a {
 	line-height: 120%;
-	padding: 10px 15px;
+	padding: 15px;
 }
 
 .nav__list ul ul {
 	position: absolute;
 	top: 0;
-	left: 200px;
-	background-color: #ccc;
+	left: 230px;
 }
 
 .nav__list .submenu a {
 	font-size: 11pt;
 	line-height: 13pt;
+	padding: 10px;
+	color: #fff !important
+}
+.submenu ul{
+	background-color: #fff;
 }
 
 .nav__list li:hover>ul {
 	display: block;
+}
+.nav_mob{
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #26b0e6;
+	width: 100%;
+}
+
+.btn-mob{
+	display: none !important
+}
+
+.nav_mob{
+	list-style: none;
+}
+.nav_mob li{
+	width: 100%;
+
 }
 
 /* FIM MENU */
@@ -372,6 +409,12 @@ a{
 	height: 80px;
 	width: 100%;
 	object-fit: contain;
+}
+.bread{
+	float: right
+}
+.bread a{
+	padding: 15px;	
 }
 /* banner */
 .banner{
@@ -389,6 +432,7 @@ a{
 .portal-transparencia h2{
 	font-size: 15pt;;
 }
+
 .portal-transparencia .transparencia, .portal-transparencia .servidores{
 	padding: 15px;
 	text-align: center;
@@ -401,10 +445,20 @@ a{
 	margin: 0 auto
 }
 
+.transparencia:hover{
+	background-color: #26b0e6;
+	
+}
+
+
 .portal-transparencia .servidores{
 	color: #332663;
 	background-color: #26b0e6;
 	margin: 0 auto
+}
+.servidores:hover{
+	background-color: #fff;
+	
 }
 .cont_pai {
 	display: table;
@@ -425,9 +479,14 @@ a{
 
   .menu-inferior p{
 	text-align: center;
-	font-size: 13pt;
-	line-height: 15pt;
+	font-size: 12pt;
+	line-height: 14pt;
 	padding: 10px 15px 10px 15px;
+	font-weight: bold;
+  }
+
+  .menu-inferior .colunas:hover p{
+	color: #26b0e6;
   }
 
   .menu-inferior img{
@@ -450,6 +509,15 @@ a{
   h3, h4{
 	color: #3399ff;
 	margin-bottom: 20px;
+	font-weight: bold;
+	font-size: 20pt;
+  }
+
+  h5{
+	font-size: 16pt;
+	margin-bottom: 15px;
+	margin-top: 15px;
+
   }
  
   .valiprev{
@@ -458,7 +526,7 @@ a{
 
   .links-uteis{
 	text-align: center;
-	padding-top: 30px;
+	padding-top: 60px;
 	padding-bottom: 30px;
   }
 
@@ -489,6 +557,12 @@ footer{
 	margin-top: 30px;
 }
 
+footer p{
+	font-size: 13pt;
+	line-height: 19pt;
+	color: #fff
+}
+
 @media screen and (max-width: 980px) {
 	
 	.b_esquerdo{
@@ -511,4 +585,20 @@ footer{
 	.portal-transparencia .transparencia{
 		margin-bottom: 15px;
 	}
+	.nav_desk{
+		display: none;
+	}
+	.nav_mob, .btn-mob{
+		display: block !important;
+	}
+	.bread{
+		float: inherit;
+		font-size: 11pt;
+		line-height: 13pt;
+		margin-top: 20px;
+	}
+	.menu-inferior .colunas{
+		margin-bottom: 30px;
+	}
+	
 }

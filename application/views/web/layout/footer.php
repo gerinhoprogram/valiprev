@@ -1,20 +1,33 @@
 <footer>
 	<div class="linha">
 		<div class="colunas lg-4">
-			<h5>Fale conosco</h5>
+			<h5>FALE CONOSCO</h5>
 			<p><?= $info_sistema->sistema_telefone_fixo ?></p>
 			<p><?= $info_sistema->sistema_telefone_movel ?></p>
 			<p>
 			<p><?= $info_sistema->sistema_email ?></p>
 			</p>
-			<h5>Endereço</h5>
+			<h5>ENDEREÇO</h5>
 			<p><?= $info_sistema->sistema_endereco ?></p>
 			<p><?= $info_sistema->sistema_bairro ?> | <?= $info_sistema->sistema_cep ?></p>
-			<h5>Endereço</h5>
+			<h5>HORÁRIO DE ATENDIMENTO</h5>
 			<p><?= $info_sistema->sistema_horario_atendimento ?></p>
 		</div>
 		<div class="colunas lg-4">
-			
+			<h5>Mapa do site</h5>
+			<a href="<?=base_url()?>"><p>Home</p></a>
+			<a href="<?=base_url($menu_principal[0]->men_url)?>"><p><?= $menu_principal[0]->men_nome ?></p></a>
+			<?php foreach (submenu($menu_principal[0]->men_id) as $sub) : ?>
+				<a href="<?=base_url($menu_principal[0]->men_url.'/'.$sub->pag_link)?>"><p>&bull; <?= $sub->pag_nome ?></p></a>
+			<?php endforeach ?>
+		</div>
+		<div class="colunas lg-4">
+			<a href="<?=base_url($menu_principal[1]->men_url)?>"><p><?= $menu_principal[1]->men_nome ?></p></a>
+			<?php foreach (submenu($menu_principal[1]->men_id) as $sub) : ?>
+				<a href="<?=base_url($menu_principal[1]->men_url.'/'.$sub->pag_link)?>"><p>&bull; <?= $sub->pag_nome ?></p></a>
+			<?php endforeach ?>
+			<a href="<?=base_url($menu_principal[2]->men_url)?>"><p><?= $menu_principal[2]->men_nome ?></p></a>
+			<a href="<?=base_url($menu_principal[3]->men_url)?>"><p><?= $menu_principal[3]->men_nome ?></p></a>
 		</div>
 
 	</div>

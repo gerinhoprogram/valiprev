@@ -5,14 +5,14 @@
 	<div class="cont_filha">
 		<div class="linha">
 			<div class="colunas lg-6 md-6 pq-12">
-				<a href="<?= base_url() ?>">
+				<a href="https://transparencia-valiprev.smarapd.com.br/#/" target="_blank" title="Portal da Transparência">
 					<div class="transparencia">
 						<h2>Portal da Transparência</h2>
 					</div>
 				</a>
 			</div>
 			<div class="colunas lg-6 md-6 pq-12">
-				<a href="<?= base_url() ?>">
+				<a href="https://www.fourinfosistemas.com.br/servicosonlinefourprev/publico/portaldatransparencia.jsf?id=5883" target="_blank" title="Renumeração dos Servidores Valiprev">
 					<div class="servidores">
 						<h2>Renumeração dos Servidores Valiprev</h2>
 					</div>
@@ -69,7 +69,7 @@
 		</div>
 		<?php foreach ($links_uteis as $link) : ?>
 
-			<div class="colunas lg-2 md-4 pq-12">
+			<div class="colunas lg-2 md-4 pq-6">
 				<figure>
 					<a href="<?=$link->link_link?>" target="_blank" rel="noopener noreferrer" title="<?= $link->link_nome ?>">
 					<img src="<?= base_url('uploads/home/lins-uteis/' . $link->link_foto) ?>" alt="<?= $link->link_nome ?>" title="<?= $link->link_nome ?>">

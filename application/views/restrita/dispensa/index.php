@@ -35,7 +35,7 @@
 
 
 											<?php $linha = 1; ?>
-                                            <?php foreach ($pregao as $pre): ?>
+                                            <?php foreach ($dispensa as $dis): ?>
 
 												<?php 
 													if($linha == 1){
@@ -49,13 +49,11 @@
 
                                                 <tr style="background: <?= $cor ?>">
                                                     <td>
-														<p><strong>Título: </strong><?php echo $pre->pre_titulo; ?></p>
-														<p><strong>Modalidade: </strong><?php echo $pre->pre_modalidade; ?></p>
-														<p><strong>Processo de Compras/Administrativo: </strong><?php echo $pre->pre_processo; ?></p>
-														<p><strong>Objetivo: </strong><?php echo $pre->pre_objetivo; ?></p>
-														<p><strong>Entrega dos Envelopes: </strong><?php echo $pre->pre_entrega; ?></p>
-														<p><strong>Tipo: </strong><?php echo $pre->pre_tipo; ?></p>
-														<p><strong>Estado: </strong><?php echo $pre->pre_estado; ?></p>
+														<p><strong>Título: </strong><?php echo $dis->dis_titulo; ?></p>
+														<p><strong>Modalidade: </strong><?php echo $dis->dis_modalidade; ?></p>
+														<p><strong>Processo de Compras/Administrativo: </strong><?php echo $dis->dis_processo; ?></p>
+														<p><strong>Objetivo: </strong><?php echo $dis->dis_objetivo; ?></p>
+														
 													</td>
 													
 													<td class="text-center">
@@ -66,12 +64,12 @@
                                                                     
                                                                     <?php if($editar) :?>
 																		
-                                                                    		<a onclick="loading()" data-toggle="tooltip" data-placement="left" title="Editar informações" href="<?php echo base_url('restrita/' . $this->router->fetch_class() . '/core/' . $pre->pre_id); ?>" class="dropdown-item has-icon text-warning"><i class="fas fa-edit"></i> Editar</a>
+                                                                    		<a onclick="loading()" data-toggle="tooltip" data-placement="left" title="Editar informações" href="<?php echo base_url('restrita/' . $this->router->fetch_class() . '/core/' . $dis->dis_id); ?>" class="dropdown-item has-icon text-warning"><i class="fas fa-edit"></i> Editar</a>
                                                                         
                                                                     <?php endif ?>
 
 																	<?php if($excluir) :?>
-                                                                    <a data-toggle="tooltip" data-placement="left" title="Excluir permanente" href="<?= base_url('restrita/' . $this->router->fetch_class() . '/delete/' . $pre->pre_id); ?>" class="dropdown-item has-icon delete text-danger" data-confirm="Tem certeza da exclusão do registro?"><i class="fas fa-trash-alt"></i> Excluir</a>
+                                                                    <a data-toggle="tooltip" data-placement="left" title="Excluir permanente" href="<?= base_url('restrita/' . $this->router->fetch_class() . '/delete/' . $dis->dis_id); ?>" class="dropdown-item has-icon delete text-danger" data-confirm="Tem certeza da exclusão do registro?"><i class="fas fa-trash-alt"></i> Excluir</a>
                                                                     <?php endif ?>
 
                                                                     

@@ -45,6 +45,9 @@
 
 	<link rel="shortcut icon" href='<?= base_url('uploads/sistema/icone/') . $sistema->sistema_icon; ?>' />
 	<link rel="stylesheet" href="<?= base_url('public/restrita/assets/css/estilo.css'); ?>">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
 	<?php if (isset($styles)) : ?>
 
@@ -66,6 +69,8 @@
 	<script>
 		new window.VLibras.Widget('https://vlibras.gov.br/app');
 	</script>
+	<script src="https://kit.fontawesome.com/650f618ca2.js" crossorigin="anonymous"></script>
+	<!-- https://fontawesome.com/v5/search?q=bar&o=r -->
 
 
 </head>

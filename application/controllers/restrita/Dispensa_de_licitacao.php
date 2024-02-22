@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('Ação não permitida');
 
-class Pregao extends CI_Controller
+class Dispensa_de_licitacao extends CI_Controller
 {
 
 	public function __construct()
@@ -14,7 +14,7 @@ class Pregao extends CI_Controller
 		}
 
 		$this->load->model('menu_principal_model');
-		$this->url_pagina = 'pregao';
+		$this->url_pagina = 'dispenca-de-licitacao';
 	}
 
 	public function redirecionar()
@@ -50,7 +50,7 @@ class Pregao extends CI_Controller
 				'assets/bundles/jquery-ui/jquery-ui.min.js',
 				'assets/js/page/datatables.js'
 			),
-			'pregao' => $this->core_model->get_all('pregao'),
+			'dispensa' => $this->core_model->get_all('dispensa_de_licitacao'),
 			'pagina' => $pagina,
 			'editar' => $area->editar,
 			'adicionar' => $area->adicionar,
@@ -58,69 +58,65 @@ class Pregao extends CI_Controller
 		);
 
 		$this->load->view('restrita/layout/header', $data);
-		$this->load->view('restrita/pregao/index');
+		$this->load->view('restrita/dispensa/index');
 		$this->load->view('restrita/layout/footer');
 	}
 
-	public function core($pre_id = null)
+	public function core($dis_id = null)
 	{
 
 		$area = areas();
 
-		$pre_id = (int) $pre_id;
+		$dis_id = (int) $dis_id;
 
-		if (!$pre_id) {
+		if (!$dis_id) {
 
 			if ($area->adicionar) {
 
-				$this->form_validation->set_rules('pre_titulo', 'Nome', 'trim|required|max_length[150]');
-				$this->form_validation->set_rules('pre_modalidade', 'Modalidade', 'trim|required|max_length[150]');
-				$this->form_validation->set_rules('pre_processo', 'Processo de comprar/administração', 'trim|required|max_length[150]');
-				
-				$this->form_validation->set_rules('pre_objetivo', 'Objetivo', 'trim|required|max_length[900]');
-				$this->form_validation->set_rules('pre_entrega', 'Entrega dos envelopes', 'trim|required|max_length[150]');
-				$this->form_validation->set_rules('pre_estado', 'Estado', 'trim|required|max_length[150]');
+				$this->form_validation->set_rules('dis_titulo', 'Nome', 'trim|required|max_length[150]');
+				$this->form_validation->set_rules('dis_modalidade', 'Modalidade', 'trim|required|max_length[150]');
+				$this->form_validation->set_rules('dis_processo', 'Processo de comprar/administração', 'trim|required|max_length[150]');
+				$this->form_validation->set_rules('dis_objetivo', 'Objetivo', 'trim|required|max_length[900]');
+				$this->form_validation->set_rules('dis_entrega', 'Entrega dos envelopes', 'trim|required|max_length[150]');
+				$this->form_validation->set_rules('dis_estado', 'Estado', 'trim|required|max_length[150]');
 
 				if ($this->form_validation->run()) {
 
 					$data = elements(
 						array(
-							'pre_titulo',
-							'pre_processo',
-							'pre_modalidade',
-							'pre_objetivo',
-							'pre_entrega',
-							'pre_tipo',
-							'pre_estado'
+							'dis_titulo',
+							'dis_processo',
+							'dis_modalidade',
+							'dis_objetivo',
 						),
 						$this->input->post()
 					);
 
 					$data = html_escape($data);
 
-					$this->core_model->insert('pregao', $data, true);
-					$last_id = $this->core_model->get_by_id('pregao', array('pre_id' => $this->session->userdata('last_id')));
+					$this->core_model->insert('dispensa_de_licitacao', $data, true);
+					$last_id = $this->core_model->get_by_id('dispensa_de_licitacao', array('dis_id' => $this->session->userdata('last_id')));
 
-						$titulo = $this->input->post('predoc_titulo');
-						$arquivo = $this->input->post('predoc_arquivo');
-						$tamanho = $this->input->post('predoc_tamanho');
+						$titulo = $this->input->post('disdoc_titulo');
+						$arquivo = $this->input->post('disdoc_arquivo');
+						$tamanho = $this->input->post('disdoc_tamanho');
 
 						$total = count($arquivo);
 
 						for ($i = 0; $i < $total; $i++) {
 
 							$data = array(
-								'predoc_pregao_id' => $last_id->pre_id,
-								'predoc_titulo' => $titulo[$i],
-								'predoc_arquivo' => $arquivo[$i],
-								'predoc_tamanho' => $tamanho[$i]
+								'disdoc_pregao_id' => $last_id->dis_id,
+								'disdoc_titulo' => $titulo[$i],
+								'disdoc_arquivo' => $arquivo[$i],
+								'disdoc_tamanho' => $tamanho[$i]
 							);
-							$this->core_model->insert('pregao_doc', $data);
+							$this->core_model->insert('dispensa_de_licitacao_doc', $data);
 						}
 
 					$login = [
 						'tipo' => 2,
-						'acao' => 'Cadastrou servidor: ' . $last_id->pre_titulo
+						'acao' => 'Cadastrou servidor: ' . $last_id->dis_titulo
 					];
 
 					insert_login($login);
@@ -153,7 +149,7 @@ class Pregao extends CI_Controller
 					);
 
 					$this->load->view('restrita/layout/header', $data);
-					$this->load->view('restrita/pregao/core');
+					$this->load->view('restrita/dispensa_de_licitacao/core');
 					$this->load->view('restrita/layout/footer');
 				}
 			} else {
@@ -163,43 +159,37 @@ class Pregao extends CI_Controller
 
 			if ($area->editar) {
 
-				if (!$pregao = $this->core_model->get_by_id('pregao', array('pre_id' => $pre_id))) {
+				if (!$dispensa = $this->core_model->get_by_id('dispensa_de_licitacao', array('dis_id' => $dis_id))) {
 					$this->session->set_flashdata('erro', 'Servidor não foi encontrado!');
 					$this->redirecionar();
 				} else {
 
-					$this->form_validation->set_rules('pre_titulo', 'Nome', 'trim|required|max_length[150]');
-					$this->form_validation->set_rules('pre_modalidade', 'Modalidade', 'trim|required|max_length[150]');
-					$this->form_validation->set_rules('pre_processo', 'Processo de comprar/administração', 'trim|required|max_length[150]');
-				
-					$this->form_validation->set_rules('pre_objetivo', 'Objetivo', 'trim|required|max_length[900]');
-					$this->form_validation->set_rules('pre_entrega', 'Entrega dos envelopes', 'trim|required|max_length[150]');
-					$this->form_validation->set_rules('pre_estado', 'Estado', 'trim|required|max_length[150]');
-
+					$this->form_validation->set_rules('dis_titulo', 'Nome', 'trim|required|max_length[150]');
+					$this->form_validation->set_rules('dis_modalidade', 'Modalidade', 'trim|required|max_length[150]');
+					$this->form_validation->set_rules('dis_processo', 'Processo de comprar/administração', 'trim|required|max_length[150]');
+					$this->form_validation->set_rules('dis_objetivo', 'Objetivo', 'trim|required|max_length[900]');
+					
 					if ($this->form_validation->run()) {
 
 						$data = elements(
 							array(
-								'pre_titulo',
-								'pre_processo',
-								'pre_modalidade',
-								'pre_objetivo',
-								'pre_entrega',
-								'pre_tipo',
-								'pre_estado'
+								'dis_titulo',
+								'dis_processo',
+								'dis_modalidade',
+								'dis_objetivo',
 							),
 							$this->input->post()
 						);
 
 						$data = html_escape($data);
 
-						$this->core_model->update('pregao', $data, array('pre_id' => $pregao->pre_id));
+						$this->core_model->update('dispensa_de_licitacao', $data, array('dis_id' => $dispensa->dis_id));
 
-						$this->core_model->delete('pregao_doc', array('predoc_pregao_id' => $pregao->pre_id));
+						$this->core_model->delete('dispensa_de_licitacao_doc', array('disdoc_dispensa_id' => $dispensa->dis_id));
 
-						$titulo = $this->input->post('predoc_titulo');
-						$arquivo = $this->input->post('predoc_arquivo');
-						$tamanho = $this->input->post('predoc_tamanho');
+						$titulo = $this->input->post('disdoc_titulo');
+						$arquivo = $this->input->post('disdoc_arquivo');
+						$tamanho = $this->input->post('disdoc_tamanho');
 
 						$cont = 0;
 						foreach($arquivo as $a){
@@ -210,10 +200,10 @@ class Pregao extends CI_Controller
 							for ($i = 0; $i < $cont; $i++) {
 
 								$data = array(
-									'predoc_pregao_id' => $pregao->pre_id,
-									'predoc_titulo' => $titulo[$i],
-									'predoc_arquivo' => $arquivo[$i],
-									'predoc_tamanho' => $tamanho[$i]
+									'disdoc_pregao_id' => $dispensa->dis_id,
+									'disdoc_titulo' => $titulo[$i],
+									'disdoc_arquivo' => $arquivo[$i],
+									'disdoc_tamanho' => $tamanho[$i]
 								);
 								$this->core_model->insert('pregao_doc', $data);
 							}
@@ -221,7 +211,7 @@ class Pregao extends CI_Controller
 
 						$login = [
 							'tipo' => 3,
-							'acao' => 'Editou pregões: ' . $pregao->pre_titulo
+							'acao' => 'Editou pregões: ' . $dispensa->dis_titulo
 						];
 
 						insert_login($login);
@@ -231,15 +221,15 @@ class Pregao extends CI_Controller
 
 						$login = [
 							'tipo' => 1,
-							'acao' => 'Entrou para editar pregões: ' . $pregao->pre_titulo
+							'acao' => 'Entrou para editar pregões: ' . $dispensa->dis_titulo
 						];
 
 						insert_login($login);
 
 						$data = array(
-							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar pregão: ' . $pregao->pre_titulo . '</span>',
-							'pregao' => $pregao,
-							'pdf' => $this->core_model->get_all('pregao_doc', array('predoc_pregao_id' => $pregao->pre_id)),
+							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar Dispensa: ' . $dispensa->dis_titulo . '</span>',
+							'dispensa' => $dispensa,
+							'pdf' => $this->core_model->get_all('dispensa_de_licitacao_doc', array('disdoc_pregao_id' => $dispensa->dis_id)),
 							'styles' => array(
 								'assets/jquery-upload-file/css/uploadfile.css',
 								'assets/bundles/select2/dist/css/select2.min.css',
@@ -248,13 +238,13 @@ class Pregao extends CI_Controller
 							'scripts' => array(
 								'assets/sweetalert2/sweetalert2.all.min.js',
 								'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
-								'assets/jquery-upload-file/js/pregao.js',
+								'assets/jquery-upload-file/js/dispensa.js',
 								'assets/bundles/select2/dist/js/select2.full.min.js',
 							),
 						);
 
 						$this->load->view('restrita/layout/header', $data);
-						$this->load->view('restrita/pregao/core');
+						$this->load->view('restrita/dispensa/core');
 						$this->load->view('restrita/layout/footer');
 					}
 				}
@@ -267,7 +257,7 @@ class Pregao extends CI_Controller
 	public function upload_pdf()
 	{
 
-		$config['upload_path'] = './uploads/paginas/pregao';
+		$config['upload_path'] = './uploads/paginas/dispensa_de_licitacao';
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;
@@ -295,23 +285,23 @@ class Pregao extends CI_Controller
 		echo json_encode($data);
 	}
 
-	public function delete($pre_id = null)
+	public function delete($dis_id = null)
 	{
 
-		$pre_id = (int) $pre_id;
+		$dis_id = (int) $dis_id;
 
-		if (!$pre_id || !$pregao = $this->core_model->get_by_id('pregao', array('pre_id' => $pre_id))) {
+		if (!$dis_id || !$dispensa = $this->core_model->get_by_id('pregao', array('dis_id' => $dis_id))) {
 			$this->session->set_flashdata('erro', 'Servidor não foi encontrado');
 			$this->redirecionar();
 		}
 
-		$this->core_model->delete('pregao', array('pre_id' => $pregao->pre_id));
+		$this->core_model->delete('pregao', array('dis_id' => $dispensa->dis_id));
 
-		$this->core_model->delete('pregao_doc', array('predoc_pregao_id' => $pregao->pre_id));
+		$this->core_model->delete('pregao_doc', array('disdoc_pregao_id' => $dispensa->dis_id));
 
 		$login = [
 			'tipo' => 4,
-			'acao' => 'Deletou servidor: ' . $pregao->pre_titulo
+			'acao' => 'Deletou servidor: ' . $dispensa->dis_titulo
 		];
 
 		insert_login($login);

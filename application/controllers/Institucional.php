@@ -34,7 +34,7 @@ class Institucional extends CI_Controller
 
 		);
 
-		$data['breadcrumb'] = "<a href='" . base_url() . "'>Início</a> / Institucional";
+		$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / Institucional";
 
 		$this->load->view('web/layout/header', $data);
 		$this->load->view('web/institucional/index');
@@ -50,7 +50,7 @@ class Institucional extends CI_Controller
 			'info_sistema' => $this->footer_header(),
 		);
 
-		$data['breadcrumb'] = "<a href='" . base_url() . "'>Início</a> / <a href='" . base_url('institucional') . "'> Institucional </a> / " . $data['titulo'];
+		$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional') . "'> Institucional </a> / " . $data['titulo'];
 
 		$this->load->view('web/layout/header', $data);
 		$this->load->view('web/institucional/o_valiprev');
@@ -67,7 +67,7 @@ class Institucional extends CI_Controller
 			'info_sistema' => $this->footer_header(),
 		);
 
-		$data['breadcrumb'] = "<a href='" . base_url() . "'>Início</a> / <a href='" . base_url('institucional') . "'> Institucional </a> / " . $data['titulo'];
+		$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional') . "'> Institucional </a> / " . $data['titulo'];
 
 
 		$this->load->view('web/layout/header', $data);
@@ -122,7 +122,7 @@ class Institucional extends CI_Controller
 			'info_sistema' => $this->footer_header(),
 		);
 
-		$data['breadcrumb'] = "<a href='" . base_url() . "'>Início</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / " . $data['titulo'];
+		$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / " . $data['titulo'];
 
 		$this->load->view('web/layout/header', $data);
 		$this->load->view('web/institucional/censo_previdenciario');
@@ -141,7 +141,7 @@ class Institucional extends CI_Controller
 			'info_sistema' => $this->footer_header(),
 		);
 
-		$data['breadcrumb'] = "<a href='" . base_url() . "'>Início</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / " . $data['titulo'];
+		$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / " . $data['titulo'];
 
 		$this->load->view('web/layout/header', $data);
 		$this->load->view('web/institucional/capacitacao_servidores');
@@ -161,7 +161,7 @@ class Institucional extends CI_Controller
 			'info_sistema' => $this->footer_header(),
 		);
 
-		$data['breadcrumb'] = "<a href='" . base_url() . "'>Início</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / " . $data['titulo'];
+		$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / " . $data['titulo'];
 
 		$this->load->view('web/layout/header', $data);
 		$this->load->view('web/institucional/conselhos/index');
