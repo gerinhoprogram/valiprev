@@ -18,6 +18,8 @@ class Custom_404 extends CI_Controller {
         $data = array(
             'titulo' => 'Página não encontrada',
             'pag_detalhe' => false,
+			'info_sistema' => $this->footer_header(),
+
         );
 
 

@@ -27,29 +27,24 @@
                                     <table class="table table-striped table-artigos">
                                         <thead>
                                             <tr>
-                                                <th>Nome</th>
-												<th>Conselho</th>
-												<th>Ano</th>
-
+                                                <th>ID</th>
+                                                <th>Título</th>
+												<th>Tipo do documento</th>
                                                 <th class="nosort text-center">Ações</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
 
-                                            <?php foreach ($atas as $ata): ?>
+                                            <?php foreach ($pdfs as $pdf): ?>
 
                                                 <tr>
-													
-                                                    <td>
-														<?= $ata->ata_nome ?>
-													</td>
-													<td>
-														<?= $ata->pag_nome ?>
-													</td>
-													<td>
-														<?= $ata->ata_ano ?>
-													</td>
+                                                    <td><?=$pdf->pdf_id?></td>
+                                                    <td><a class='badge badge-info' href="<?= base_url('uploads/paginas/eleicoes_dos_conselhos/pdf/'.$pdf->pdf_arquivo) ?>" target="_blank" rel="noopener noreferrer">
+                                                        <?php echo $pdf->pdf_titulo; ?>
+                                                         </a>
+                                                    </td>
+													<td><?=$pdf->pdf_tipo?></td>
 													
 													<td class="text-center">
                                                         <div class="dropdown">
@@ -59,12 +54,12 @@
                                                                     
                                                                     <?php if($editar) :?>
 																		
-                                                                    		<a onclick="loading()" data-toggle="tooltip" data-placement="left" title="Editar informações" href="<?php echo base_url('restrita/' . $this->router->fetch_class() . '/core/' . $ata->ata_id); ?>" class="dropdown-item has-icon text-warning"><i class="fas fa-edit"></i> Editar</a>
+                                                                    		<a onclick="loading()" data-toggle="tooltip" data-placement="left" title="Editar informações" href="<?php echo base_url('restrita/' . $this->router->fetch_class() . '/core/' . $pdf->pdf_id); ?>" class="dropdown-item has-icon text-warning"><i class="fas fa-edit"></i> Editar</a>
                                                                         
                                                                     <?php endif ?>
 
 																	<?php if($excluir) :?>
-                                                                    <a data-toggle="tooltip" data-placement="left" title="Excluir permanente" href="<?= base_url('restrita/' . $this->router->fetch_class() . '/delete/' . $ata->ata_id); ?>" class="dropdown-item has-icon delete text-danger" data-confirm="Tem certeza da exclusão do registro?"><i class="fas fa-trash-alt"></i> Excluir</a>
+                                                                    <a data-toggle="tooltip" data-placement="left" title="Excluir permanente" href="<?= base_url('restrita/' . $this->router->fetch_class() . '/delete/' . $pdf->pdf_id); ?>" class="dropdown-item has-icon delete text-danger" data-confirm="Tem certeza da exclusão do registro?"><i class="fas fa-trash-alt"></i> Excluir</a>
                                                                     <?php endif ?>
 
                                                                     

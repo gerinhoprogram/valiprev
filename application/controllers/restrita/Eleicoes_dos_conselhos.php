@@ -2,7 +2,7 @@
 
 defined('BASEPATH') or exit('Ação não permitida');
 
-class Dacao extends CI_Controller
+class Eleicoes_dos_conselhos extends CI_Controller
 {
 
 	public function __construct()
@@ -14,10 +14,10 @@ class Dacao extends CI_Controller
 		}
 
 		$this->load->model('menu_principal_model');
-		$this->url_pagina = 'dacao-em-pagamento';
-		$this->pagina_titulo = 'Dação';
-		$this->tabela_banco = 'certidoes';
-		$this->view_folder = 'dacao';
+		$this->url_pagina = 'eleicoes-dos-conselhos';
+		$this->pagina_titulo = 'Eleições dos conselhos';
+		$this->tabela_banco = 'eleicoes_dos_conselhos';
+		$this->view_folder = 'eleicoes_dos_conselhos';
 		$this->folder_upload = './uploads/paginas/dacao/pdf';
 
 	}
@@ -83,7 +83,7 @@ class Dacao extends CI_Controller
 				$titulo = $this->input->post('pdf_titulo');
 				$arquivo = $this->input->post('pdf_arquivo');
 				$tamanho = $this->input->post('pdf_tamanho');
-				$ano = $this->input->post('pdf_ano');
+				$tipo = $this->input->post('pdf_tipo');
 
 				if($titulo && $arquivo && $tamanho){
 
@@ -99,8 +99,7 @@ class Dacao extends CI_Controller
 							'pdf_titulo' => $titulo[$i],
 							'pdf_arquivo' => $arquivo[$i],
 							'pdf_tamanho' => $tamanho[$i],
-							'pdf_user' => $_SESSION['login'],
-							'pdf_ano' => $ano[$i]
+							'pdf_tipo' => $tipo[$i]
 						);
 						$this->core_model->insert($this->tabela_banco, $data);
 					}
@@ -126,7 +125,7 @@ class Dacao extends CI_Controller
 						'scripts' => array(
 							'assets/sweetalert2/sweetalert2.all.min.js',
 							'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
-							'assets/jquery-upload-file/js/dacao.js',
+							'assets/jquery-upload-file/js/eleicoes_dos_conselhos.js',
 							'assets/bundles/select2/dist/js/select2.full.min.js',
 						),
 
@@ -149,23 +148,19 @@ class Dacao extends CI_Controller
 				} else {
 
 					$this->form_validation->set_rules('pdf_titulo', 'Nome', 'trim|required|min_length[2]|max_length[150]');
-
-					if(!$this->input->post('foto_produto')){
-						$this->form_validation->set_rules('pdf_arquivo', 'Arquivo', 'trim|required');
-					}
 					
 					if ($this->form_validation->run()) {
 
 						$data = elements(
 							array(
 								'pdf_titulo',
-								'pdf_arquivo',
-								'pdf_ano'
+								'pdf_tipo'
 							),
 							$this->input->post()
 						);
 
 						$data['pdf_arquivo'] = $this->input->post('foto_produto');
+						$data['pdf_tamanho'] = $this->input->post('pdf_tamanho');
 
 						$data = html_escape($data);
 
@@ -192,7 +187,7 @@ class Dacao extends CI_Controller
 							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar : ' . $pdf->pdf_titulo . '</span>',
 							'pdf' => $pdf,
 							'scripts' => array(
-								'assets/js/dacao.js'
+								'assets/js/eleicoes_dos_conselhos.js'
 							),
 						);
 
@@ -210,7 +205,7 @@ class Dacao extends CI_Controller
 	public function upload_pdf()
 	{
 
-		$config['upload_path'] = './uploads/paginas/dacao/pdf';
+		$config['upload_path'] = './uploads/paginas/eleicoes_dos_conselhos/pdf';
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;
@@ -241,7 +236,7 @@ class Dacao extends CI_Controller
 	public function upload_pdf_unico()
 	{
 
-		$config['upload_path'] = './uploads/paginas/dacao/pdf';
+		$config['upload_path'] = './uploads/paginas/eleicoes_dos_conselhos/pdf';
 		$config['allowed_types'] = 'PDF|pdf';
 		$config['encrypt_name'] = false;
 		$config['max_size'] = 9000;

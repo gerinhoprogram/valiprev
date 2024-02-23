@@ -1,6 +1,6 @@
 <footer>
 	<div class="linha">
-		<div class="colunas lg-4">
+		<div class="colunas lg-4 md-4 pq-12">
 			<h5>FALE CONOSCO</h5>
 			<p><?= $info_sistema->sistema_telefone_fixo ?></p>
 			<p><?= $info_sistema->sistema_telefone_movel ?></p>
@@ -13,7 +13,7 @@
 			<h5>HORÁRIO DE ATENDIMENTO</h5>
 			<p><?= $info_sistema->sistema_horario_atendimento ?></p>
 		</div>
-		<div class="colunas lg-4">
+		<div class="colunas lg-4 md-4 pq-12">
 			<h5>Mapa do site</h5>
 			<a href="<?=base_url()?>"><p>Home</p></a>
 			<a href="<?=base_url($menu_principal[0]->men_url)?>"><p><?= $menu_principal[0]->men_nome ?></p></a>
@@ -21,7 +21,7 @@
 				<a href="<?=base_url($menu_principal[0]->men_url.'/'.$sub->pag_link)?>"><p>&bull; <?= $sub->pag_nome ?></p></a>
 			<?php endforeach ?>
 		</div>
-		<div class="colunas lg-4">
+		<div class="colunas lg-4 md-4 pq-12">
 			<a href="<?=base_url($menu_principal[1]->men_url)?>"><p><?= $menu_principal[1]->men_nome ?></p></a>
 			<?php foreach (submenu($menu_principal[1]->men_id) as $sub) : ?>
 				<a href="<?=base_url($menu_principal[1]->men_url.'/'.$sub->pag_link)?>"><p>&bull; <?= $sub->pag_nome ?></p></a>

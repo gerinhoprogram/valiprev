@@ -72,6 +72,19 @@
 										</div>
 
 										<div class="form-group col-md-12">
+											<label>* Ano <small class="titulo text-info"></small></label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<div class="input-group-text">
+														<i class="fas fa-user-tie text-info"></i>
+													</div>
+												</div>
+												<input id="ano" type="text" class="form-control" name="ata_ano" value="<?php echo (isset($ata) ? $ata->ata_ano : set_value('ata_ano')); ?>">
+											</div>
+											<?php echo form_error('ata_ano', '<div class="text-danger">', '</div>'); ?>
+										</div>
+
+										<div class="form-group col-md-12">
 											<label>Arquivo</label>
 											<div class="input-group">
 												<div class="input-group-prepend">

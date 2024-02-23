@@ -27,6 +27,7 @@
 		<?php foreach ($menu_home as $home) : ?>
 
 			<div class="colunas lg-2 md-4 pq-12">
+				
 				<figure>
 					<img src="<?= base_url('uploads/home/' . $home->hom_foto) ?>" alt="<?= $home->hom_titulo ?>" title="<?= $home->hom_titulo ?>">
 				</figure>
@@ -51,10 +52,8 @@
 	<div class="b_direito">
 		<div class="linha">
 			<div class="colunas lg-12 md-12 pq-12">
-				<h3><?= $valiprev->pag_nome ?></h3>
-				<p>
-					Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor rerum quos placeat veritatis nemo repudiandae soluta perspiciatis corrupti delectus maxime incidunt quis odit dolore vero, magnam dolorum, vel veniam! Perferendis!
-				</p>
+				<h3>Apresentação</h3>
+				<?=$info_sistema->sistema_descricao?>
 			</div>
 		</div>
 	</div>

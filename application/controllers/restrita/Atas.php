@@ -89,6 +89,7 @@ class Atas extends CI_Controller
 						array(
 							'ata_nome',
 							'ata_pagina_id',
+							'ata_ano'
 						),
 						$this->input->post()
 					);
@@ -146,9 +147,9 @@ class Atas extends CI_Controller
 					$this->form_validation->set_rules('ata_nome', 'Nome', 'trim|required|min_length[2]|max_length[150]');
 					$this->form_validation->set_rules('ata_pagina_id', 'Página', 'trim|required');
 
-					if (!$this->input->post('foto_produto')) {
-						$this->form_validation->set_rules('ata_foto', 'Arquivo', 'trim|required');
-					}
+					// if (!$this->input->post('foto_produto')) {
+					// 	$this->form_validation->set_rules('ata_foto', 'Arquivo', 'trim|required');
+					// }
 
 					if ($this->form_validation->run()) {
 
@@ -156,6 +157,7 @@ class Atas extends CI_Controller
 							array(
 								'ata_nome',
 								'ata_pagina_id',
+								'ata_ano'
 							),
 							$this->input->post()
 						);
@@ -185,7 +187,7 @@ class Atas extends CI_Controller
 
 						$data = array(
 							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar : ' . $ata->ata_nome . '</span>',
-							'regimento' => $ata,
+							'ata' => $ata,
 							'scripts' => array(
 								'assets/js/regimentos_internos.js',
 							),

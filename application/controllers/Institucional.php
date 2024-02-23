@@ -50,7 +50,7 @@ class Institucional extends CI_Controller
 			'info_sistema' => $this->footer_header(),
 		);
 
-		$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional') . "'> Institucional </a> / " . $data['titulo'];
+		$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a>/<a href='" . base_url('institucional') . "'>Institucional </a> / " . $data['titulo'];
 
 		$this->load->view('web/layout/header', $data);
 		$this->load->view('web/institucional/o_valiprev');
@@ -84,7 +84,7 @@ class Institucional extends CI_Controller
 
 			$data = array(
 				'titulo' => $pagina->pag_nome,
-				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/diretoria') . "'>Diretoria</a> / $pagina->pag_nome",
+				'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/diretoria') . "'>Diretoria</a> / $pagina->pag_nome",
 				'menu_principal' => $this->menu_principal(),
 				'info_sistema' => $this->footer_header(),
 				'pagina' => $pagina,
@@ -97,7 +97,7 @@ class Institucional extends CI_Controller
 
 			$data = array(
 				'titulo' => $menu->pag_nome,
-				'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/diretoria/') . "'>Diretoria</a>",
+				'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/diretoria/') . "'>Diretoria</a>",
 				'menu_principal' => $this->menu_principal(),
 				'menu' => $menu,
 				'info_sistema' => $this->footer_header(),
@@ -185,7 +185,7 @@ class Institucional extends CI_Controller
 
 			$data['membros'] = $this->core_model->get_all('mandatos_membros', array('membros_mandato_id' => $menu->pag_id));
 
-			$data['breadcrumb'] = "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ Conselheiros";
+			$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ Conselheiros";
 
 			$this->load->view('web/layout/header', $data);
 			$this->load->view('web/institucional/conselhos/conselho_administrativo/mandatos');
@@ -195,15 +195,17 @@ class Institucional extends CI_Controller
 
 				$data = array(
 					'titulo' => $menu->pag_nome,
-					'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ Conselheiros",
+					'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ Conselheiros",
 					'menu_principal' => $this->menu_principal(),
 					'pagina' => $pagina,
 					'info_sistema' => $this->footer_header(),
 					'regimentos' => $this->core_model->get_all('regimentos_internos', array('reg_pagina_id' => $menu->pag_id)),
 					'atas' => $this->core_model->get_all('atas', array('ata_pagina_id' => $menu->pag_id)),
-
+					'atas_grupo' => $this->core_model->get_all_group_by('atas', array('ata_pagina_id' => $menu->pag_id), 'ata_ano'),
 					'styles' => array(
 						'assets/css/conselhos.css',
+						'assets/css/tabela.css',
+						'assets/css/tabela_ano.css',
 					),
 					'scripts' => array(
 						'assets/js/app.min.js',
@@ -220,7 +222,7 @@ class Institucional extends CI_Controller
 
 				$data = array(
 					'titulo' => $menu->pag_nome,
-					'breadcrumb' => "<a href='" . base_url() . "'>Home</a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos/') . "'>Conselhos</a> / $menu->pag_nome",
+					'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos/') . "'>Conselhos</a> / $menu->pag_nome",
 					'menu_principal' => $this->menu_principal(),
 					'menu' => $menu,
 					'info_sistema' => $this->footer_header(),
@@ -232,5 +234,20 @@ class Institucional extends CI_Controller
 				$this->load->view('web/layout/footer');
 			}
 		}
+	}
+
+	public function como_solicitar_sua_aposentadoria()
+	{
+		$data = array(
+			'titulo' => 'Como solicitar sua aposentadoria',
+			'menu_principal' => $this->menu_principal(),
+			'info_sistema' => $this->footer_header(),
+		);
+
+		$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / Como solicitar sua aposentadoria";
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view('web/institucional/aposentadoria');
+		$this->load->view('web/layout/footer');
 	}
 }

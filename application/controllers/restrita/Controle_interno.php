@@ -100,7 +100,7 @@ class Controle_interno extends CI_Controller
 							'pdf_arquivo' => $arquivo[$i],
 							'pdf_tamanho' => $tamanho[$i],
 							'pdf_user' => $_SESSION['login'],
-							'pdf_ano' => $ano
+							'pdf_ano' => $ano[$i]
 						);
 						$this->core_model->insert($this->tabela_banco, $data);
 					}

@@ -70,6 +70,7 @@ $route['institucional/conselhos/conselho-fiscal'] = 'institucional/conselho_fisc
 $route['institucional/conselhos/conselho-administrativo/(:any)'] = 'institucional/conselho_administrativo/$1';
 $route['institucional/conselhos/conselho-administrativo'] = 'institucional/conselho_administrativo';
 $route['institucional/conselhos'] = 'institucional/conselhos';
+$route['institucional/como-solicitar-sua-aposentadoria'] = 'institucional/como_solicitar_sua_aposentadoria';
 
 $route['transparencia/juridico'] = 'transparencia/juridico';
 $route['transparencia/juridico/resolucoes/(:any)'] = 'transparencia/resolucoes/$1';
@@ -82,3 +83,5 @@ $route['transparencia/relatorio-de-governanca-corporativa'] = 'transparencia/rel
 $route['transparencia/controle-interno'] = 'transparencia/controle_interno';
 $route['transparencia/tce-sp'] = 'transparencia/tce';
 $route['transparencia/dacao-em-pagamento'] = 'transparencia/dacao_em_pagamento';
+$route['transparencia/eleicoes-dos-conselhos'] = 'transparencia/eleicoes_dos_conselhos';
+$route['transparencia/holerite-e-informe-de-rendientos'] = 'transparencia/holerite_e_informe_de_rendimento';
