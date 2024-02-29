@@ -3,19 +3,19 @@ var App_sistema = function() {
 
     var envia_foto = function() {
 
-        $(document).on('change', '[name="reg_foto"]', function() {
+        $(document).on('change', '[name="ata_foto"]', function() {
 
             // alert(BASE_URL);
-            var file_data = $('[name="reg_foto"]').prop('files')[0];
+            var file_data = $('[name="ata_foto"]').prop('files')[0];
 
             var form_data = new FormData();
 
-            form_data.append('reg_foto', file_data);
+            form_data.append('ata_foto', file_data);
 
             $.ajax({
 
                 type: 'post',
-                url: BASE_URL + 'restrita/regimentos_internos/upload_foto',
+                url: BASE_URL + 'restrita/atas/upload_pdf',
                 dataType: 'json',
                 cache: false,
                 contentType: false,
@@ -31,12 +31,8 @@ var App_sistema = function() {
 
                     if (response.erro === 0) {
 
-						if(response.tipo != '.pdf'){
-							$('#box-foto-logo').html("<input type='hidden' name='logo_foto_troca' value='" + response.foto_nome + "' > <img src='" + BASE_URL + "uploads/paginas/conselhos/regimentos_internos/" + response.foto_nome + "' style='height: 150px; width: 100%; object-fit: contain'> ");
-						}else{
-							$('#box-foto-logo').html("<input type='hidden' name='logo_foto_troca' value='" + response.foto_nome + "' > <a href='" + BASE_URL + "uploads/paginas/conselhos/regimentos_internos/" + response.foto_nome + "'>Arquivo </a>");
+						$('#box-foto-logo').html("<input type='hidden' name='logo_foto_troca' value='" + response.foto_nome + "' > <a target='_blank' href='" + BASE_URL + "uploads/paginas/conselhos/atas/" + response.foto_nome + "'>Arquivo </a>");
 
-						}
                         $('#logo_foto_troca').html('<div class="p-1 mt-1 rounded bg-success text-white">' + response.mensagem + '</div>');
 
                     } else {

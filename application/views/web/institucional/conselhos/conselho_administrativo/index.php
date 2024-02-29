@@ -1,23 +1,5 @@
 <?php $this->load->view('web/layout/navbar'); ?>
 
-<style>
-	.conselheiros .conselho {
-		margin-bottom: 20px;
-	}
-
-	.conselheiros p {
-		text-align: center;
-		font-size: 14pt;
-		line-height: 16pt;
-	}
-
-	table img {
-		width: 30px !important;
-	}
-
-	
-</style>
-
 <section class='paginas-diretoria'>
 
 	<?php $this->load->view('web/layout/cabecalho_pagina'); ?>
@@ -76,34 +58,7 @@
 				<h4>Regimentos Internos do Conselho Administrativo</h4>
 			</div>
 			<div class="colunas lg-12">
-				<div class='tabela'>
-					<table class="table-web" style="width: 100%">
-						<thead>
-							<tr>
-								<th class="nosort">Título</th>
-								<th class="nosort">Baixar</th>
-							</tr>
-						</thead>
-						<tbody>
-
-
-							<?php foreach ($regimentos as $reg) : ?>
-
-								<tr>
-									<td style="width: 80%"><?= $reg->reg_nome; ?></td>
-
-									<td>
-										<a href="http://" target="_blank" rel="noopener noreferrer">
-											Download
-										</a>
-									</td>
-								</tr>
-
-							<?php endforeach; ?>
-
-						</tbody>
-					</table>
-				</div>
+				<?php $this->load->view('web/institucional/conselhos/tabela_1'); ?>
 			</div>
 
 		</div>
@@ -112,38 +67,7 @@
 			<div class="colunas lg-12">
 				<h4>Atas do Conselho Administrativo</h4>
 			</div>
-			<div class="colunas lg-12">
-
-					
-					<div class="tab">
-						<?php foreach ($atas_grupo as $grupo) : ?>
-							<button class="tablinks" onclick="openCity(event, '<?= $grupo->ata_ano ?>')" ><?= $grupo->ata_ano ?></button>
-							
-						<?php endforeach; ?>
-					</div>
-
-					<?php $cont = 0 ?>
-					<?php foreach ($atas_grupo as $ata_grupo) : ?>
-
-						<div id="<?= $ata_grupo->ata_ano ?>" class="tabcontent <?=($cont != 0 ? 'tabinative' : '')?>">
-							<div class="linha">
-							<?php foreach ($atas as $ata) : ?>
-								<div class="colunas lg-6">
-								<?php if($ata->ata_ano == $ata_grupo->ata_ano) :?>
-								<a href="<?= base_url('uploads/paginas/conselhos/atas/'.$ata->ata_foto) ?>" target="_blank" rel="noopener noreferrer">
-									<p>
-									<i class="fas fa-file-pdf"></i>&nbsp;<?= $ata->ata_nome ?>
-									</p>
-								</a>
-								<?php endif ?>
-								</div>
-							<?php endforeach; ?>
-							</div>
-						</div>
-						<?php $cont++ ?>
-					<?php endforeach; ?>
-
-			</div>
+			<?php $this->load->view('web/institucional/conselhos/tabela_2'); ?>
 
 		</div>
 
@@ -152,23 +76,3 @@
 
 </section>
 
-
-
-<script>
-	function openCity(evt, cityName) {
-		var i, tabcontent, tablinks;
-		tabcontent = document.getElementsByClassName("tabcontent");
-		for (i = 0; i < tabcontent.length; i++) {
-			tabcontent[i].style.display = "none";
-		}
-		tablinks = document.getElementsByClassName("tablinks");
-		for (i = 0; i < tablinks.length; i++) {
-			tablinks[i].className = tablinks[i].className.replace(" active", "");
-		}
-		document.getElementById(cityName).style.display = "block";
-		evt.currentTarget.className += " active";
-	}
-
-	// Get the element with id="defaultOpen" and click on it
-	document.getElementById("defaultOpen").click();
-</script>

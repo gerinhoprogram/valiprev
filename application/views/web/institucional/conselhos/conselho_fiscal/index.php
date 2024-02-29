@@ -1,5 +1,6 @@
 <?php $this->load->view('web/layout/navbar'); ?>
 
+
 <section class='paginas-diretoria'>
 
 	<?php $this->load->view('web/layout/cabecalho_pagina'); ?>
@@ -44,7 +45,7 @@
 					<figure>
 						<img src="<?= base_url('uploads/paginas/conselhos/conselheiros/' . $pag->con_foto) ?>" alt="">
 					</figure>
-					<p><?= $pag->con_nome ?></p>
+					<p><strong><?= $pag->con_nome ?></strong></p>
 					<p><?= $pag->con_categoria ?></p>
 					<p><?= $pag->con_cargo ?></p>
 
@@ -59,32 +60,7 @@
 			</div>
 			<div class="colunas lg-12">
 				<div style="background: #ccc">
-					<table class="table-web" style="background: #bbb; width: 100%">
-						<thead>
-							<tr>
-								<th class="nosort">Título</th>
-								<th class="nosort">Baixar</th>
-							</tr>
-						</thead>
-						<tbody>
-
-
-							<?php foreach ($regimentos as $reg) : ?>
-
-								<tr>
-									<td style="width: 80%"><?= $reg->reg_nome; ?></td>
-
-									<td style="text-align: center; width: 20%">
-										<a href="http://" target="_blank" rel="noopener noreferrer">
-											baixar
-										</a>
-									</td>
-								</tr>
-
-							<?php endforeach; ?>
-
-						</tbody>
-					</table>
+				<?php $this->load->view('web/institucional/conselhos/tabela_1'); ?>
 				</div>
 			</div>
 
@@ -94,38 +70,7 @@
 			<div class="colunas lg-12">
 				<h4>Atas do Conselho Administrativo</h4>
 			</div>
-			<div class="colunas lg-12">
-				<div style="background: #ccc">
-					<table class="table-web" style="background: #bbb; width: 100%">
-						<thead>
-							<tr>
-								<th class="nosort">Título</th>
-								<th class="nosort">Ano</th>
-								<th class="nosort">Baixar</th>
-							</tr>
-						</thead>
-						<tbody>
-
-
-							<?php foreach ($atas as $ata) : ?>
-
-								<tr>
-									<td style="width: 60%"><?= $ata->ata_nome; ?></td>
-									<td style="width: 20%"><?= $ata->ata_ano; ?></td>
-
-									<td style="text-align: center; width: 20%">
-										<a href="http://" target="_blank" rel="noopener noreferrer">
-											baixar
-										</a>
-									</td>
-								</tr>
-
-							<?php endforeach; ?>
-
-						</tbody>
-					</table>
-				</div>
-			</div>
+			<?php $this->load->view('web/institucional/conselhos/tabela_2'); ?>
 
 		</div>
 

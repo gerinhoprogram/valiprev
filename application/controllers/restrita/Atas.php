@@ -189,7 +189,7 @@ class Atas extends CI_Controller
 							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar : ' . $ata->ata_nome . '</span>',
 							'ata' => $ata,
 							'scripts' => array(
-								'assets/js/regimentos_internos.js',
+								'assets/js/atas.js',
 							),
 						);
 
@@ -204,7 +204,7 @@ class Atas extends CI_Controller
 		}
 	}
 
-	public function upload_foto()
+	public function upload_pdf()
 	{
 
 		$config['upload_path'] = './uploads/paginas/conselhos/atas';

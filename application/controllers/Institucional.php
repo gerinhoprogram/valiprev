@@ -236,6 +236,74 @@ class Institucional extends CI_Controller
 		}
 	}
 
+	public function conselho_fiscal($url = null)
+	{
+
+		$menu = $this->menu_principal_model->get_pagina_url('conselho-fiscal');
+
+		if ($url == 'mandatos') {
+			$data = array(
+				'titulo' => 'Mandatos',
+				'menu_principal' => $this->menu_principal(),
+				'menu' => $menu,
+				'mandatos' => $this->core_model->get_all('mandatos', array('man_pagina_id' => $menu->pag_id)),
+
+				'info_sistema' => $this->footer_header(),
+			);
+
+			$data['membros'] = $this->core_model->get_all('mandatos_membros', array('membros_mandato_id' => $menu->pag_id));
+
+			$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ Conselheiros";
+
+			$this->load->view('web/layout/header', $data);
+			$this->load->view('web/institucional/conselhos/conselho_fiscal/mandatos');
+			$this->load->view('web/layout/footer');
+		} else {
+			if ($url && $pagina = $this->core_model->get_all('conselheiros', array('con_pagina_id' => $menu->pag_id))) {
+
+				$data = array(
+					'titulo' => $menu->pag_nome,
+					'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ Conselheiros",
+					'menu_principal' => $this->menu_principal(),
+					'pagina' => $pagina,
+					'info_sistema' => $this->footer_header(),
+					'regimentos' => $this->core_model->get_all('regimentos_internos', array('reg_pagina_id' => $menu->pag_id)),
+					'atas' => $this->core_model->get_all('atas', array('ata_pagina_id' => $menu->pag_id)),
+					'atas_grupo' => $this->core_model->get_all_group_by('atas', array('ata_pagina_id' => $menu->pag_id), 'ata_ano'),
+					'styles' => array(
+						'assets/css/conselhos.css',
+						'assets/css/tabela.css',
+						'assets/css/tabela_ano.css',
+					),
+					'scripts' => array(
+						'assets/js/app.min.js',
+						'assets/bundles/datatables/datatables.min.js',
+						'assets/bundles/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js',
+						'assets/js/page/datatables.js'
+					),
+				);
+
+				$this->load->view('web/layout/header', $data);
+				$this->load->view("web/institucional/conselhos/conselho_fiscal/index");
+				$this->load->view('web/layout/footer');
+			} else {
+
+				$data = array(
+					'titulo' => $menu->pag_nome,
+					'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos/') . "'>Conselhos</a> / $menu->pag_nome",
+					'menu_principal' => $this->menu_principal(),
+					'menu' => $menu,
+					'info_sistema' => $this->footer_header(),
+					'paginas' => $this->core_model->get_all('paginas', array('pag_pai_2' => $menu->pag_id))
+				);
+
+				$this->load->view('web/layout/header', $data);
+				$this->load->view("web/institucional/conselhos/conselho_fiscal/index");
+				$this->load->view('web/layout/footer');
+			}
+		}
+	}
+
 	public function como_solicitar_sua_aposentadoria()
 	{
 		$data = array(

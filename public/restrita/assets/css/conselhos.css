@@ -11,3 +11,18 @@
 .conselheiros p{
 	font-size: 12pt;
 }
+
+.conselheiros .conselho {
+	margin-bottom: 20px;
+}
+
+.conselheiros p {
+	text-align: center;
+	font-size: 14pt;
+	line-height: 16pt;
+}
+
+table img {
+	width: 30px !important;
+}
+
