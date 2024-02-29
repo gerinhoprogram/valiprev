@@ -3,10 +3,21 @@
 }
 
 .tabela{
-	background: #26b0e6
+	background: #fff;
+	border: #0056b3 1px solid;
 }
 table{
 	background-color: #fff;
+}
+.col-md-6{
+	float: left !important
+}
+.dataTables_length label{
+	margin-right: 30px;
+}
+label input{
+	padding: 10px;
+	margin-left: 10px;
 }
 /* 
 .linha-completa .dataTables_filter {
@@ -33,7 +44,12 @@ table{
 } */
 
 table tbody tr td {
-    padding: 15px;
+    padding: 5px;
+	border: 1px solid #ccc
+}
+
+tr{
+	
 }
 
 /* .dataTables_length,
@@ -52,6 +68,9 @@ table tbody tr td {
 
 .col-md-7{
 	width: 100% !important;
+}
+.col-sm-12{
+	margin-bottom: 20px;
 }
 
 .row{

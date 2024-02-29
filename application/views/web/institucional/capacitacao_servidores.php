@@ -2,8 +2,10 @@
 
 <style>
 	.capacitacao-servidores .cont_pai {
-		height: 80px;
-		margin-bottom: 25px
+		height: 50px;
+		margin-bottom: 25px;
+		border: 1px solid #ccc;
+		padding: 5px;
 	}
 
 	.capacitacao-servidores p {
@@ -24,23 +26,24 @@
 			<?php foreach ($pdfs as $pdf) : ?>
 				<?php if ($pdf->pdf_pagina_id == $serv->serv_id) : ?>
 
-					<div class='colunas lg-1'>
+					<div class='colunas lg-6' style="float: left">
 						<div class="cont_pai">
 							<p class="cont_filha">
 							<a href="<?= base_url('uploads/paginas/capacitacao-de-servidores/pdf/' . $pdf->pdf_arquivo) ?>" target="_blank" rel="noopener noreferrer">
-								<img src="<?= base_url('public/restrita/assets/img/pdf.svg') ?>" alt="" width="50">
-				</a>
+							<i class="fas fa-file-pdf"></i>&nbsp;
+							<?= $pdf->pdf_titulo ?>
+							</a>
 							</p>
 						</div>
 					</div>
 
-					<div class='colunas lg-11'>
+					<!-- <div class='colunas lg-11'>
 						<div class="cont_pai">
 							<p class="cont_filha">
-								<?= $pdf->pdf_titulo ?>
+								
 							</p>
 						</div>
-					</div>
+					</div> -->
 
 				<?php endif ?>
 			<?php endforeach ?>

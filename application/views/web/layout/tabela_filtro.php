@@ -1,6 +1,6 @@
 <div class="tabela">
 				<table class="table-web" style=" width: 100%">
-					<thead>
+					<thead >
 						<tr>
 							<th class="nosort">Título</th>
 							<th class="nosort">Ano</th>

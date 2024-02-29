@@ -43,4 +43,17 @@ class Conselho_model extends CI_Model {
         return $this->db->get('atas')->result();
     }
 
+	public function get_all_mandatos() {
+
+
+        $this->db->select([
+            'mandatos.*',
+			'paginas.*'
+        ]);
+
+        $this->db->join('paginas', 'paginas.pag_id = mandatos.man_pagina_id');
+
+        return $this->db->get('mandatos')->result();
+    }
+
 }

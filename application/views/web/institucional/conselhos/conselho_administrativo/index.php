@@ -40,7 +40,7 @@
 			</div>
 
 			<?php foreach ($pagina as $pag) : ?>
-				<div class="colunas lg-4 md-4 pq-12 conselho">
+				<div class="colunas lg-4 md-6 pq-12 conselho">
 					<figure>
 						<img src="<?= base_url('uploads/paginas/conselhos/conselheiros/' . $pag->con_foto) ?>" alt="<?= $pag->con_nome ?>" title='<?= $pag->con_nome ?>'>
 					</figure>

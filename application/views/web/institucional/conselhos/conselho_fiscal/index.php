@@ -41,7 +41,7 @@
 			</div>
 
 			<?php foreach ($pagina as $pag) : ?>
-				<div class="colunas lg-4 md-2 pq-12" style='height: 500px'>
+				<div class="colunas lg-4 md-6 pq-12" style='height: 500px'>
 					<figure>
 						<img src="<?= base_url('uploads/paginas/conselhos/conselheiros/' . $pag->con_foto) ?>" alt="">
 					</figure>
@@ -56,7 +56,7 @@
 
 		<div class="linha regimentos">
 			<div class="colunas lg-12">
-				<h4>Regimentos Internos do Conselho Administrativo</h4>
+				<h4>Regimentos Internos do Conselho Fiscal</h4>
 			</div>
 			<div class="colunas lg-12">
 				<div style="background: #ccc">
@@ -68,7 +68,7 @@
 
 		<div class="linha atas">
 			<div class="colunas lg-12">
-				<h4>Atas do Conselho Administrativo</h4>
+				<h4>Atas do Conselho Fiscal</h4>
 			</div>
 			<?php $this->load->view('web/institucional/conselhos/tabela_2'); ?>
 

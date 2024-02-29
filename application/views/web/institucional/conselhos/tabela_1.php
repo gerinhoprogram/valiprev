@@ -1,9 +1,9 @@
 <div class='tabela'>
 					<table class="table-web" style="width: 100%">
-						<thead>
+						<thead >
 							<tr>
-								<th class="nosort">Título</th>
-								<th class="nosort">Baixar</th>
+								<th style="text-align: left; border: 1px solid #ccc; padding: 5px; margin-top: 20px;">Título</th>
+								<th style="text-align: left; border: 1px solid #ccc; padding: 5px; margin-top: 20px;">Baixar</th>
 							</tr>
 						</thead>
 						<tbody>
