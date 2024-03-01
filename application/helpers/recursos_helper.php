@@ -86,6 +86,30 @@ function area_acesso(){
     return $acessos;
 }
 
+function membros_titulares_prefeito($mandato_id = null){
+    $CI = & get_instance();
+    $membros = $CI->conselho_model->get_prefeito('Titulares', $mandato_id);
+    return $membros;
+}
+
+function membros_suplentes_prefeito($mandato_id = null){
+    $CI = & get_instance();
+    $membros = $CI->conselho_model->get_prefeito('Suplentes', $mandato_id);
+    return $membros;
+}
+
+function membros_titulares_servidores($mandato_id = null){
+    $CI = & get_instance();
+    $membros = $CI->conselho_model->get_servidores('Titulares', $mandato_id);
+    return $membros;
+}
+
+function membros_suplentes_servidores($mandato_id = null){
+    $CI = & get_instance();
+    $membros = $CI->conselho_model->get_servidores('Suplentes', $mandato_id);
+    return $membros;
+}
+
 
 function areas(){
     $CI = & get_instance();
@@ -190,27 +214,6 @@ function info_header_footer() {
     return $sistema;
 }
 
-function banners_home() {
-
-    $CI = & get_instance();
-
-    if($banners = $CI->core_model->get_by_id('banners_site', array('banner_status' => 1))){
-        return $banners;
-    }else{
-        return false;
-    }
-
-    
-}
-
-function get_all_seo() {
-
-    $CI = & get_instance();
-
-    $seo = $CI->artigos_model->get_all_seo();
-
-    return $seo;
-}
 
 function info_config() {
 
@@ -219,44 +222,6 @@ function info_config() {
     $configuracao = $CI->core_model->get_by_id('configuracoes', array('con_id' => 1));
 
     return $configuracao;
-}
-
-function info_blog() {
-
-    $CI = & get_instance();
-
-    $blog = $CI->core_model->get_by_id('blog', array('blog_id' => 1));
-
-    return $blog;
-}
-
-
-function categorias_pai_sidebar() {
-    $CI = & get_instance();
-    $categorias_pai = $CI->artigos_model->get_all_categorias_pai_home();
-    return $categorias_pai;
-}
-
-function categorias_pai_menu() {
-    $CI = & get_instance();
-    $categorias_pai_menu = $CI->artigos_model->get_all_categorias_pai_home(7);
-    return $categorias_pai_menu;
-}
-
-function categorias_filhas_navbar() {
-    $CI = & get_instance();
-    $categorias = $CI->artigos_model->get_categorias_filhas_navbar();
-    return $categorias;
-}
-
-
-function categorias_filhas() {
-
-    $CI = & get_instance();
-
-    $categorias = $CI->artigos_model->get_categorias_filhas();
-
-    return $categorias;
 }
 
 function submenu($menu_id = null) {
@@ -285,25 +250,6 @@ function submenu_3($menu_id = null) {
 
     return $submenu;
 }
-
-function todos_artigos() {
-    $CI = & get_instance();
-    $todos_artigos = $CI->artigos_model->get_all_artigos_home(array('artigos.artigo_publicado' => 1, 'categorias_pai.categoria_pai_ativa' => 1));
-    $cont=0;
-    foreach($todos_artigos as $str){
-        $todos_artigos[$cont]->artigo_descricao = strip_tags($str->artigo_descricao, '?');
-        $cont++;
-    }
-    return $todos_artigos;
-}
-
-function artigos_footer() {
-    $CI = & get_instance();
-    $artigos_footer = $CI->artigos_model->get_all_artigos_home(array('artigos.artigo_publicado' => 1, 'categorias_pai.categoria_pai_ativa' => 1), 5);
-   
-    return $artigos_footer;
-}
-
 
 function token($login = null): void {
 

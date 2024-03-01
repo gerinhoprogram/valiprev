@@ -267,4 +267,18 @@ class Core_model extends CI_Model {
         }
     }
 
+	public function get_all_by_busca($busca = null) {
+
+        $this->db->select([
+            'paginas.*',
+        ]);
+
+
+        //$this->db->like('artigos.artigo_titulo', $busca, 'BOTH');
+
+        $this->db->where("paginas.pag_nome like '%$busca%'");
+
+        return $this->db->get('paginas')->result();
+    }
+
 }

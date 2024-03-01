@@ -83,8 +83,8 @@
 
 													<?php if (isset($mandato)) : ?>
 
-														<option value="91" <?php echo ($mandato->man_pagina_id == 0 ? 'selected' : ''); ?>>Administrativo</option>
-														<option value="93" <?php echo ($mandato->man_pagina_id == 1 ? 'selected' : ''); ?>>Fiscal</option>
+														<option value="91" <?php echo ($mandato->man_pagina_id == 91 ? 'selected' : ''); ?>>Administrativo</option>
+														<option value="93" <?php echo ($mandato->man_pagina_id == 93 ? 'selected' : ''); ?>>Fiscal</option>
 
 													<?php else : ?>
 
@@ -112,30 +112,46 @@
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															1
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="prefeito_titulares_indicados_1" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('prefeito_titulares_indicados_1')); ?>">
+													<?php if(isset($mandato)) :?>
+														<input type="hidden" name="prefeito_titulares_indicados_id_1" value="<?=$membros_titulares_prefeito[0]->membros_id?>">
+														<input type="hidden" name="prefeito_titulares_indicados_id_2" value="<?=$membros_titulares_prefeito[1]->membros_id?>">
+														<input type="hidden" name="prefeito_titulares_indicados_id_3" value="<?=$membros_titulares_prefeito[2]->membros_id?>">
+														<input type="hidden" name="prefeito_suplentes_indicados_id_1" value="<?=$membros_suplentes_prefeito[0]->membros_id?>">
+														<input type="hidden" name="prefeito_suplentes_indicados_id_2" value="<?=$membros_suplentes_prefeito[1]->membros_id?>">
+														<input type="hidden" name="prefeito_suplentes_indicados_id_3" value="<?=$membros_suplentes_prefeito[2]->membros_id?>">
+
+														<input type="hidden" name="servidores_titulares_indicados_id_1" value="<?=$membros_titulares_servidores[0]->membros_id?>">
+														<input type="hidden" name="servidores_titulares_indicados_id_2" value="<?=$membros_titulares_servidores[1]->membros_id?>">
+														<input type="hidden" name="servidores_titulares_indicados_id_3" value="<?=$membros_titulares_servidores[2]->membros_id?>">
+														<input type="hidden" name="servidores_suplentes_indicados_id_1" value="<?=$membros_suplentes_servidores[0]->membros_id?>">
+														<input type="hidden" name="servidores_suplentes_indicados_id_2" value="<?=$membros_suplentes_servidores[1]->membros_id?>">
+														<input type="hidden" name="servidores_suplentes_indicados_id_3" value="<?=$membros_suplentes_servidores[2]->membros_id?>">
+													<?php endif ?>
+													
+													<input id="decreto" type="text" class="form-control" name="prefeito_titulares_indicados_1" value="<?php echo (isset($mandato) ? $membros_titulares_prefeito[0]->membros_nome : set_value('prefeito_titulares_indicados_1')); ?>">
 												</div>
 												<?php echo form_error('prefeito_titulares_indicados_1', '<div class="text-danger">', '</div>'); ?>
 
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															2
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="prefeito_titulares_indicados_2" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('prefeito_titulares_indicados_2')); ?>">
+													<input id="decreto" type="text" class="form-control" name="prefeito_titulares_indicados_2" value="<?php echo (isset($mandato) ? $membros_titulares_prefeito[1]->membros_nome : set_value('prefeito_titulares_indicados_2')); ?>">
 												</div>
 												<?php echo form_error('prefeito_titulares_indicados_2', '<div class="text-danger">', '</div>'); ?>
 
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															3
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="prefeito_titulares_indicados_3" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('prefeito_titulares_indicados_3')); ?>">
+													<input id="decreto" type="text" class="form-control" name="prefeito_titulares_indicados_3" value="<?php echo (isset($mandato) ? $membros_titulares_prefeito[2]->membros_nome : set_value('prefeito_titulares_indicados_3')); ?>">
 												</div>
 												<?php echo form_error('prefeito_titulares_indicados_3', '<div class="text-danger">', '</div>'); ?>
 
@@ -143,30 +159,30 @@
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															1
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="prefeito_suplentes_indicados_1" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('prefeito_suplentes_indicados_1')); ?>">
+													<input id="decreto" type="text" class="form-control" name="prefeito_suplentes_indicados_1" value="<?php echo (isset($mandato) ? $membros_suplentes_prefeito[0]->membros_nome : set_value('prefeito_suplentes_indicados_1')); ?>">
 												</div>
 												<?php echo form_error('prefeito_suplentes_indicados_1', '<div class="text-danger">', '</div>'); ?>
 
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															2
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="prefeito_suplentes_indicados_2" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('prefeito_suplentes_indicados_2')); ?>">
+													<input id="decreto" type="text" class="form-control" name="prefeito_suplentes_indicados_2" value="<?php echo (isset($mandato) ? $membros_suplentes_prefeito[1]->membros_nome : set_value('prefeito_suplentes_indicados_2')); ?>">
 												</div>
 												<?php echo form_error('prefeito_suplentes_indicados_2', '<div class="text-danger">', '</div>'); ?>
 
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															3
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="prefeito_suplentes_indicados_3" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('prefeito_suplentes_indicados_3')); ?>">
+													<input id="decreto" type="text" class="form-control" name="prefeito_suplentes_indicados_3" value="<?php echo (isset($mandato) ? $membros_suplentes_prefeito[2]->membros_nome : set_value('prefeito_suplentes_indicados_3')); ?>">
 												</div>
 												<?php echo form_error('prefeito_suplentes_indicados_3', '<div class="text-danger">', '</div>'); ?>
 											</fieldset>
@@ -181,30 +197,30 @@
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															1
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="servidores_titulares_indicados_1" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('servidores_titulares_indicados_1')); ?>">
+													<input id="decreto" type="text" class="form-control" name="servidores_titulares_indicados_1" value="<?php echo (isset($mandato) ? $membros_titulares_servidores[0]->membros_nome : set_value('servidores_titulares_indicados_1')); ?>">
 												</div>
 												<?php echo form_error('servidores_titulares_indicados_1', '<div class="text-danger">', '</div>'); ?>
 
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															2
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="servidores_titulares_indicados_2" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('servidores_titulares_indicados_2')); ?>">
+													<input id="decreto" type="text" class="form-control" name="servidores_titulares_indicados_2" value="<?php echo (isset($mandato) ? $membros_titulares_servidores[1]->membros_nome : set_value('servidores_titulares_indicados_2')); ?>">
 												</div>
 												<?php echo form_error('servidores_titulares_indicados_2', '<div class="text-danger">', '</div>'); ?>
 
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															3
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="servidores_titulares_indicados_3" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('servidores_titulares_indicados_3')); ?>">
+													<input id="decreto" type="text" class="form-control" name="servidores_titulares_indicados_3" value="<?php echo (isset($mandato) ? $membros_titulares_servidores[2]->membros_nome : set_value('servidores_titulares_indicados_3')); ?>">
 												</div>
 												<?php echo form_error('servidores_titulares_indicados_3', '<div class="text-danger">', '</div>'); ?>
 
@@ -212,30 +228,30 @@
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															1
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="servidores_suplentes_indicados_1" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('servidores_suplentes_indicados_1')); ?>">
+													<input id="decreto" type="text" class="form-control" name="servidores_suplentes_indicados_1" value="<?php echo (isset($mandato) ? $membros_suplentes_servidores[0]->membros_nome : set_value('servidores_suplentes_indicados_1')); ?>">
 												</div>
 												<?php echo form_error('servidores_suplentes_indicados_1', '<div class="text-danger">', '</div>'); ?>
 
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															2
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="servidores_suplentes_indicados_2" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('servidores_suplentes_indicados_2')); ?>">
+													<input id="decreto" type="text" class="form-control" name="servidores_suplentes_indicados_2" value="<?php echo (isset($mandato) ? $membros_suplentes_servidores[1]->membros_nome : set_value('servidores_suplentes_indicados_2')); ?>">
 												</div>
 												<?php echo form_error('servidores_suplentes_indicados_2', '<div class="text-danger">', '</div>'); ?>
 
 												<div class="input-group mb-2">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
+															3
 														</div>
 													</div>
-													<input id="decreto" type="text" class="form-control" name="servidores_suplentes_indicados_3" value="<?php echo (isset($mandato) ? $mandato->man_decreto : set_value('servidores_suplentes_indicados_3')); ?>">
+													<input id="decreto" type="text" class="form-control" name="servidores_suplentes_indicados_3" value="<?php echo (isset($mandato) ? $membros_suplentes_servidores[2]->membros_nome : set_value('servidores_suplentes_indicados_3')); ?>">
 												</div>
 												<?php echo form_error('servidores_suplentes_indicados_3', '<div class="text-danger">', '</div>'); ?>
 											</fieldset>

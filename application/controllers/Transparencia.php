@@ -42,6 +42,7 @@ class Transparencia extends CI_Controller
 	{
 		$data = array(
 			'titulo' => 'Jurídico',
+			'info_sistema' => $this->footer_header(),
 			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Jurídico",
 			'menu_principal' => $this->menu_principal(),
 			'paginas' => $this->core_model->get_all('paginas', array('pag_pai' => 10))
@@ -61,6 +62,7 @@ class Transparencia extends CI_Controller
 
 			$data = array(
 				'titulo' => $pagina->pag_nome,
+				'info_sistema' => $this->footer_header(),
 				'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/juridico') . "'>Jurídico</a> / <a href='" . base_url('transparencia/juridico/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ $pagina->pag_nome",
 				'menu_principal' => $this->menu_principal(),
 				'pagina' => $pagina,
@@ -74,6 +76,7 @@ class Transparencia extends CI_Controller
 
 			$data = array(
 				'titulo' => $menu->pag_nome,
+				'info_sistema' => $this->footer_header(),
 				'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/juridico/') . "'>Jurídico</a> / $menu->pag_nome",
 				'menu_principal' => $this->menu_principal(),
 				'menu' => $menu,
@@ -84,6 +87,23 @@ class Transparencia extends CI_Controller
 			$this->load->view("web/transparencia/juridico/resolucoes/index");
 			$this->load->view('web/layout/footer');
 		}
+	}
+
+	public function decretos()
+	{
+
+		$data = array(
+			'titulo' => 'Decretos',
+			'menu_principal' => $this->menu_principal(),
+			'info_sistema' => $this->footer_header(),
+			'paginas' => $this->core_model->get_all('paginas', array('pag_pai' => 99)),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Decretos",
+
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view('web/transparencia/decretos');
+		$this->load->view('web/layout/footer');
 	}
 
 	public function portais()

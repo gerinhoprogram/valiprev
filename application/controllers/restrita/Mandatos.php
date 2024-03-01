@@ -87,19 +87,19 @@ class Mandatos extends CI_Controller
 				$this->form_validation->set_rules('man_posse', 'Posse', 'trim|required|min_length[2]|max_length[255]');
 				$this->form_validation->set_rules('man_pagina_id', 'Página', 'trim|required');
 
-				$this->form_validation->set_rules('prefeito_titulares_indicados_1', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-				$this->form_validation->set_rules('prefeito_titulares_indicados_2', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-				$this->form_validation->set_rules('prefeito_titulares_indicados_3', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-				$this->form_validation->set_rules('prefeito_suplentes_indicados_1', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-				$this->form_validation->set_rules('prefeito_suplentes_indicados_2', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-				$this->form_validation->set_rules('prefeito_suplentes_indicados_3', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-				
-				$this->form_validation->set_rules('servidores_titulares_indicados_1', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-				$this->form_validation->set_rules('servidores_titulares_indicados_2', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-				$this->form_validation->set_rules('servidores_titulares_indicados_3', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-				$this->form_validation->set_rules('servidores_suplentes_indicados_1', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-				$this->form_validation->set_rules('servidores_suplentes_indicados_2', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-				$this->form_validation->set_rules('servidores_suplentes_indicados_3', 'Membro', 'trim|required|min_length[2]|max_length[255]');
+				$this->form_validation->set_rules('prefeito_titulares_indicados_1', 'Membro', 'trim|min_length[2]|max_length[255]');
+				$this->form_validation->set_rules('prefeito_titulares_indicados_2', 'Membro', 'trim|min_length[2]|max_length[255]');
+				$this->form_validation->set_rules('prefeito_titulares_indicados_3', 'Membro', 'trim|min_length[2]|max_length[255]');
+				$this->form_validation->set_rules('prefeito_suplentes_indicados_1', 'Membro', 'trim|min_length[2]|max_length[255]');
+				$this->form_validation->set_rules('prefeito_suplentes_indicados_2', 'Membro', 'trim|min_length[2]|max_length[255]');
+				$this->form_validation->set_rules('prefeito_suplentes_indicados_3', 'Membro', 'trim|min_length[2]|max_length[255]');
+
+				$this->form_validation->set_rules('servidores_titulares_indicados_1', 'Membro', 'trim|min_length[2]|max_length[255]');
+				$this->form_validation->set_rules('servidores_titulares_indicados_2', 'Membro', 'trim|min_length[2]|max_length[255]');
+				$this->form_validation->set_rules('servidores_titulares_indicados_3', 'Membro', 'trim|min_length[2]|max_length[255]');
+				$this->form_validation->set_rules('servidores_suplentes_indicados_1', 'Membro', 'trim|min_length[2]|max_length[255]');
+				$this->form_validation->set_rules('servidores_suplentes_indicados_2', 'Membro', 'trim|min_length[2]|max_length[255]');
+				$this->form_validation->set_rules('servidores_suplentes_indicados_3', 'Membro', 'trim|min_length[2]|max_length[255]');
 
 				if ($this->form_validation->run()) {
 
@@ -118,52 +118,66 @@ class Mandatos extends CI_Controller
 					$this->core_model->insert($this->tabela_banco, $data, true);
 					$last_id = $this->core_model->get_by_id($this->tabela_banco, array('man_id' => $this->session->userdata('last_id')));
 
-					for($i=1;$i<=3;$i++){
-						$data_prefeito = array(
-							'membros_nome' => $this->input->post("prefeito_titulares_indicados_$i"),
-							'membros_eleitos' => 'Indicado livremente pelo Prefeito Municipal',
-							'membros_tipo' => 'Titulares',
-							'membros_mandato_id' => $last_id->man_id,
-							'membros_ordem' => $i
-						);
-	
-						$this->core_model->insert('mandatos_membros', $data_prefeito, true);
+					for ($i = 1; $i <= 3; $i++) {
+
+						$membro = $this->input->post("prefeito_suplentes_indicados_$i");
+						if($membro){
+
+							$data_prefeito = array(
+								'membros_nome' => $this->input->post("prefeito_titulares_indicados_$i"),
+								'membros_eleitos' => 'Indicado livremente pelo Prefeito Municipal',
+								'membros_tipo' => 'Titulares',
+								'membros_mandato_id' => $last_id->man_id,
+								'membros_ordem' => $i
+							);
+
+							$this->core_model->insert('mandatos_membros', $data_prefeito, true);
+						}
 					}
 
-					for($i=1;$i<=3;$i++){
-						$data_prefeito = array(
-							'membros_nome' => $this->input->post("prefeito_suplentes_indicados_$i"),
-							'membros_eleitos' => 'Indicado livremente pelo Prefeito Municipal',
-							'membros_tipo' => 'Suplentes',
-							'membros_mandato_id' => $last_id->man_id,
-							'membros_ordem' => $i
-						);
-	
-						$this->core_model->insert('mandatos_membros', $data_prefeito, true);
+					for ($i = 1; $i <= 3; $i++) {
+						$membro = $this->input->post("prefeito_suplentes_indicados_$i");
+						if($membro){
+							$data_prefeito = array(
+								'membros_nome' => $this->input->post("prefeito_suplentes_indicados_$i"),
+								'membros_eleitos' => 'Indicado livremente pelo Prefeito Municipal',
+								'membros_tipo' => 'Suplentes',
+								'membros_mandato_id' => $last_id->man_id,
+								'membros_ordem' => $i
+							);
+
+							$this->core_model->insert('mandatos_membros', $data_prefeito, true);
+						}
 					}
 
-					for($i=1;$i<=3;$i++){
-						$data_servidores = array(
-							'membros_nome' => $this->input->post("servidores_titulares_indicados_$i"),
-							'membros_eleitos' => 'Eleito pelos servidores municipais efetivos ativos e inativos',
-							'membros_tipo' => 'Titulares',
-							'membros_mandato_id' => $last_id->man_id,
-							'membros_ordem' => $i
-						);
-	
-						$this->core_model->insert('mandatos_membros', $data_servidores, true);
+					for ($i = 1; $i <= 3; $i++) {
+						$membro = $this->input->post("servidores_titulares_indicados_$i");
+						if($membro){
+							$data_servidores = array(
+								'membros_nome' => $this->input->post("servidores_titulares_indicados_$i"),
+								'membros_eleitos' => 'Eleito pelos servidores municipais efetivos ativos e inativos',
+								'membros_tipo' => 'Titulares',
+								'membros_mandato_id' => $last_id->man_id,
+								'membros_ordem' => $i
+							);
+
+							$this->core_model->insert('mandatos_membros', $data_servidores, true);
+						}
 					}
 
-					for($i=1;$i<=3;$i++){
-						$data_servidores = array(
-							'membros_nome' => $this->input->post("servidores_suplentes_indicados_$i"),
-							'membros_eleitos' => 'Eleito pelos servidores municipais efetivos ativos e inativos',
-							'membros_tipo' => 'Suplentes',
-							'membros_mandato_id' => $last_id->man_id,
-							'membros_ordem' => $i
-						);
-	
-						$this->core_model->insert('mandatos_membros', $data_servidores, true);
+					for ($i = 1; $i <= 3; $i++) {
+						$membro = $this->input->post("servidores_suplentes_indicados_$i");
+						if($membro){
+							$data_servidores = array(
+								'membros_nome' => $this->input->post("servidores_suplentes_indicados_$i"),
+								'membros_eleitos' => 'Eleito pelos servidores municipais efetivos ativos e inativos',
+								'membros_tipo' => 'Suplentes',
+								'membros_mandato_id' => $last_id->man_id,
+								'membros_ordem' => $i
+							);
+
+							$this->core_model->insert('mandatos_membros', $data_servidores, true);
+						}
 					}
 
 
@@ -175,19 +189,18 @@ class Mandatos extends CI_Controller
 					insert_login($login);
 
 					$this->redirecionar();
-
 				} else {
 
 					$login = [
 						'tipo' => 1,
-						'acao' => 'Entrou para adicionar novo conselheiro.' 
+						'acao' => 'Entrou para adicionar novo conselheiro.'
 					];
 
 					insert_login($login);
 
 					$data = array(
 						'titulo' => '<span class="text-success"><i class="fas fa-plus"></i>&nbsp; Adicionar novo Mandato</span>',
-						
+
 						'scripts' => array(
 							'assets/js/mandatos.js'
 						),
@@ -220,7 +233,7 @@ class Mandatos extends CI_Controller
 					$this->form_validation->set_rules('prefeito_suplentes_indicados_1', 'Membro', 'trim|required|min_length[2]|max_length[255]');
 					$this->form_validation->set_rules('prefeito_suplentes_indicados_2', 'Membro', 'trim|required|min_length[2]|max_length[255]');
 					$this->form_validation->set_rules('prefeito_suplentes_indicados_3', 'Membro', 'trim|required|min_length[2]|max_length[255]');
-					
+
 					$this->form_validation->set_rules('servidores_titulares_indicados_1', 'Membro', 'trim|required|min_length[2]|max_length[255]');
 					$this->form_validation->set_rules('servidores_titulares_indicados_2', 'Membro', 'trim|required|min_length[2]|max_length[255]');
 					$this->form_validation->set_rules('servidores_titulares_indicados_3', 'Membro', 'trim|required|min_length[2]|max_length[255]');
@@ -245,6 +258,54 @@ class Mandatos extends CI_Controller
 
 						$this->core_model->update($this->tabela_banco, $data, array('man_id' => $mandato->man_id));
 
+						for ($i = 1; $i <= 3; $i++) {
+							$data_prefeito = array(
+								'membros_nome' => $this->input->post("prefeito_titulares_indicados_$i"),
+								'membros_eleitos' => 'Indicado livremente pelo Prefeito Municipal',
+								'membros_tipo' => 'Titulares',
+								'membros_mandato_id' => $mandato->man_id,
+								'membros_ordem' => $i
+							);
+
+							$this->core_model->update('mandatos_membros', $data_prefeito, array('membros_id' => $this->input->post("prefeito_titulares_indicados_id_$i")));
+						}
+
+						for ($i = 1; $i <= 3; $i++) {
+							$data_prefeito = array(
+								'membros_nome' => $this->input->post("prefeito_suplentes_indicados_$i"),
+								'membros_eleitos' => 'Indicado livremente pelo Prefeito Municipal',
+								'membros_tipo' => 'Suplentes',
+								'membros_mandato_id' => $mandato->man_id,
+								'membros_ordem' => $i
+							);
+
+							$this->core_model->update('mandatos_membros', $data_prefeito, array('membros_id' => $this->input->post("prefeito_suplentes_indicados_id_$i")));
+						}
+
+						for ($i = 1; $i <= 3; $i++) {
+							$data_servidores = array(
+								'membros_nome' => $this->input->post("servidores_titulares_indicados_$i"),
+								'membros_eleitos' => 'Eleito pelos servidores municipais efetivos ativos e inativos',
+								'membros_tipo' => 'Titulares',
+								'membros_mandato_id' => $mandato->man_id,
+								'membros_ordem' => $i
+							);
+
+							$this->core_model->update('mandatos_membros', $data_servidores, array('membros_id' => $this->input->post("servidores_titulares_indicados_id_$i")));
+						}
+
+						for ($i = 1; $i <= 3; $i++) {
+							$data_servidores = array(
+								'membros_nome' => $this->input->post("servidores_suplentes_indicados_$i"),
+								'membros_eleitos' => 'Eleito pelos servidores municipais efetivos ativos e inativos',
+								'membros_tipo' => 'Suplentes',
+								'membros_mandato_id' => $mandato->man_id,
+								'membros_ordem' => $i
+							);
+
+							$this->core_model->update('mandatos_membros', $data_servidores, array('membros_id' => $this->input->post("servidores_suplentes_indicados_id_$i")));
+						}
+
 						$login = [
 							'tipo' => 3,
 							'acao' => 'Editou PDF: ' . $mandato->man_titulo
@@ -265,7 +326,11 @@ class Mandatos extends CI_Controller
 						$data = array(
 							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar : ' . $mandato->man_titulo . '</span>',
 							'mandato' => $mandato,
-							'membros_titulares_prefeito' => $this->core_model->get_by_id('mandatos_membros', array('membros_mandato_id' => $mandato->man_id)),
+							'membros_suplentes_prefeito' => $this->conselho_model->get_prefeito('Suplentes', $mandato->man_id),
+							'membros_titulares_prefeito' => $this->conselho_model->get_prefeito('Titulares', $mandato->man_id),
+							'membros_titulares_servidores' => $this->conselho_model->get_servidores('Titulares', $mandato->man_id),
+							'membros_suplentes_servidores' => $this->conselho_model->get_servidores('Suplentes', $mandato->man_id),
+
 							'scripts' => array(
 								'assets/js/mandatos.js'
 							),
@@ -282,35 +347,6 @@ class Mandatos extends CI_Controller
 		}
 	}
 
-	public function upload_foto()
-	{
-
-		$config['upload_path'] = './uploads/paginas/conselhos/conselheiros';
-		$config['allowed_types'] = 'jpg|png|jpge|JPG|PNG|JPGE';
-		$config['encrypt_name'] = false;
-		$config['max_size'] = 9000;
-
-		$this->load->library('upload', $config);
-
-		if ($this->upload->do_upload('con_foto')) {
-
-			$data = array(
-				'erro' => 0,
-				'uploaded_data' => $this->upload->data(),
-				'foto_nome' => $this->upload->data('file_name'),
-				'mensagem' => 'Arquivo enviado com sucesso',
-			);
-		} else {
-
-			$data = array(
-				'erro' => 3,
-				'mensagem' => $this->upload->display_errors('<span class="text-danger">', '</span>'),
-			);
-		}
-
-		echo json_encode($data);
-	}
-
 	public function delete($man_id = null)
 	{
 
@@ -322,6 +358,7 @@ class Mandatos extends CI_Controller
 		}
 
 		$this->core_model->delete($this->tabela_banco, array('man_id' => $mandato->man_id));
+		$this->core_model->delete('mandatos_membros', array('membros_mandato_id' => $mandato->man_id));
 
 		$login = [
 			'tipo' => 4,

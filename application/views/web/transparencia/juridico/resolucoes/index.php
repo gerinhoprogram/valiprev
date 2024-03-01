@@ -17,8 +17,8 @@
 			<?php else :?>
 			
 				<?php foreach($pdfs as $pdf) :?>
-					<div class="colunas lg-6">
-					<p><?=$pdf->pdf_titulo?></p>
+					<div class="colunas lg-12">
+					<a href="http://" target="_blank" rel="noopener noreferrer"><p style="padding: 10px; border: 1px solid #ccc"><i class="fas fa-file-pdf"></i>&nbsp;<?=$pdf->pdf_titulo?></p></a>
 					</div>
 				<?php endforeach ?>
 

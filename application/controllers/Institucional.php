@@ -251,8 +251,6 @@ class Institucional extends CI_Controller
 				'info_sistema' => $this->footer_header(),
 			);
 
-			$data['membros'] = $this->core_model->get_all('mandatos_membros', array('membros_mandato_id' => $menu->pag_id));
-
 			$data['breadcrumb'] = "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('institucional/') . "'>Institucional</a> / <a href='" . base_url('institucional/conselhos') . "'>Conselhos</a> / <a href='" . base_url('institucional/conselhos/' . $menu->pag_link) . "'>$menu->pag_nome </a>/ Conselheiros";
 
 			$this->load->view('web/layout/header', $data);

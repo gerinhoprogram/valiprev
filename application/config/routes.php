@@ -76,6 +76,8 @@ $route['transparencia/juridico'] = 'transparencia/juridico';
 $route['transparencia/juridico/resolucoes/(:any)'] = 'transparencia/resolucoes/$1';
 $route['transparencia/juridico/resolucoes'] = 'transparencia/resolucoes';
 $route['transparencia/juridico/portais'] = 'transparencia/portais';
+$route['transparencia/juridico/decretos'] = 'transparencia/decretos';
+
 $route['transparencia/certidoes-crp'] = 'transparencia/certidoes';
 $route['transparencia/contratos'] = 'transparencia/contratos';
 $route['transparencia/planos-de-capacitacao'] = 'transparencia/planos_de_capacitacao';
@@ -85,3 +87,4 @@ $route['transparencia/tce-sp'] = 'transparencia/tce';
 $route['transparencia/dacao-em-pagamento'] = 'transparencia/dacao_em_pagamento';
 $route['transparencia/eleicoes-dos-conselhos'] = 'transparencia/eleicoes_dos_conselhos';
 $route['transparencia/holerite-e-informe-de-rendientos'] = 'transparencia/holerite_e_informe_de_rendimento';
+

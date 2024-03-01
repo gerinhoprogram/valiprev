@@ -56,4 +56,34 @@ class Conselho_model extends CI_Model {
         return $this->db->get('mandatos')->result();
     }
 
+	public function get_prefeito($tipo = null, $man_id = null) {
+
+
+        $this->db->select([
+            'mandatos_membros.*',
+        ]);
+
+        $this->db->where('membros_tipo', $tipo);
+		$this->db->where('membros_mandato_id', $man_id);
+		$this->db->where('membros_eleitos', 'Indicado livremente pelo Prefeito Municipal');
+		$this->db->order_by('membros_ordem', 'asc');
+
+        return $this->db->get('mandatos_membros')->result();
+    }
+
+	public function get_servidores($tipo = null, $man_id = null) {
+
+
+        $this->db->select([
+            'mandatos_membros.*',
+        ]);
+
+        $this->db->where('membros_tipo', $tipo);
+		$this->db->where('membros_mandato_id', $man_id);
+		$this->db->where('membros_eleitos', 'Eleito pelos servidores municipais efetivos ativos e inativos');
+		$this->db->order_by('membros_ordem', 'asc');
+
+        return $this->db->get('mandatos_membros')->result();
+    }
+
 }

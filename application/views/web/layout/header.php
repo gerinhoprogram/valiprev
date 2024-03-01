@@ -72,27 +72,76 @@
 	<script src="https://kit.fontawesome.com/650f618ca2.js" crossorigin="anonymous"></script>
 	<!-- https://fontawesome.com/v5/search?q=bar&o=r -->
 
+	<style>
+		.wrapper {
+			display: flex;
+			min-height: 100%;
+			z-index: 999999999999999999999999999999999999;
+			top: 0;
+			position: fixed
+		}
+
+		.sidebar {
+			position: absolute;
+			width: 100vw;
+			padding: 20px;
+			background: #ccc;
+			height: 200px;
+			z-index: 9999999999999999999999999999999
+		}
+
+		.content {
+			flex: 1;
+			padding: 50px;
+			background: #fff;
+			box-shadow: 0 0 5px #000
+		}
+
+		.sidebar.isOpen {
+			transform: translateY(-200px)
+		}
+
+		.button line,
+		.button-2 line {
+			stroke: black;
+			stroke-width: 5
+		}
+
+		.fechaMenu {
+			width: 100%;
+			height: 100%;
+			background-color: rgba(0, 0, 0, .7);
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 1
+		}
+		.isClose {
+    display: none
+}
+	</style>
+
 
 </head>
 
 <body>
 	<div class="acessibilidade">
-	<div class='linha'>
-		<div class='colunas lg-12'>
-			<a onclick="busca()" accesskey="1" title='Ir Para o Mapa do Site'> <i class="fas fa-arrow-circle-down"></i> Ir Para a Busca [1]</a>
-			<a href='javascript:;' id="conteudo" accesskey="2" title='Ir Para Conteúdo'> <i class="fas fa-arrow-circle-down"></i> Ir para o Conteúdo [2]</a>
-			<a href='<?= base_url('mapa-site')?>' accesskey="3" title='Ir Para o Mapa do Site'> <i class="fas fa-arrow-circle-down"></i> Ir Para o Mapa do Site [3]</a>
-		|
-			<a href='#' accesskey="4" onclick="modContrast(1)" title='Contraste Escuro'><i class="fas fa-moon" title="Contraste Escuro"></i> [4] </a>
-			<a href='#' accesskey="5" onclick="modContrast(2)" title='Contraste Claro'><i class="fas fa-sun" title="Contraste Claro"></i> [5]</a>
-			<a href='#' accesskey="6" onClick="fonte('a');" title='Aumentar Fonte'><i class="fas fa-search-plus" title="Aumentar Fonte"></i> [6]</a>
-			<a href='#' accesskey="7" onClick="fonte('d');" title='Diminuir Fonte'><i class="fas fa-search-minus" title="Diminuir Fonte"></i> [7]</a>
-			<a href='#' accesskey="8" onClick="fonte('n');" title='Restaurar Padrão de Fonte'><i class="fas fa-sync-alt" title="Restaurar Padrão de Fonte"></i> [8]</a>
-			<a href='http://smarapd.daev.org.br:90/esic/#!/login' accesskey="9" title='Sistema Eletrônico de Informação do DAEV' target="_blank" class='unico'><i class="fas fa-info-circle"></i> Acesso à Informação [9] </a>
+		<div class='linha'>
+			<div class='colunas lg-12'>
+				<a onclick="busca()" accesskey="1" title='Ir Para o Mapa do Site'> <i class="fas fa-arrow-circle-down"></i> Ir Para a Busca [1]</a>
+				<a href='javascript:;' id="conteudo" accesskey="2" title='Ir Para Conteúdo'> <i class="fas fa-arrow-circle-down"></i> Ir para o Conteúdo [2]</a>
+				<a href='<?= base_url('mapa-site') ?>' accesskey="3" title='Ir Para o Mapa do Site'> <i class="fas fa-arrow-circle-down"></i> Ir Para o Mapa do Site [3]</a>
+				|
+				<a href='#' accesskey="4" onclick="modContrast(1)" title='Contraste Escuro'><i class="fas fa-moon" title="Contraste Escuro"></i> [4] </a>
+				<a href='#' accesskey="5" onclick="modContrast(2)" title='Contraste Claro'><i class="fas fa-sun" title="Contraste Claro"></i> [5]</a>
+				<a href='#' accesskey="6" onClick="fonte('a');" title='Aumentar Fonte'><i class="fas fa-search-plus" title="Aumentar Fonte"></i> [6]</a>
+				<a href='#' accesskey="7" onClick="fonte('d');" title='Diminuir Fonte'><i class="fas fa-search-minus" title="Diminuir Fonte"></i> [7]</a>
+				<a href='#' accesskey="8" onClick="fonte('n');" title='Restaurar Padrão de Fonte'><i class="fas fa-sync-alt" title="Restaurar Padrão de Fonte"></i> [8]</a>
+				<a href='http://smarapd.daev.org.br:90/esic/#!/login' accesskey="9" title='Sistema Eletrônico de Informação do DAEV' target="_blank" class='unico'><i class="fas fa-info-circle"></i> Acesso à Informação [9] </a>
+			</div>
 		</div>
 	</div>
-</div>
-<!-- 
+	<!-- 
 <script async src="https://cse.google.com/cse.js?cx=a7e2a6246065b4a33">
 </script>
 <div class="gcse-search"></div> -->
