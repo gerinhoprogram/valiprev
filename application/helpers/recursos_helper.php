@@ -116,6 +116,12 @@ function get_link($pag_id = null){
     return $link;
 }
 
+function get_pregao($pregao_id = null){
+    $CI = & get_instance();
+    $arquivos = $CI->core_model->get_all('pregao_doc', array('predoc_pregao_id' => $pregao_id));
+    return $arquivos;
+}
+
 
 function areas(){
     $CI = & get_instance();

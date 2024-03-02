@@ -76,7 +76,7 @@
 
 										<?php if ($sub->pag_submenu) : ?>
 											<li class="submenu">
-												<a href="<?= ($sub->pag_link_externo ? $sub->pag_link : base_url($men->men_url . '/' . $sub->pag_link)) ?>"><?= $sub->pag_nome ?> <i class="fas fa-chevron-right" style='float: right'></i></a>
+												<a href="<?= ($sub->pag_link_externo ? $sub->pag_link_externo :($sub->pag_pdf ? base_url($sub->pag_link) : base_url($men->men_url . '/' . $sub->pag_link))) ?>"><?= $sub->pag_nome ?> <i class="fas fa-chevron-right" style='float: right'></i></a>
 												<ul>
 													<?php foreach (submenu_2($sub->pag_id) as $pai) : ?>
 
@@ -87,7 +87,7 @@
 																	<?php foreach (submenu_3($pai->pag_id) as $pai_2) : ?>
 																		<li>
 																			<a href="<?= ($pai_2->pag_link_externo ? $pai_2->pag_link : base_url('/' . $men->men_url . '/' . $sub->pag_link . '/' . $pai->pag_link . '/' . $pai_2->pag_link)) ?>">
-																				<?= $pai_2->pag_nome ?>
+																				<?= $pai_2->pag_nome ?>1
 																			</a>
 																		</li>
 																	<?php endforeach ?>
@@ -95,7 +95,7 @@
 															</li>
 														<?php else : ?>
 															<li>
-																<a href="<?= ($pai->pag_link_externo ? $pai->pag_link : base_url($men->men_url . '/' . $sub->pag_link . '/' . $pai->pag_link)) ?>">
+																<a href="<?= ($pai->pag_link_externo ? $pai->pag_link : ($pai->pag_pdf ? base_url($pai->pag_link) : base_url($men->men_url . '/' . $sub->pag_link . '/' . $pai->pag_link))) ?>">
 																	<?= $pai->pag_nome ?>
 																</a>
 															</li>
@@ -106,7 +106,7 @@
 											</li>
 										<?php else : ?>
 											<li class="submenu">
-												<a href="<?= base_url('/' . $men->men_url . '/' . $sub->pag_link) ?>">
+												<a href="<?= ($sub->pag_link_externo ? $sub->pag_link :($sub->pag_pdf ? base_url($sub->pag_link) : base_url($men->men_url . '/' . $sub->pag_link))) ?>">
 													<?= $sub->pag_nome ?>
 												</a>
 											</li>

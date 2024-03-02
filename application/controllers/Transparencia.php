@@ -38,6 +38,70 @@ class Transparencia extends CI_Controller
 		$this->load->view('web/layout/footer');
 	}
 
+
+
+	// LICITACEOS
+	public function licitacoes()
+	{
+		$data = array(
+			'titulo' => 'Licitações',
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Licitações",
+			'menu_principal' => $this->menu_principal(),
+			'paginas' => $this->core_model->get_all('paginas', array('pag_pai' => 12))
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/licitacoes/index");
+		$this->load->view('web/layout/footer');
+	}
+
+	public function compras()
+	{
+		$data = array(
+			'titulo' => 'Compras',
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/licitacoes') . "'>Licitações</a> / Compras",
+			'menu_principal' => $this->menu_principal(),
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/licitacoes/compras");
+		$this->load->view('web/layout/footer');
+	}
+
+	public function dispensa()
+	{
+		$data = array(
+			'titulo' => 'Dispensa de Licitação',
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/licitacoes') . "'>Licitações</a> / Dispensa de Licitação",
+			'menu_principal' => $this->menu_principal(),
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/licitacoes/dispensa");
+		$this->load->view('web/layout/footer');
+	}
+
+	public function pregao()
+	{
+		$data = array(
+			'titulo' => 'Pregão',
+			'info_sistema' => $this->footer_header(),
+			'pdfs' => $this->core_model->get_all('pregao'),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/licitacoes') . "'>Licitações</a> / Pregão",
+			'menu_principal' => $this->menu_principal(),
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/licitacoes/pregao");
+		$this->load->view('web/layout/footer');
+	}
+	// FIM LICITACOES
+
+
+	// JURIDICO
 	public function juridico()
 	{
 		$data = array(
@@ -50,6 +114,21 @@ class Transparencia extends CI_Controller
 
 		$this->load->view('web/layout/header', $data);
 		$this->load->view("web/transparencia/juridico/index");
+		$this->load->view('web/layout/footer');
+	}
+
+	public function leis()
+	{
+		$data = array(
+			'titulo' => 'Leis',
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/juridico') . "'>Jurídico</a> / Leis",
+			'menu_principal' => $this->menu_principal(),
+			'paginas' => $this->core_model->get_all('paginas', array('pag_pai_2' => 97))
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/leis");
 		$this->load->view('web/layout/footer');
 	}
 
@@ -96,8 +175,8 @@ class Transparencia extends CI_Controller
 			'titulo' => 'Decretos',
 			'menu_principal' => $this->menu_principal(),
 			'info_sistema' => $this->footer_header(),
-			'paginas' => $this->core_model->get_all('paginas', array('pag_pai' => 99)),
-			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Decretos",
+			'paginas' => $this->core_model->get_all('paginas', array('pag_pai_2' => 99)),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/juridico') . "'>Jurídico</a> / Decreto",
 
 		);
 
@@ -131,6 +210,7 @@ class Transparencia extends CI_Controller
 		$this->load->view('web/transparencia/juridico/portais/index');
 		$this->load->view('web/layout/footer');
 	}
+	// FIM JURIDICO
 
 	public function certidoes()
 	{

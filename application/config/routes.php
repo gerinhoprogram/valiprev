@@ -59,24 +59,27 @@ $route['restrita'] = 'restrita/home/index';
 
 $route['institucional/o-valiprev'] = 'institucional/o_valiprev';
 $route['institucional/presidencia'] = 'institucional/presidencia';
-$route['institucional/diretoria/(:any)'] = 'institucional/diretoria/$1';
-$route['institucional/diretoria'] = 'institucional/diretoria';
 $route['institucional/censo-previdenciario'] = 'institucional/censo_previdenciario';
 $route['institucional/capacitacao-de-servidores'] = 'institucional/capacitacao_servidores';
+$route['institucional/como-solicitar-sua-aposentadoria'] = 'institucional/como_solicitar_sua_aposentadoria';
+
+$route['institucional/diretoria/(:any)'] = 'institucional/diretoria/$1';
+$route['institucional/diretoria'] = 'institucional/diretoria';
 
 $route['institucional/conselhos/conselho-fiscal/(:any)'] = 'institucional/conselho_fiscal/$1';
 $route['institucional/conselhos/conselho-fiscal'] = 'institucional/conselho_fiscal';
-
 $route['institucional/conselhos/conselho-administrativo/(:any)'] = 'institucional/conselho_administrativo/$1';
 $route['institucional/conselhos/conselho-administrativo'] = 'institucional/conselho_administrativo';
 $route['institucional/conselhos'] = 'institucional/conselhos';
-$route['institucional/como-solicitar-sua-aposentadoria'] = 'institucional/como_solicitar_sua_aposentadoria';
+
+// -----
 
 $route['transparencia/juridico'] = 'transparencia/juridico';
 $route['transparencia/juridico/resolucoes/(:any)'] = 'transparencia/resolucoes/$1';
 $route['transparencia/juridico/resolucoes'] = 'transparencia/resolucoes';
 $route['transparencia/juridico/portais'] = 'transparencia/portais';
 $route['transparencia/juridico/decretos'] = 'transparencia/decretos';
+$route['transparencia/juridico/leis'] = 'transparencia/leis';
 
 $route['transparencia/certidoes-crp'] = 'transparencia/certidoes';
 $route['transparencia/contratos'] = 'transparencia/contratos';
@@ -88,3 +91,7 @@ $route['transparencia/dacao-em-pagamento'] = 'transparencia/dacao_em_pagamento';
 $route['transparencia/eleicoes-dos-conselhos'] = 'transparencia/eleicoes_dos_conselhos';
 $route['transparencia/holerite-e-informe-de-rendientos'] = 'transparencia/holerite_e_informe_de_rendimento';
 
+$route['transparencia/licitacoes/compras'] = 'transparencia/compras';
+$route['transparencia/licitacoes/dispensa-de-licitacao'] = 'transparencia/dispensa';
+$route['transparencia/licitacoes/pregao'] = 'transparencia/pregao';
+$route['transparencia/licitacoes'] = 'transparencia/licitacoes';
