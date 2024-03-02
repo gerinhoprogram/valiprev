@@ -1,12 +1,41 @@
 <header>
 
+<style>
+	.inputwithicon label{
+		text-align: left !important;
+		font-size: 18pt;
+		color: #fff;
+		font-weight: bold;
+		margin-bottom: 10px;
+	}
+	.inputwithicon input{
+		border: #fff;
+	}
+	.inputwithicon #enviar{
+		background-color: #332663;
+		border: #332663 1px solid;
+		cursor: pointer;
+		color: #fff;
+	}
+</style>
+
 	<div class="wrapper">
 		<div class="sidebar isOpen">
 
 			<form class="search-form" method="post" action="<?=base_url('busca')?>">
 				<div class="inputwithicon"> 
-					<input type="text" id="busca" autofocus required name="busca" title="Digite para pesquisar" class="modal-busca form-control float-left" placeholder="Digite aqui o que deseja pesquisar..."> 
-					<input type="submit" value="Buscar" class="form-control float-right btn-success btn-busca"> 
+					<div class="row">
+						<div class="colunas lg-10">
+						<label for="busca">Digite para pesquisar</label>
+						<input type="text" id="busca" autofocus required name="busca" title="Digite para pesquisar" placeholder="Digite aqui o que deseja pesquisar..."> 
+
+						</div>
+						<div class="colunas lg-2">
+						<label for="enviar">&nbsp;</label>
+						<input type="submit" id="enviar" value="Buscar" class="btn-busca"> 
+						</div>
+					</div>
+					
 					<div id="#carregar"></div>
 				</div>
 			</form>
@@ -20,7 +49,9 @@
 	<div class="linha">
 		<div class="colunas lg-4 md-4 pq-8">
 			<figure>
+				<a href="<?= base_url() ?>" title="<?= $sistema->sistema_site_titulo ?>">
 				<img class="logo" src="<?= base_url('uploads/sistema/logo/' . $sistema->sistema_logo) ?>" title="<?= $sistema->sistema_site_titulo ?>" alt="<?= $sistema->sistema_site_titulo ?>">
+				</a>
 			</figure>
 
 		</div>
@@ -30,7 +61,7 @@
 
 				<ul class="nav__list nav_desk">
 					<li>
-						<a href="<?= base_url() ?>">Home</a>
+						<a href="<?= base_url() ?>" title="Home">Home</a>
 					</li>
 					<?php foreach ($menu_principal as $men) : ?>
 
@@ -98,8 +129,7 @@
 
 					<?php endforeach ?>
 					<li>
-						<div class="pesquisar button seta-abrir"><i class="fa fa-search"></i></div>
-
+						<div class="pesquisar button seta-abrir">&nbsp;<i class="fa fa-search"></i>&nbsp;</div>
 					</li>
 				</ul>
 

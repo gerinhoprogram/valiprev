@@ -73,54 +73,19 @@
 	<!-- https://fontawesome.com/v5/search?q=bar&o=r -->
 
 	<style>
-		.wrapper {
-			display: flex;
-			min-height: 100%;
-			z-index: 999999999999999999999999999999999999;
-			top: 0;
-			position: fixed
+		.lista-paginas{
+			border-bottom: 1px solid #332663;
+			padding: 5px;
+			margin-bottom: 0px !important;
 		}
-
-		.sidebar {
-			position: absolute;
-			width: 100vw;
-			padding: 20px;
-			background: #ccc;
-			height: 200px;
-			z-index: 9999999999999999999999999999999
+		.lista-paginas:hover{
+			background-color: #ccc;
+			color: #332663
 		}
-
-		.content {
-			flex: 1;
-			padding: 50px;
-			background: #fff;
-			box-shadow: 0 0 5px #000
+		.lista-paginas i{
+			font-size: 11pt;
 		}
-
-		.sidebar.isOpen {
-			transform: translateY(-200px)
-		}
-
-		.button line,
-		.button-2 line {
-			stroke: black;
-			stroke-width: 5
-		}
-
-		.fechaMenu {
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, .7);
-			position: fixed;
-			top: 0;
-			left: 0;
-			z-index: 1
-		}
-		.isClose {
-    display: none
-}
 	</style>
-
 
 </head>
 

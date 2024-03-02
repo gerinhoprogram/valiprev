@@ -110,6 +110,12 @@ function membros_suplentes_servidores($mandato_id = null){
     return $membros;
 }
 
+function get_link($pag_id = null){
+    $CI = & get_instance();
+    $link = $CI->core_model->get_by_id('paginas', array('pag_id' => $pag_id));
+    return $link;
+}
+
 
 function areas(){
     $CI = & get_instance();

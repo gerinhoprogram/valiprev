@@ -30,7 +30,12 @@ class Busca extends CI_Controller
 			'informacao_busca' => 'Termo digitado ' . $busca,
 			'menu_principal' => $this->menu_principal(),
 			'info_sistema' => $this->footer_header(),
+			'paginas' => $this->core_model->get_busca($busca),
 		);
+
+		// echo"<pre>";
+		// print_r($data['paginas']);
+		// exit;
 
 
 		$this->load->view('web/layout/header', $data);

@@ -1,5 +1,13 @@
 <?php $this->load->view('web/layout/navbar'); ?>
 
+<style>
+	.paginas-diretoria img{
+		width: 100%;
+		height: 400px;
+		object-fit: cover;
+	}
+</style>
+
 <section class='paginas-diretoria'>
 
 	<?php $this->load->view('web/layout/cabecalho_pagina'); ?>
@@ -11,7 +19,7 @@
 			<div class="colunas lg-12">
 				<?php foreach ($paginas as $pag) : ?>
 					<a href="<?= ($pag->pag_link_externo ? $pag->pag_link : base_url('institucional/diretoria/' . $pag->pag_link)) ?>">
-						<p><?= $pag->pag_nome ?></p>
+						<p class="lista-paginas"><i class="fas fa-chevron-right"></i>&nbsp;<?= $pag->pag_nome ?></p>
 					</a>
 				<?php endforeach ?>
 			</div>
@@ -25,9 +33,9 @@
 			</div>
 			<div class="colunas lg-8">
 				<p><strong><?= $pagina->cont_titulo ?></strong></p>
-				<br>
+				
 				<p><?= $pagina->cont_subtitulo ?></p>
-				<br>
+				
 				<p>
 					<?= $pagina->cont_texto ?>
 				</p>

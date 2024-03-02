@@ -50,20 +50,21 @@
 
 			<?php endforeach ?>
 		</div>
-		<div class="colunas lg-12" style="margin-top: 40px">
-			<img src="<?= base_url('uploads/paginas/censo_previdenciario/') . $pagina->cont_foto ?>" alt="">
-		</div>
+		
 	</div>
 	
 	<div class="linha">
-			<div class="colunas lg-12">
-				<h3><?=$pagina->cont_subtitulo?></h3>
-			</div>
-		<?php foreach($pdfs as $pdf) :?>
-		<div class="colunas lg-12">
-			<a href="<?=base_url('uploads/paginas/cenco_previdenciario/'.$pdf->pdf_arquivo)?>" target="_blank" rel="noopener noreferrer"><p><i class="fas fa-file-pdf"></i>&nbsp;<?=$pdf->pdf_titulo?></p></a>
+		<div class="colunas lg-5">
+			<img src="<?= base_url('uploads/paginas/censo_previdenciario/') . $pagina->cont_foto ?>" alt="">
 		</div>
-		<?php endforeach ?>
+		<div class="colunas lg-7">
+			<h3><?=$pagina->cont_subtitulo?></h3>
+			<?php foreach($pdfs as $pdf) :?>
+				<a href="<?=base_url('uploads/paginas/cenco_previdenciario/'.$pdf->pdf_arquivo)?>" target="_blank" rel="noopener noreferrer"><p><i class="fas fa-file-pdf"></i>&nbsp;<?=$pdf->pdf_titulo?></p></a>
+			
+			<?php endforeach ?>
+		</div>
+		
 	</div>
 
 </section>

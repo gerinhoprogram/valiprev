@@ -281,4 +281,23 @@ class Core_model extends CI_Model {
         return $this->db->get('paginas')->result();
     }
 
+
+	public function get_busca($busca = null) {
+
+        $this->db->select([
+            'paginas.*',
+			'paginas_nivel2.*',
+			'paginas_menu.*'
+        ]);
+
+
+        //$this->db->like('paginas.pag_nome', $busca, 'BOTH');
+		$this->db->join('paginas_nivel2', 'paginas_nivel2.cont_pagina_id = paginas.pag_id', 'left');
+		$this->db->join('paginas_menu', 'paginas_menu.men_id = paginas.pag_menu_id', 'left');
+
+        $this->db->where("paginas.pag_nome like '%$busca%' or paginas_nivel2.cont_texto like '%$busca%'");
+
+        return $this->db->get('paginas')->result();
+    }
+
 }
