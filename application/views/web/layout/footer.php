@@ -80,6 +80,7 @@
 <?php endif; ?>
 
 <script src="<?=base_url('public/web/assets/js/jquery-min.js')?>"></script>
+<script src="<?=base_url('public/web/assets/js/acessibilidade.js')?>"></script>
 <script src="<?=base_url('public/web/assets/autocomplete/jquery-ui.min.js')?>"></script>
 <script src="<?=base_url('public/web/assets/autocomplete/pesquisa-ajax.js')?>"></script>
 
@@ -93,5 +94,25 @@
 	document.querySelector('.fechaMenu').addEventListener('click', () => {
 		document.querySelector('.sidebar').classList.toggle('isOpen');
 		document.querySelector('.fechaMenu').classList.toggle('isClose');
+	});
+
+	document.querySelector('.button_mob').addEventListener('click', () => {
+		document.querySelector('.sidebar').classList.toggle('isOpen');
+		document.querySelector('.fechaMenu').classList.toggle('isClose');
+	});
+
+	document.querySelector('.btn-mob').addEventListener('click', () => {
+		document.querySelector('.sidebar_mob').classList.toggle('isOpen_mob');
+		document.querySelector('.fechaMenu_mob').classList.toggle('isClose_mob');
+	});
+
+	document.querySelector('.fechaMenu_mob').addEventListener('click', () => {
+		document.querySelector('.sidebar_mob').classList.toggle('isOpen_mob');
+		document.querySelector('.fechaMenu_mob').classList.toggle('isClose_mob');
+	});
+
+	document.querySelector('.fechaMenu_mob_2').addEventListener('click', () => {
+		document.querySelector('.sidebar_mob').classList.toggle('isOpen_mob');
+		document.querySelector('.fechaMenu_mob').classList.toggle('isClose_mob');
 	});
 </script>

@@ -12,33 +12,6 @@
 	<meta name="revisit-after" content="1 day">
 	<meta name="keywords" content="<?= $sistema->sistema_palavras_seo ?>">
 
-	<!-- ****** -->
-	<!-- <meta name="description" content="<?= (isset($artigo) ? $artigo->artigo_titulo : $sistema->sistema_descricao) ?>" />
-    <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <link rel="canonical" href="<?= (isset($artigo) ? base_url('detalhes/' . $artigo->artigo_url) : base_url()) ?>" />
-    <meta property="og:locale" content="pt_BR" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="<?= (isset($artigo) ? $artigo->artigo_titulo : $sistema->sistema_descricao) ?>" />
-    <meta property="og:description" content="<?= (isset($artigo) ? str_replace('" ', "' ", $artigo->artigo_descricao) : $sistema->sistema_descricao) ?>" />
-    <meta property="og:url" content="<?= (isset($artigo) ? base_url('detalhes/' . $artigo->artigo_url) : base_url()) ?>" />
-    <meta property="og:site_name" content="<?= $sistema->sistema_site_titulo ?>" />
-    <meta property="article:author" content="<?= $sistema->sistema_site_titulo ?>" />
-    <meta property="article:tag" content="sub-fixed" />
-    <meta property="article:section" content="<?= (isset($artigo) ? $artigo->categoria_pai_nome : '') ?>" />
-    <meta property="article:published_time" content="<?= (isset($artigo) ? $artigo->artigo_data_criacao : '') ?>" />
-    <meta property="article:modified_time" content="<?= (isset($artigo) ? $artigo->artigo_data_alteracao : '') ?>" />
-    <meta property="og:updated_time" content="<?= (isset($artigo) ? $artigo->artigo_data_alteracao : '') ?>" />
-    <meta property="og:image" content="<?= (isset($artigo) ? base_url('uploads/artigos/' . $foto_principal->foto_nome) : '') ?>" />
-    <meta property="og:image:secure_url" content="<?= (isset($artigo) ? base_url('uploads/artigos/' . $foto_principal->foto_nome) : '') ?>" />
-    <meta property="og:image:width" content="900" />
-    <meta property="og:image:height" content="600" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:description" content="<?= (isset($artigo) ? $artigo->artigo_titulo : $sistema->sistema_descricao) ?>" />
-    <meta name="twitter:title" content="<?= (isset($artigo) ? $artigo->artigo_titulo : $sistema->sistema_descricao) ?>" />
-    <meta name="twitter:image" content="<?= (isset($artigo) ? base_url('uploads/artigos/' . $foto_principal->foto_nome) : '') ?>" />
-    <meta name="twitter:creator" content="<?= $sistema->sistema_site_titulo ?>" /> -->
-	<!-- ******* -->
-
 	<title>
 		<?= (isset($artigo) ? $artigo->artigo_titulo : $sistema->sistema_site_titulo) ?>
 	</title>
@@ -73,32 +46,22 @@
 	<!-- https://fontawesome.com/v5/search?q=bar&o=r -->
 
 	<style>
-		.lista-paginas{
-			border-bottom: 1px solid #332663;
-			padding: 5px;
-			margin-bottom: 0px !important;
-		}
-		.lista-paginas:hover{
-			background-color: #ccc;
-			color: #332663
-		}
-		.lista-paginas i{
-			font-size: 11pt;
-		}
+		
 	</style>
+
 
 </head>
 
-<body>
+<body style="background: <?=$_SESSION['body']?>; color: <?=$_SESSION['font_color']?>">
 	<div class="acessibilidade">
 		<div class='linha'>
 			<div class='colunas lg-12'>
-				<a onclick="busca()" accesskey="1" title='Ir Para o Mapa do Site'> <i class="fas fa-arrow-circle-down"></i> Ir Para a Busca [1]</a>
-				<a href='javascript:;' id="conteudo" accesskey="2" title='Ir Para Conteúdo'> <i class="fas fa-arrow-circle-down"></i> Ir para o Conteúdo [2]</a>
-				<a href='<?= base_url('mapa-site') ?>' accesskey="3" title='Ir Para o Mapa do Site'> <i class="fas fa-arrow-circle-down"></i> Ir Para o Mapa do Site [3]</a>
+				<a title='Ir Para o Mapa do Site' href="<?= base_url('mapa') ?>"> <i class="fas fa-arrow-circle-down"></i> Ir Para o Mapa do site [1]</a>
+				<a title="Portal da transparência" target="_blank" href="https://transparencia-valiprev.smarapd.com.br/#/"> <i class="fas fa-arrow-circle-down"></i> Portal da Transparência [2]</a>
+				<a href='https://www.fourinfosistemas.com.br/servicosonlinefourprev/publico/portaldatransparencia.jsf?id=5883' title='Renumeração dos Servidores Valiprev'> <i class="fas fa-arrow-circle-down"></i> Renumeração dos Servidores Valiprev [3]</a>
 				|
-				<a href='#' accesskey="4" onclick="modContrast(1)" title='Contraste Escuro'><i class="fas fa-moon" title="Contraste Escuro"></i> [4] </a>
-				<a href='#' accesskey="5" onclick="modContrast(2)" title='Contraste Claro'><i class="fas fa-sun" title="Contraste Claro"></i> [5]</a>
+				<a href='#' class="escuro" title='Contraste Escuro'><i class="fas fa-moon" title="Contraste Escuro"></i> [4] </a>
+				<a href='#' class="claro" title='Contraste Claro'><i class="fas fa-sun" title="Contraste Claro"></i> [5]</a>
 				<a href='#' accesskey="6" onClick="fonte('a');" title='Aumentar Fonte'><i class="fas fa-search-plus" title="Aumentar Fonte"></i> [6]</a>
 				<a href='#' accesskey="7" onClick="fonte('d');" title='Diminuir Fonte'><i class="fas fa-search-minus" title="Diminuir Fonte"></i> [7]</a>
 				<a href='#' accesskey="8" onClick="fonte('n');" title='Restaurar Padrão de Fonte'><i class="fas fa-sync-alt" title="Restaurar Padrão de Fonte"></i> [8]</a>

@@ -103,6 +103,21 @@ div {
     }
 }
 
+.lista-paginas {
+	border-bottom: 1px solid #332663;
+	padding: 5px;
+	margin-bottom: 0px !important;
+}
+
+.lista-paginas:hover {
+	background-color: #ccc;
+	color: #332663
+}
+
+.lista-paginas i {
+	font-size: 11pt;
+}
+
 
 /* NAV BAR */
 
