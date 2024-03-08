@@ -73,7 +73,7 @@
 
 	<?php foreach ($scripts as $script) : ?>
 
-		<script defer src="<?= base_url('public/restrita/' . $script); ?>"></script>
+		<script defer src="<?= base_url('public/web/' . $script); ?>"></script>
 
 	<?php endforeach; ?>
 
@@ -83,6 +83,16 @@
 <script src="<?=base_url('public/web/assets/js/acessibilidade.js')?>"></script>
 <script src="<?=base_url('public/web/assets/autocomplete/jquery-ui.min.js')?>"></script>
 <script src="<?=base_url('public/web/assets/autocomplete/pesquisa-ajax.js')?>"></script>
+<script src="<?=base_url('public/web/assets/js/swichble.js')?>"></script>
+<script>
+  $(function() {
+    switchable({
+      $element: $('#slides1'),
+      interval: 5000,
+      effect: 'slide'
+    });
+  });
+</script>
 
 
 <script>

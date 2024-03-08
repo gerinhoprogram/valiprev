@@ -349,7 +349,7 @@ class Transparencia extends CI_Controller
 			'styles' => array(
 				'assets/css/tabela_ano.css',
 			),
-			'pdf' => $this->core_model->get_all('certidoes', array('pdf_pagina_id' => 16)),
+			'pdfs' => $this->core_model->get_all('certidoes', array('pdf_pagina_id' => 16)),
 			'pdf_grupo' => $this->core_model->get_all_group_by('certidoes', array('pdf_pagina_id' => 16), 'pdf_ano'),
 			'menu_principal' => $this->menu_principal(),
 			'info_sistema' => $this->footer_header(),
@@ -393,6 +393,189 @@ class Transparencia extends CI_Controller
 
 		$this->load->view('web/layout/header', $data);
 		$this->load->view('web/transparencia/holerite');
+		$this->load->view('web/layout/footer');
+	}
+
+	// FINANCEIRO
+	public function financeiro()
+	{
+		$data = array(
+			'titulo' => 'Financeiro',
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / Financeiro",
+			'menu_principal' => $this->menu_principal(),
+			'paginas' => $this->core_model->get_all('paginas', array('pag_pai' => 11))
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/financeiro/index");
+		$this->load->view('web/layout/footer');
+	}
+	public function aplicacoes_financeiras()
+	{
+		$titulo = 'Aplicações Financeiras';
+		$pagina_id = 105;
+		$folder_view = 'paginas';
+
+		$data = array(
+			'titulo' => $titulo,
+			'styles' => array(
+				'assets/css/tabela_ano.css',
+			),
+			'pdfs' => $this->core_model->get_all('financeiro', array('pdf_pagina_id' => $pagina_id)),
+			'pdf_grupo' => $this->core_model->get_all_group_by('financeiro', array('pdf_pagina_id' => $pagina_id), 'pdf_ano'),
+			'menu_principal' => $this->menu_principal(),
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / $titulo",
+
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/financeiro/$folder_view");
+		$this->load->view('web/layout/footer');
+	}
+
+	public function balancete_financeiro()
+	{
+		$titulo = 'Balancete Financeiro';
+		$pagina_id = 107;
+		$folder_view = 'paginas';
+
+		$data = array(
+			'titulo' => $titulo,
+			'styles' => array(
+				'assets/css/tabela_ano.css',
+			),
+			'pdfs' => $this->core_model->get_all('financeiro', array('pdf_pagina_id' => $pagina_id)),
+			'pdf_grupo' => $this->core_model->get_all_group_by('financeiro', array('pdf_pagina_id' => $pagina_id), 'pdf_ano'),
+			'menu_principal' => $this->menu_principal(),
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / $titulo",
+
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/financeiro/$folder_view");
+		$this->load->view('web/layout/footer');
+	}
+
+	public function receitas_financeiras()
+	{
+		$titulo = 'Receitas Financeiras';
+		$pagina_id = 109;
+		$folder_view = 'paginas';
+
+		$data = array(
+			'titulo' => $titulo,
+			'styles' => array(
+				'assets/css/tabela_ano.css',
+			),
+			'pdfs' => $this->core_model->get_all('financeiro', array('pdf_pagina_id' => $pagina_id)),
+			'pdf_grupo' => $this->core_model->get_all_group_by('financeiro', array('pdf_pagina_id' => $pagina_id), 'pdf_ano'),
+			'menu_principal' => $this->menu_principal(),
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / $titulo",
+
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/financeiro/$folder_view");
+		$this->load->view('web/layout/footer');
+	}
+
+	public function relatorios_analiticos()
+	{
+		$titulo = 'Relatórios analíticos';
+		$pagina_id = 111;
+		$folder_view = 'paginas';
+
+		$data = array(
+			'titulo' => $titulo,
+			'styles' => array(
+				'assets/css/tabela_ano.css',
+			),
+			'pdfs' => $this->core_model->get_all('financeiro', array('pdf_pagina_id' => $pagina_id)),
+			'pdf_grupo' => $this->core_model->get_all_group_by('financeiro', array('pdf_pagina_id' => $pagina_id), 'pdf_ano'),
+			'menu_principal' => $this->menu_principal(),
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / $titulo",
+
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/financeiro/$folder_view");
+		$this->load->view('web/layout/footer');
+	}
+
+	public function relatorios_diversos()
+	{
+		$titulo = 'Relatórios Diversos';
+		$pagina_id = 113;
+		$folder_view = 'paginas';
+
+		$data = array(
+			'titulo' => $titulo,
+			'styles' => array(
+				'assets/css/tabela_ano.css',
+			),
+			'pdfs' => $this->core_model->get_all('financeiro', array('pdf_pagina_id' => $pagina_id)),
+			'pdf_grupo' => $this->core_model->get_all_group_by('financeiro', array('pdf_pagina_id' => $pagina_id), 'pdf_ano'),
+			'menu_principal' => $this->menu_principal(),
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / $titulo",
+
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/financeiro/$folder_view");
+		$this->load->view('web/layout/footer');
+	}
+
+	public function relacao_das_entidades_cadastradas()
+	{
+		$titulo = 'Relação das Entidades Cadastradas';
+		$pagina_id = 115;
+		$folder_view = 'paginas';
+
+		$data = array(
+			'titulo' => $titulo,
+			'styles' => array(
+				'assets/css/tabela_ano.css',
+			),
+			'pdfs' => $this->core_model->get_all('financeiro', array('pdf_pagina_id' => $pagina_id)),
+			'pdf_grupo' => $this->core_model->get_all_group_by('financeiro', array('pdf_pagina_id' => $pagina_id), 'pdf_ano'),
+			'menu_principal' => $this->menu_principal(),
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / $titulo",
+
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/financeiro/$folder_view");
+		$this->load->view('web/layout/footer');
+	}
+
+	public function lrf()
+	{
+		$titulo = 'LRF';
+		$pagina_id = 117;
+		$folder_view = 'paginas';
+
+		$data = array(
+			'titulo' => $titulo,
+			'styles' => array(
+				'assets/css/tabela_ano.css',
+			),
+			'pdfs' => $this->core_model->get_all('financeiro', array('pdf_pagina_id' => $pagina_id)),
+			'pdf_grupo' => $this->core_model->get_all_group_by('financeiro', array('pdf_pagina_id' => $pagina_id), 'pdf_ano'),
+			'menu_principal' => $this->menu_principal(),
+			'info_sistema' => $this->footer_header(),
+			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / $titulo",
+
+		);
+
+		$this->load->view('web/layout/header', $data);
+		$this->load->view("web/transparencia/financeiro/$folder_view");
 		$this->load->view('web/layout/footer');
 	}
 }

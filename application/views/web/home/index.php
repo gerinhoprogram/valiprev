@@ -14,7 +14,7 @@
 			<div class="colunas lg-6 md-6 pq-12">
 				<a href="https://www.fourinfosistemas.com.br/servicosonlinefourprev/publico/portaldatransparencia.jsf?id=5883" target="_blank" title="Renumeração dos Servidores Valiprev">
 					<div class="servidores">
-						<h2>Renumeração dos Servidores Valiprev</h2>
+						<h2>Protocolo digital (em breve)</h2>
 					</div>
 				</a>
 			</div>
@@ -53,7 +53,7 @@
 		<div class="linha">
 			<div class="colunas lg-12 md-12 pq-12">
 				<h3>Apresentação</h3>
-				<?=$info_sistema->sistema_descricao?>
+				<?= html_entity_decode($info_sistema->sistema_descricao) ?>
 			</div>
 		</div>
 	</div>

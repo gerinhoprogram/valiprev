@@ -8,7 +8,7 @@
 	}
 
 	.accordion {
-  background-color: #26b0e6;
+  background-color: #332663;
   color: #fff;
   cursor: pointer;
   padding: 18px;
@@ -22,13 +22,12 @@
 }
 
 .active, .accordion:hover {
-  background-color: #332663; 
+  background-color: #26b0e6; 
 }
 
 .panel {
   padding: 10px 18px;
   display: none;
-  background-color: white;
   overflow: hidden;
 }
 </style>

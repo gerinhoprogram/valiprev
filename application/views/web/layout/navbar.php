@@ -1,63 +1,4 @@
 <header>
-
-	<style>
-		.inputwithicon label {
-			text-align: left !important;
-			font-size: 18pt;
-			color: #fff;
-			font-weight: bold;
-			margin-bottom: 10px;
-		}
-
-		.inputwithicon input {
-			border: #fff;
-		}
-
-		.inputwithicon #enviar {
-			background-color: #332663;
-			border: #332663 1px solid;
-			cursor: pointer;
-			color: #fff;
-		}
-
-		.sidebar_mob {
-			position: absolute;
-			width: 300px;
-			padding: 10px;
-			background: #26b0e6;
-			height: 100vh;
-			z-index: 9999999999999999999999999999999
-		}
-
-		.sidebar_mob li{
-			padding: 5px;
-			border-bottom: 1px solid #fff;
-			color: #fff;
-		}
-
-		.sidebar_mob.isOpen_mob {
-			transform: translateX(-300px)
-		}
-
-		.fechaMenu_mob {
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, .7);
-			position: fixed;
-			top: 0;
-			left: 0;
-			z-index: 1
-		}
-
-		.fechaMenu_mob_2{
-			float: right
-		}
-
-		.isClose_mob {
-			display: none
-		}
-	</style>
-
 	<div class="wrapper">
 		<div class="sidebar isOpen">
 			<form class="search-form" method="post" action="<?= base_url('busca') ?>">
@@ -97,13 +38,13 @@
 			<nav class="nav">
 
 				<ul class="nav__list nav_desk">
-					<li>
+					<li class="top_menu" style="margin: 0 15px 0 15px;">
 						<a href="<?= base_url() ?>" title="Home">Home</a>
 					</li>
 					<?php foreach ($menu_principal as $men) : ?>
 
 						<?php if ($men->men_tem_submenu) : ?>
-							<li>
+							<li class="top_menu" style="margin: 0 15px 0 15px;">
 
 								<a href="<?= base_url($men->men_url) ?>"> <?= $men->men_nome ?></a>
 
@@ -155,7 +96,7 @@
 
 						<?php else : ?>
 
-							<li>
+							<li class="top_menu" style="margin: 0 15px 0 15px;">
 								<a href="<?= base_url('/' . $men->men_url) ?>">
 									<?= $men->men_nome ?>
 								</a>
@@ -165,8 +106,8 @@
 
 
 					<?php endforeach ?>
-					<li>
-						<div class="pesquisar button seta-abrir">&nbsp;<i class="fa fa-search"></i>&nbsp;</div>
+					<li class="top_menu" style="margin: 0 15px 0 15px;"> 
+						<div class="pesquisar button seta-abrir">&nbsp;<i class="fa fa-search" style="transform: scaleX(-1); color: #26b0e6"></i>&nbsp;</div>
 					</li>
 				</ul>
 

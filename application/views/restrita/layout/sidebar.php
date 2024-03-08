@@ -11,7 +11,7 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="<?php echo base_url('restrita'); ?>"> <img alt="image" src="<?php echo base_url('uploads/sistema/logo/' . $sistema->sistema_logo_2 ); ?>" class="header-logo" />
+            <a href="<?php echo base_url('restrita'); ?>"> <img alt="image" src="<?php echo base_url('uploads/sistema/logo/' . $sistema->sistema_logo ); ?>" class="header-logo" />
             </a>
         </div>
         <ul class="sidebar-menu" style="overflow: auto; padding-bottom: 50px">
