@@ -39,7 +39,7 @@ class Core_model extends CI_Model {
 
 			$this->db->group_by($grupo);
 
-            $this->db->order_by(1, 'DESC');
+            $this->db->order_by('pdf_ano', 'DESC');
 
             return $this->db->get($tabela)->result();
         } else {
