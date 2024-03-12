@@ -164,6 +164,7 @@
       		});
 
       	});
+
       </script>
       <?php if ($mensagem = $this->session->flashdata('sucesso')) {
 			echo "<script>

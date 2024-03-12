@@ -128,7 +128,7 @@ class Transparencia extends CI_Controller
 		);
 
 		$this->load->view('web/layout/header', $data);
-		$this->load->view("web/transparencia/leis");
+		$this->load->view("web/transparencia/juridico/leis/leis");
 		$this->load->view('web/layout/footer');
 	}
 
@@ -577,5 +577,46 @@ class Transparencia extends CI_Controller
 		$this->load->view('web/layout/header', $data);
 		$this->load->view("web/transparencia/financeiro/$folder_view");
 		$this->load->view('web/layout/footer');
+	}
+
+	public function calculo_e_gestao_atuarial($url = null)
+	{
+		if($url && $pagina = $this->menu_principal_model->get_pagina_url($url)){
+
+			$titulo = $pagina->pag_nome;
+			$pagina_id = $pagina->pag_id;
+			$folder_view = 'paginas';
+
+			$data = array(
+				'titulo' => $titulo,
+				'styles' => array(
+					'assets/css/tabela_ano.css',
+				),
+				'pdfs' => $this->core_model->get_all('financeiro', array('pdf_pagina_id' => $pagina_id)),
+				'pdf_grupo' => $this->core_model->get_all_group_by('financeiro', array('pdf_pagina_id' => $pagina_id), 'pdf_ano'),
+				'menu_principal' => $this->menu_principal(),
+				'info_sistema' => $this->footer_header(),
+				'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / <a href='" . base_url('transparencia/financeiro/calculo-e-gestao-atuarial') . "'>Cálculo e Gestão Atuarial</a> / $titulo",
+
+			);
+
+			$this->load->view('web/layout/header', $data);
+			$this->load->view("web/transparencia/financeiro/$folder_view");
+			$this->load->view('web/layout/footer');
+			
+		}else{
+			$data = array(
+				'titulo' => 'Cálculo e gestão atuarial',
+				'info_sistema' => $this->footer_header(),
+				'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro/') . "'>Financeiro</a> / Cálculo e Gestão Atuarial",
+				'menu_principal' => $this->menu_principal(),
+				'paginas' => $this->core_model->get_all('paginas', array('pag_pai_2' => 121))
+			);
+	
+			$this->load->view('web/layout/header', $data);
+			$this->load->view("web/transparencia/financeiro/calculo_e_gestao_atuarial/index");
+			$this->load->view('web/layout/footer');
+		}
+		
 	}
 }

@@ -33,63 +33,36 @@
 									<div class="form-row">
 
 										<div class="form-group col-md-12">
-											<label>* Nome <small class="titulo text-info"></small></label>
+											<label>* Nome <small class="dis_titulo text-info"></small></label>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<div class="input-group-text">
 														<i class="fas fa-user-tie text-info"></i>
 													</div>
 												</div>
-												<input id="titulo" type="text" class="form-control" name="pre_titulo" value="<?php echo (isset($pregao) ? $pregao->pre_titulo : set_value('pre_titulo')); ?>">
+												<input id="dis_titulo" type="text" class="form-control" name="dis_titulo" value="<?php echo (isset($dispensa) ? $dispensa->dis_titulo : set_value('dis_titulo')); ?>">
 											</div>
-											<?php echo form_error('pre_titulo', '<div class="text-danger">', '</div>'); ?>
+											<?php echo form_error('dis_titulo', '<div class="text-danger">', '</div>'); ?>
 
 										</div>
 
-										<div class="form-group col-md-2">
-                                            <label>Estado</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                        <i class="fas fa-check-circle text-info"></i>
-                                                    </div>
-                                                </div>
-                                                <select class="custom-select" name="pre_estado">
-
-                                                    <?php if (isset($pregao)): ?>
-
-                                                        <option value="Inativo" <?php echo ($pregao->pre_estado == 'Inativo' ? 'selected' : ''); ?>>Inativo</option>
-                                                        <option value="Aberta" <?php echo ($pregao->pre_estado == 'Aberta' ? 'selected' : ''); ?>>Aberta</option>
-
-                                                    <?php else: ?>
-
-                                                        <option value="Aberta">Aberta</option>
-                                                        <option value="Inativo">Inativo</option>
-
-                                                    <?php endif; ?>
-
-                                                </select>
-                                            </div>
-                                        </div>
-
 										<div class="form-group col-md-3">
-                                            <label>Modalidade</label>
+                                            <label>* Modalidade</label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text">
                                                         <i class="fas fa-check-circle text-info"></i>
                                                     </div>
                                                 </div>
-                                                <select class="custom-select" name="pre_modalidade">
+                                                <select class="custom-select" name="dis_modalidade">
 
-                                                    <?php if (isset($pregao)): ?>
+                                                    <?php if (isset($dispensa)): ?>
 
-                                                        <option value="Inativo" <?php echo ($pregao->pre_estado == 'Inativo' ? 'selected' : ''); ?>>Inativo</option>
-                                                        <option value="Pregão presencial" <?php echo ($pregao->pre_estado == 'Pregão presencial' ? 'selected' : ''); ?>>Pregão presencial</option>
+                                                        <option value="Dispensa de Licitação" <?php echo ($dispensa->dis_modalidade == 'Dispensa de Licitação' ? 'selected' : ''); ?>>Dispensa de Licitação</option>
 
                                                     <?php else: ?>
 
-                                                        <option value="Pregão presencial">Pregão presencial</option>
+                                                        <option value="Dispensa de Licitação">Dispensa de Licitação</option>
 
                                                     <?php endif; ?>
 
@@ -98,73 +71,28 @@
                                         </div>
 
 										<div class="form-group col-md-7">
-											<label>* Processo de Compras/Administrativo <small class="processo text-info"></small></label>
+											<label>* Processo de Compras/Administrativo <small class="dis_processo text-info"></small></label>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<div class="input-group-text">
 														<i class="fas fa-user-tie text-info"></i>
 													</div>
 												</div>
-												<input id="processo" type="text" class="form-control" name="pre_processo" value="<?php echo (isset($pregao) ? $pregao->pre_processo : set_value('pre_processo')); ?>">
+												<input id="dis_processo" type="text" class="form-control" name="dis_processo" value="<?php echo (isset($dispensa) ? $dispensa->dis_processo : set_value('dis_processo')); ?>">
 											</div>
-											<?php echo form_error('pre_processo', '<div class="text-danger">', '</div>'); ?>
+											<?php echo form_error('dis_processo', '<div class="text-danger">', '</div>'); ?>
 
 										</div>
 
 										<div class="form-group col-md-12">
-										<label for="">Objetivo</label>
-										<textarea name="pre_objetivo" id="objetivo" class="form-control" style='height: 200px !important'>
-											<?=(isset($pregao) ? $pregao->pre_objetivo : '' )?>
-										</textarea>
-										<?php echo form_error('pre_objetivo', '<div class="text-danger">', '</div>'); ?>
+										<label for="">Objetivo <small class="dis_objetivo text-info"></small></label>
+										<textarea name="dis_objetivo" id="dis_objetivo" class="form-control" style='height: 200px !important'><?=(isset($dispensa) ? $dispensa->dis_objetivo : (isset($texto) ? $texto : '') )?></textarea>
+										<?php echo form_error('dis_objetivo', '<div class="text-danger">', '</div>'); ?>
 										</div>
-
-										<div class="form-group col-md-7">
-											<label>* Entrega dos envelopes <small class="entrega text-info"></small></label>
-											<div class="input-group">
-												<div class="input-group-prepend">
-													<div class="input-group-text">
-														<i class="fas fa-user-tie text-info"></i>
-													</div>
-												</div>
-												<input id="entrega" type="text" class="form-control" name="pre_entrega" value="<?php echo (isset($pregao) ? $pregao->pre_entrega : set_value('pre_entrega')); ?>">
-											</div>
-											<?php echo form_error('pre_entrega', '<div class="text-danger">', '</div>'); ?>
-
-										</div>
-
-										<div class="form-group col-md-6">
-                                            <label>Tipo</label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text">
-                                                        <i class="fas fa-check-circle text-info"></i>
-                                                    </div>
-                                                </div>
-                                                <select class="custom-select" name="pre_tipo">
-
-                                                    <?php if (isset($pregao)): ?>
-
-                                                        <option value="Inativo" <?php echo ($pregao->pre_estado == 'Inativo' ? 'selected' : ''); ?>>Inativo</option>
-                                                        <option value="Pregão presencial" <?php echo ($pregao->pre_estado == 'Pregão presencial' ? 'selected' : ''); ?>>Pregão presencial</option>
-
-                                                    <?php else: ?>
-
-                                                        <option value="Menor preço por item">Menor preço por item</option>
-														<option value="Menor preço global">Menor preço global</option>
-
-                                                    <?php endif; ?>
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-										
 
 									</div>
 
 									<div class="form-row">
-
 
 
 												<div class="form-group col-md-12">
@@ -181,16 +109,17 @@
 
 											<div class="form-row">
 												<div class="form-group col-md-12">
-													<div class="form-row" id="uploaded_image">
+													<div class="form-row border p-2" id="uploaded_image">
 
-														<?php if (isset($pregao)) : ?>
+														<?php if (isset($dispensa)) : ?>
+															
 															<?php foreach ($pdf as $p) : ?>
 
 																<div class="form-group col-md-6">
-																<a href="<?=BASE_URL('uploads/paginas/pregao').$p->predoc_arquivo?>" target="_blank"><i style="font-size: 25pt" class="far fa-file-pdf"></i></a>
-																<input type="text" class="form-control mt-2" value="<?=$p->predoc_titulo ?>" name="predoc_titulo[]">
-																<input type="text" class="form-control mt-2" readonly value="<?=$p->predoc_tamanho ?>" name="predoc_tamanho[]">
-																<input type="hidden" name="predoc_arquivo[]" value="<?=$p->predoc_arquivo ?>">
+																<a href="<?=BASE_URL('uploads/paginas/dispensa_de_licitacao').$p->disdoc_arquivo?>" target="_blank"><i style="font-size: 25pt" class="far fa-file-pdf"></i></a>
+																<input type="text" class="form-control mt-2" value="<?=$p->disdoc_titulo ?>" name="disdoc_titulo[]">
+																<input type="text" class="form-control mt-2" readonly value="<?=$p->disdoc_tamanho ?>" name="disdoc_tamanho[]">
+																<input type="hidden" name="disdoc_arquivo[]" value="<?=$p->disdoc_arquivo ?>">
 																<button type="button" class="btn btn-danger btn-remove mt-1" style="width: 45px">X</button>
 																</div>
 
@@ -207,8 +136,8 @@
 
 
 								</div>
-								<?php if (isset($pregao)) : ?>
-									<input type="hidden" name="pre_id" value="<?php echo $pregao->pre_id; ?>">
+								<?php if (isset($dispensa)) : ?>
+									<input type="hidden" name="dis_id" value="<?php echo $dispensa->dis_id; ?>">
 								<?php endif; ?>
 								<?php $this->load->view('restrita/layout/btn-footer') ?>
 

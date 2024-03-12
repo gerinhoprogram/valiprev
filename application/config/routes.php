@@ -104,3 +104,6 @@ $route['transparencia/financeiro/receitas-financeiras'] = 'transparencia/receita
 $route['transparencia/financeiro/relatorios-diversos'] = 'transparencia/relatorios_diversos';
 $route['transparencia/financeiro/relacao-das-entidades-cadastradas'] = 'transparencia/relacao_das_entidades_cadastradas';
 $route['transparencia/financeiro/lrf'] = 'transparencia/lrf';
+$route['transparencia/financeiro/calculo-e-gestao-atuarial'] = 'transparencia/calculo_e_gestao_atuarial';
+// $route['transparencia/financeiro/calculo-e-gestao-atuarial'] = 'transparencia/calculo_e_gestao_atuarial';
+$route['transparencia/financeiro/calculo-e-gestao-atuarial/(:any)'] = 'transparencia/calculo_e_gestao_atuarial/$1';

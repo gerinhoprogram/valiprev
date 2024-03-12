@@ -39,7 +39,7 @@ class Dispensa_de_licitacao extends CI_Controller
 		insert_login($login);
 
 		$data = array(
-			'titulo' => '<span class="text-info"><i class="fas fa-edit"></i>Pregão</span>',
+			'titulo' => 'Dispensa de licitação',
 			'styles' => array(
 				'assets/bundles/datatables/datatables.min.css',
 				'assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css',
@@ -73,12 +73,11 @@ class Dispensa_de_licitacao extends CI_Controller
 
 			if ($area->adicionar) {
 
+				$texto = $this->input->post('dis_objetivo');
+				
 				$this->form_validation->set_rules('dis_titulo', 'Nome', 'trim|required|max_length[150]');
-				$this->form_validation->set_rules('dis_modalidade', 'Modalidade', 'trim|required|max_length[150]');
-				$this->form_validation->set_rules('dis_processo', 'Processo de comprar/administração', 'trim|required|max_length[150]');
-				$this->form_validation->set_rules('dis_objetivo', 'Objetivo', 'trim|required|max_length[900]');
-				$this->form_validation->set_rules('dis_entrega', 'Entrega dos envelopes', 'trim|required|max_length[150]');
-				$this->form_validation->set_rules('dis_estado', 'Estado', 'trim|required|max_length[150]');
+				$this->form_validation->set_rules('dis_processo', 'Processo de comprar/administração', 'trim|required|max_length[50]');
+				$this->form_validation->set_rules('dis_objetivo', 'Objetivo', 'trim|required|max_length[500]');
 
 				if ($this->form_validation->run()) {
 
@@ -106,7 +105,7 @@ class Dispensa_de_licitacao extends CI_Controller
 						for ($i = 0; $i < $total; $i++) {
 
 							$data = array(
-								'disdoc_pregao_id' => $last_id->dis_id,
+								'disdoc_dispensa_id' => $last_id->dis_id,
 								'disdoc_titulo' => $titulo[$i],
 								'disdoc_arquivo' => $arquivo[$i],
 								'disdoc_tamanho' => $tamanho[$i]
@@ -132,7 +131,7 @@ class Dispensa_de_licitacao extends CI_Controller
 					insert_login($login);
 
 					$data = array(
-						'titulo' => '<span class="text-success"><i class="fas fa-plus"></i>&nbsp; Novo Pregão</span>',
+						'titulo' => '<span class="text-success"><i class="fas fa-plus"></i>&nbsp; Nova Dispensa de Licitação</span>',
 						'styles' => array(
 							'assets/jquery-upload-file/css/uploadfile.css',
 							'assets/bundles/select2/dist/css/select2.min.css',
@@ -141,15 +140,19 @@ class Dispensa_de_licitacao extends CI_Controller
 						'scripts' => array(
 							'assets/sweetalert2/sweetalert2.all.min.js',
 							'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
-							'assets/jquery-upload-file/js/pregao.js',
+							'assets/jquery-upload-file/js/dispensa_de_licitacao.js',
 							'assets/bundles/select2/dist/js/select2.full.min.js',
 						),
 					
 
 					);
 
+					if(isset($texto)){
+						$data['texto'] = $texto;
+					}
+
 					$this->load->view('restrita/layout/header', $data);
-					$this->load->view('restrita/dispensa_de_licitacao/core');
+					$this->load->view('restrita/dispensa/core');
 					$this->load->view('restrita/layout/footer');
 				}
 			} else {
@@ -165,9 +168,8 @@ class Dispensa_de_licitacao extends CI_Controller
 				} else {
 
 					$this->form_validation->set_rules('dis_titulo', 'Nome', 'trim|required|max_length[150]');
-					$this->form_validation->set_rules('dis_modalidade', 'Modalidade', 'trim|required|max_length[150]');
-					$this->form_validation->set_rules('dis_processo', 'Processo de comprar/administração', 'trim|required|max_length[150]');
-					$this->form_validation->set_rules('dis_objetivo', 'Objetivo', 'trim|required|max_length[900]');
+					$this->form_validation->set_rules('dis_processo', 'Processo de comprar/administração', 'trim|required|max_length[50]');
+					$this->form_validation->set_rules('dis_objetivo', 'Objetivo', 'trim|required|max_length[500]');
 					
 					if ($this->form_validation->run()) {
 
@@ -200,12 +202,12 @@ class Dispensa_de_licitacao extends CI_Controller
 							for ($i = 0; $i < $cont; $i++) {
 
 								$data = array(
-									'disdoc_pregao_id' => $dispensa->dis_id,
+									'disdoc_dispensa_id' => $dispensa->dis_id,
 									'disdoc_titulo' => $titulo[$i],
 									'disdoc_arquivo' => $arquivo[$i],
 									'disdoc_tamanho' => $tamanho[$i]
 								);
-								$this->core_model->insert('pregao_doc', $data);
+								$this->core_model->insert('dispensa_de_licitacao_doc', $data);
 							}
 						}
 
@@ -227,9 +229,9 @@ class Dispensa_de_licitacao extends CI_Controller
 						insert_login($login);
 
 						$data = array(
-							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editar Dispensa: ' . $dispensa->dis_titulo . '</span>',
+							'titulo' => '<span class="text-warning"><i class="fas fa-edit"></i>&nbsp; Editando: ' . $dispensa->dis_titulo . '</span>',
 							'dispensa' => $dispensa,
-							'pdf' => $this->core_model->get_all('dispensa_de_licitacao_doc', array('disdoc_pregao_id' => $dispensa->dis_id)),
+							'pdf' => $this->core_model->get_all('dispensa_de_licitacao_doc', array('disdoc_dispensa_id' => $dispensa->dis_id)),
 							'styles' => array(
 								'assets/jquery-upload-file/css/uploadfile.css',
 								'assets/bundles/select2/dist/css/select2.min.css',
@@ -238,7 +240,7 @@ class Dispensa_de_licitacao extends CI_Controller
 							'scripts' => array(
 								'assets/sweetalert2/sweetalert2.all.min.js',
 								'assets/jquery-upload-file/js/jquery.uploadfile.min.js',
-								'assets/jquery-upload-file/js/dispensa.js',
+								'assets/jquery-upload-file/js/dispensa_de_licitacao.js',
 								'assets/bundles/select2/dist/js/select2.full.min.js',
 							),
 						);
@@ -297,7 +299,7 @@ class Dispensa_de_licitacao extends CI_Controller
 
 		$this->core_model->delete('pregao', array('dis_id' => $dispensa->dis_id));
 
-		$this->core_model->delete('pregao_doc', array('disdoc_pregao_id' => $dispensa->dis_id));
+		$this->core_model->delete('pregao_doc', array('disdoc_dispensa_id' => $dispensa->dis_id));
 
 		$login = [
 			'tipo' => 4,
