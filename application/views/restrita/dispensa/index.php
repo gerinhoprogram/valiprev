@@ -53,6 +53,7 @@
 														<p><strong>Modalidade: </strong><?php echo $dis->dis_modalidade; ?></p>
 														<p><strong>Processo de Compras/Administrativo: </strong><?php echo $dis->dis_processo; ?></p>
 														<p><strong>Objetivo: </strong><?php echo $dis->dis_objetivo; ?></p>
+														<p><strong>Status: </strong><?php echo ($dis->dis_status ? '<span class="badge badge-success">Ativo</span>' : '<span class="badge badge-danger">Inativo</span>') ?></p>
 														
 													</td>
 													

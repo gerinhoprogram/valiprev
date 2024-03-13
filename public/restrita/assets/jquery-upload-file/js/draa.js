@@ -35,4 +35,33 @@ $(document).ready(function() {
         },
     });
 
+	$('#uploaded_image').on('click', '.btn-remove', function(event) {
+
+		event.preventDefault();
+
+		const swalWithBootstrapButtons = Swal.mixin({
+			customClass: {
+				confirmButton: 'btn bg-danger text-white ml-2',
+				cancelButton: 'btn bg-primary text-white mr-20'
+			},
+			buttonsStyling: false
+		})
+
+		swalWithBootstrapButtons.fire({
+			title: 'Tem certeza da exclusão?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonText: '<i class="fa fa-exclamation-circle"></i>&nbsp;&nbsp;Excluir!',
+			cancelButtonText: '<i class="fa fa-arrow-circle-left"></i>&nbsp;&nbsp;Cancelar!',
+			reverseButtons: true
+		}).then((result) => {
+			if (result.value) {
+				$(this).parent().remove();
+				$('#carregando').html('');
+			} else {
+				return false;
+			}
+		})
+		});
+
 });

@@ -75,6 +75,7 @@ class Transparencia extends CI_Controller
 		$data = array(
 			'titulo' => 'Dispensa de Licitação',
 			'info_sistema' => $this->footer_header(),
+			'dispensas' => $this->core_model->get_all('dispensa_de_licitacao', array('dis_status' => 1)),
 			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/licitacoes') . "'>Licitações</a> / Dispensa de Licitação",
 			'menu_principal' => $this->menu_principal(),
 		);
@@ -147,6 +148,8 @@ class Transparencia extends CI_Controller
 				'pagina' => $pagina,
 				'pdfs' => $this->core_model->get_all('pdf_resolucoes_do_conselho_de_administracao', array('pdf_pagina_id' => $pagina->pag_id))
 			);
+
+			$data['pasta'] = str_replace("-", "_", $pagina->pag_link);
 
 			$this->load->view('web/layout/header', $data);
 			$this->load->view("web/transparencia/juridico/resolucoes/index");
@@ -429,6 +432,7 @@ class Transparencia extends CI_Controller
 			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / $titulo",
 
 		);
+		$data['ano'] = true;
 
 		$this->load->view('web/layout/header', $data);
 		$this->load->view("web/transparencia/financeiro/$folder_view");
@@ -549,6 +553,7 @@ class Transparencia extends CI_Controller
 			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / $titulo",
 
 		);
+		$data['ano'] = true;
 
 		$this->load->view('web/layout/header', $data);
 		$this->load->view("web/transparencia/financeiro/$folder_view");
@@ -573,6 +578,7 @@ class Transparencia extends CI_Controller
 			'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / $titulo",
 
 		);
+		$data['ano'] = true;
 
 		$this->load->view('web/layout/header', $data);
 		$this->load->view("web/transparencia/financeiro/$folder_view");
@@ -593,12 +599,18 @@ class Transparencia extends CI_Controller
 					'assets/css/tabela_ano.css',
 				),
 				'pdfs' => $this->core_model->get_all('financeiro', array('pdf_pagina_id' => $pagina_id)),
-				'pdf_grupo' => $this->core_model->get_all_group_by('financeiro', array('pdf_pagina_id' => $pagina_id), 'pdf_ano'),
 				'menu_principal' => $this->menu_principal(),
 				'info_sistema' => $this->footer_header(),
+				'pasta' => 'financeiro',
+				'subpasta' => 'relatorio_de_gestao_atuarial',
 				'breadcrumb' => "<a href='" . base_url() . "'><i class='fas fa-home'></i></a> / <a href='" . base_url('transparencia/') . "'>Transparência</a> / <a href='" . base_url('transparencia/financeiro') . "'>Financeiro</a> / <a href='" . base_url('transparencia/financeiro/calculo-e-gestao-atuarial') . "'>Cálculo e Gestão Atuarial</a> / $titulo",
 
 			);
+
+			if($data['pdfs'][0]->pdf_ano){
+				$data['pdf_grupo'] = $this->core_model->get_all_group_by('financeiro', array('pdf_pagina_id' => $pagina_id), 'pdf_ano');
+				$data['ano'] = true;
+			}
 
 			$this->load->view('web/layout/header', $data);
 			$this->load->view("web/transparencia/financeiro/$folder_view");

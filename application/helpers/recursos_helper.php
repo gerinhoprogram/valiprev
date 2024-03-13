@@ -236,6 +236,16 @@ function info_config() {
     return $configuracao;
 }
 
+function get_pdf($pdf_id) {
+
+    $CI = & get_instance();
+
+    $pdf = $CI->core_model->get_all('dispensa_de_licitacao_doc', array('disdoc_dispensa_id' => $pdf_id));
+
+    return $pdf;
+}
+
+
 function submenu($menu_id = null) {
 
     $CI = & get_instance();

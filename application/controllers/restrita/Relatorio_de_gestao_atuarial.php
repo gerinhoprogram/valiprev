@@ -45,7 +45,7 @@ class Relatorio_de_gestao_atuarial extends CI_Controller
 		insert_login($login);
 
 		$data = array(
-			'titulo' => "<span class='text-info'>$this->pagina_titulo</span>",
+			'titulo' => "$this->pagina_titulo",
 			'styles' => array(
 				'assets/bundles/datatables/datatables.min.css',
 				'assets/bundles/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css',
@@ -102,7 +102,7 @@ class Relatorio_de_gestao_atuarial extends CI_Controller
 							'pdf_arquivo' => $arquivo[$i],
 							'pdf_tamanho' => $tamanho[$i],
 							'pdf_user' => $_SESSION['login'],
-							'pdf_ano' => $ano[$i]
+							'pdf_ano' => ($ano[$i] ? $ano[$i] : 0)
 						);
 						$this->core_model->insert($this->tabela_banco, $data);
 					}
@@ -152,8 +152,7 @@ class Relatorio_de_gestao_atuarial extends CI_Controller
 				} else {
 
 					$this->form_validation->set_rules('pdf_titulo', 'Nome', 'trim|required|min_length[2]|max_length[150]');
-					$this->form_validation->set_rules('pdf_ano', 'Ano', 'trim|required|min_length[2]|max_length[150]');
-
+					
 					if(!$this->input->post('pdf_arquivo')){
 						$this->form_validation->set_rules('pdf_arquivo', 'Arquivo', 'trim|required');
 					}
@@ -163,13 +162,18 @@ class Relatorio_de_gestao_atuarial extends CI_Controller
 						$data = elements(
 							array(
 								'pdf_titulo',
-								'pdf_ano'
 							),
 							$this->input->post()
 						);
 
 						$data['pdf_arquivo'] = $this->input->post('pdf_arquivo');
                         $data['pdf_tamanho'] = $this->input->post('pdf_tamanho');
+
+						if($this->input->post('ano')){
+							$data['pdf_ano'] = $this->input->post('ano');
+						}else{
+							$data['pdf_ano'] = 0;
+						}
 
 						$data = html_escape($data);
 

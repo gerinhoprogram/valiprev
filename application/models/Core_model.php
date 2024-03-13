@@ -47,6 +47,26 @@ class Core_model extends CI_Model {
         }
     }
 
+	public function get_all_group_by_ata($tabela = null, $condicoes = null, $grupo = null) {
+
+
+        if ($tabela && $this->db->table_exists($tabela)) {
+
+            if (is_array($condicoes)) {
+
+                $this->db->where($condicoes);
+            }
+
+			$this->db->group_by($grupo);
+
+            $this->db->order_by('ata_ano', 'DESC');
+
+            return $this->db->get($tabela)->result();
+        } else {
+            return false;
+        }
+    }
+
 	public function get_all_asc($tabela = null, $condicoes = null, $limite = null) {
 
 

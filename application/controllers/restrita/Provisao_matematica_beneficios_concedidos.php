@@ -102,7 +102,7 @@ class Provisao_matematica_beneficios_concedidos extends CI_Controller
 							'pdf_arquivo' => $arquivo[$i],
 							'pdf_tamanho' => $tamanho[$i],
 							'pdf_user' => $_SESSION['login'],
-							'pdf_ano' => $ano[$i]
+							'pdf_ano' => ($ano[$i] ? $ano[$i] : 0)
 						);
 						$this->core_model->insert($this->tabela_banco, $data);
 					}

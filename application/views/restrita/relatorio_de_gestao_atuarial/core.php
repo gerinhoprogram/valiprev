@@ -34,30 +34,16 @@
 										<div class="form-row">
 
 											<div class="form-group col-md-12">
-												<label>* Título do documento <small class="titulo text-info"></small></label>
+												<label>* Título do documento <small class="pdf_titulo text-info"></small></label>
 												<div class="input-group">
 													<div class="input-group-prepend">
 														<div class="input-group-text">
 															<i class="fas fa-user-tie text-info"></i>
 														</div>
 													</div>
-													<input id="titulo" type="text" class="form-control" name="pdf_titulo" value="<?php echo (isset($pdf) ? $pdf->pdf_titulo : set_value('pdf_titulo')); ?>">
+													<input id="pdf_titulo" type="text" class="form-control" name="pdf_titulo" value="<?php echo (isset($pdf) ? $pdf->pdf_titulo : set_value('pdf_titulo')); ?>">
 												</div>
 												<?php echo form_error('pdf_titulo', '<div class="text-danger">', '</div>'); ?>
-
-											</div>
-
-											<div class="form-group col-md-6">
-												<label>* Ano <small class="ano text-info"></small></label>
-												<div class="input-group">
-													<div class="input-group-prepend">
-														<div class="input-group-text">
-															<i class="fas fa-user-tie text-info"></i>
-														</div>
-													</div>
-													<input id="ano" maxlength="4" onkeypress="return event.charCode >= 48 && event.charCode <= 57" type="text" class="form-control" name="pdf_ano" value="<?php echo (isset($pdf) ? $pdf->pdf_ano : set_value('pdf_ano')); ?>">
-												</div>
-												<?php echo form_error('pdf_ano', '<div class="text-danger">', '</div>'); ?>
 
 											</div>
 

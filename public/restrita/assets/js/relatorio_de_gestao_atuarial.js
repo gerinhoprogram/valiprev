@@ -33,7 +33,7 @@ var App_sistema = function() {
 
 						$('#box-foto-logo').html(
                             "<input type='hidden' name='pdf_arquivo' value='" + response.foto_nome + "' >"+
-                            "<p><a href='" + BASE_URL + "uploads/paginas/financeiro/relatorio_de_gestao_atuarial/" + response.foto_nome + "' targe'_blank'><span class='badge badge-info'>Documento</span></a>"+
+                            "<p><a href='" + BASE_URL + "uploads/paginas/financeiro/relatorio_de_gestao_atuarial/" + response.foto_nome + "' target='_blank'><span class='badge badge-info'>Documento</span></a>"+
                             "<p><input type='text' class='form-control' name='pdf_tamanho' readonly value='" + response.tamanho + "' >"
                             
                             
@@ -77,6 +77,21 @@ jQuery(document).ready(function() {
         // }
 
     });
+
+	$(document).on("input", "#pdf_titulo", function() {
+		var limite = 150;
+		var informativo = "caracteres restantes.";
+		var caracteresDigitados = $(this).val().length;
+		var caracteresRestantes = limite - caracteresDigitados;
+
+		if (caracteresRestantes <= 0) {
+			var comentario = $("input[name=pdf_titulo]").val();
+			$("input[name=pdf_titulo]").val(comentario.substr(0, limite));
+			$(".pdf_titulo").text("0 " + informativo);
+		} else {
+			$(".pdf_titulo").text("(" + caracteresRestantes + " " + informativo + ")");
+		}
+	});
 
     App_sistema.init();
 

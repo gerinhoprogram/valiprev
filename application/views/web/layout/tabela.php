@@ -1,3 +1,5 @@
+
+<?php if(isset($ano)) :?>
 <div class="tab">
 	<?php foreach ($pdf_grupo as $grupo) : ?>
 		<button class="tablinks" onclick="openCity(event, '<?= $grupo->pdf_ano ?>')"><?= $grupo->pdf_ano ?></button>
@@ -13,7 +15,7 @@
 			<?php foreach ($pdfs as $pdf) : ?>
 				<div class="colunas lg-6" style='float: left'>
 					<?php if ($pdf->pdf_ano == $pdf_grupo->pdf_ano) : ?>
-						<a href="<?= base_url('uploads/paginas/conselhos/atas/' . $pdf->pdf_arquivo) ?>" target="_blank" rel="noopener noreferrer">
+						<a href="<?= base_url("uploads/paginas/$pasta/$subpasta/" . $pdf->pdf_arquivo) ?>" target="_blank" rel="noopener noreferrer">
 							<p>
 								<i class="fas fa-file-pdf"></i>&nbsp;<?= $pdf->pdf_titulo ?>
 							</p>
@@ -25,6 +27,24 @@
 	</div>
 	<?php $cont++ ?>
 <?php endforeach; ?>
+
+
+<?php else : ?>
+
+	<div class="linha">
+			<?php foreach ($pdfs as $pdf) : ?>
+				<div class="colunas lg-6" style='float: left'>
+					
+						<a href="<?= base_url("uploads/paginas/$pasta/$subpasta/" . $pdf->pdf_arquivo) ?>" target="_blank" rel="noopener noreferrer">
+							<p>
+								<i class="fas fa-file-pdf"></i>&nbsp;<?= $pdf->pdf_titulo ?>
+							</p>
+						</a>
+				</div>
+			<?php endforeach; ?>
+		</div>
+
+<?php endif ?>
 
 
 

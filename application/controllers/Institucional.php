@@ -201,7 +201,7 @@ class Institucional extends CI_Controller
 					'info_sistema' => $this->footer_header(),
 					'regimentos' => $this->core_model->get_all('regimentos_internos', array('reg_pagina_id' => $menu->pag_id)),
 					'atas' => $this->core_model->get_all('atas', array('ata_pagina_id' => $menu->pag_id)),
-					'atas_grupo' => $this->core_model->get_all_group_by('atas', array('ata_pagina_id' => $menu->pag_id), 'ata_ano'),
+					'atas_grupo' => $this->core_model->get_all_group_by_ata('atas', array('ata_pagina_id' => $menu->pag_id), 'ata_ano'),
 					'styles' => array(
 						'assets/css/conselhos.css',
 						'assets/css/tabela.css',

@@ -70,7 +70,33 @@
                                             </div>
                                         </div>
 
-										<div class="form-group col-md-7">
+										<div class="form-group col-md-3">
+                                            <label>* Status</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">
+                                                        <i class="fas fa-check-circle text-info"></i>
+                                                    </div>
+                                                </div>
+                                                <select class="custom-select" name="dis_status">
+
+                                                    <?php if (isset($dispensa)): ?>
+
+                                                        <option value="1" <?php echo ($dispensa->dis_status == 1 ? 'selected' : ''); ?>>Ativo</option>
+                                                        <option value="0" <?php echo ($dispensa->dis_status == 0 ? 'selected' : ''); ?>>Inativo</option>
+
+                                                    <?php else: ?>
+
+                                                        <option value="1">Ativo</option>
+														<option value="0">inativo</option>
+
+                                                    <?php endif; ?>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+										<div class="form-group col-md-6">
 											<label>* Processo de Compras/Administrativo <small class="dis_processo text-info"></small></label>
 											<div class="input-group">
 												<div class="input-group-prepend">

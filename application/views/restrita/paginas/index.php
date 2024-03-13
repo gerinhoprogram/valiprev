@@ -52,14 +52,24 @@
 
                                                                     
                                                                     <?php if($editar) :?>
-                                                                    <a onclick="loading()" data-toggle="tooltip" data-placement="left" title="Editar informações" href="<?=base_url('restrita/' . $funcao); ?>" class="dropdown-item has-icon text-warning"><i class="fas fa-edit"></i> Editar</a>
-                                                                        <?php if($pag->pag_status) :?>
+
+																		<?php if($pag->pag_link_externo) :?>
+
+																			<a data-toggle="tooltip" data-placement="left" title="Link externo" href="<?= $pag->pag_link ?>" class="dropdown-item has-icon text-info" target="_blank" ><i class="fas fa-edit"></i> Ver link externo</a>
+
+
+																		<?php else : ?>
+
+                                                                    		<a onclick="loading()" data-toggle="tooltip" data-placement="left" title="Editar informações" href="<?=base_url('restrita/' . $funcao); ?>" class="dropdown-item has-icon text-warning"><i class="fas fa-edit"></i> Editar</a>
+                                                                        	<?php if($pag->pag_status) :?>
                                                                             <a data-toggle="tooltip" data-placement="left" title="Inativar" href="<?= base_url('restrita/'.$this->router->fetch_class().'/situacao/' . $pag->pag_id); ?>" class="dropdown-item has-icon situacao text-info" data-confirm="Deseja inativar a página?"><i class="fas fa-redo"></i> Inativar</a>
 
-                                                                        <?php else :?>
-                                                                            <a data-toggle="tooltip" data-placement="left" title="Ativar" href="<?= base_url('restrita/'.$this->router->fetch_class().'/situacao/' . $pag->pag_id); ?>" class="dropdown-item has-icon situacao text-info" data-confirm="Deseja ativar a página?"><i class="fas fa-redo"></i> Ativar</a>
-
+                                                                       		<?php else :?>
+                                                                            	<a data-toggle="tooltip" data-placement="left" title="Ativar" href="<?= base_url('restrita/'.$this->router->fetch_class().'/situacao/' . $pag->pag_id); ?>" class="dropdown-item has-icon situacao text-info" data-confirm="Deseja ativar a página?"><i class="fas fa-redo"></i> Ativar</a>
                                                                             <?php endif ?>
+
+																		<?php endif ?>
+
                                                                     <?php endif ?>
 
                                                                     

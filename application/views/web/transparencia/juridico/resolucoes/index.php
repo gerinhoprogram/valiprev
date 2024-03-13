@@ -18,7 +18,7 @@
 			
 				<?php foreach($pdfs as $pdf) :?>
 					<div class="colunas lg-12">
-					<a href="http://" target="_blank" rel="noopener noreferrer"><p style="padding: 10px; border: 1px solid #ccc"><i class="fas fa-file-pdf"></i>&nbsp;<?=$pdf->pdf_titulo?></p></a>
+					<a href="<?= base_url("uploads/paginas/$pasta/pdf/").$pdf->pdf_arquivo?>" target="_blank" rel="noopener noreferrer"><p style="padding: 10px; border: 1px solid #ccc"><i class="fas fa-file-pdf"></i>&nbsp;<?=$pdf->pdf_titulo?></p></a>
 					</div>
 				<?php endforeach ?>
 

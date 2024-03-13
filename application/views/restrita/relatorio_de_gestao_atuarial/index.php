@@ -29,7 +29,6 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Título</th>
-                                                <th>Ano</th>
                                                 <th class="nosort text-center">Ações</th>
                                             </tr>
                                         </thead>
@@ -44,7 +43,6 @@
                                                         <?php echo $pdf->pdf_titulo; ?>
                                                          </a>
                                                     </td>
-                                                    <td><?=$pdf->pdf_ano?></td>
 													
 													<td class="text-center">
                                                         <div class="dropdown">

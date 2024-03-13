@@ -87,6 +87,7 @@ class Dispensa_de_licitacao extends CI_Controller
 							'dis_processo',
 							'dis_modalidade',
 							'dis_objetivo',
+							'dis_status'
 						),
 						$this->input->post()
 					);
@@ -100,18 +101,22 @@ class Dispensa_de_licitacao extends CI_Controller
 						$arquivo = $this->input->post('disdoc_arquivo');
 						$tamanho = $this->input->post('disdoc_tamanho');
 
-						$total = count($arquivo);
+						if($titulo && $arquivo){
+							$total = count($arquivo);
 
-						for ($i = 0; $i < $total; $i++) {
-
-							$data = array(
-								'disdoc_dispensa_id' => $last_id->dis_id,
-								'disdoc_titulo' => $titulo[$i],
-								'disdoc_arquivo' => $arquivo[$i],
-								'disdoc_tamanho' => $tamanho[$i]
-							);
-							$this->core_model->insert('dispensa_de_licitacao_doc', $data);
+							for ($i = 0; $i < $total; $i++) {
+	
+								$data = array(
+									'disdoc_dispensa_id' => $last_id->dis_id,
+									'disdoc_titulo' => $titulo[$i],
+									'disdoc_arquivo' => $arquivo[$i],
+									'disdoc_tamanho' => $tamanho[$i]
+								);
+								$this->core_model->insert('dispensa_de_licitacao_doc', $data);
+							}
 						}
+
+						
 
 					$login = [
 						'tipo' => 2,
@@ -163,7 +168,7 @@ class Dispensa_de_licitacao extends CI_Controller
 			if ($area->editar) {
 
 				if (!$dispensa = $this->core_model->get_by_id('dispensa_de_licitacao', array('dis_id' => $dis_id))) {
-					$this->session->set_flashdata('erro', 'Servidor não foi encontrado!');
+					$this->session->set_flashdata('erro', 'Documento não foi encontrado!');
 					$this->redirecionar();
 				} else {
 
@@ -179,6 +184,7 @@ class Dispensa_de_licitacao extends CI_Controller
 								'dis_processo',
 								'dis_modalidade',
 								'dis_objetivo',
+								'dis_status'
 							),
 							$this->input->post()
 						);
@@ -193,23 +199,27 @@ class Dispensa_de_licitacao extends CI_Controller
 						$arquivo = $this->input->post('disdoc_arquivo');
 						$tamanho = $this->input->post('disdoc_tamanho');
 
-						$cont = 0;
-						foreach($arquivo as $a){
-							$cont++;
-						}
-
-						if($cont >= 1){
-							for ($i = 0; $i < $cont; $i++) {
-
-								$data = array(
-									'disdoc_dispensa_id' => $dispensa->dis_id,
-									'disdoc_titulo' => $titulo[$i],
-									'disdoc_arquivo' => $arquivo[$i],
-									'disdoc_tamanho' => $tamanho[$i]
-								);
-								$this->core_model->insert('dispensa_de_licitacao_doc', $data);
+						if($titulo && $arquivo){
+							$cont = 0;
+							foreach($arquivo as $a){
+								$cont++;
+							}
+	
+							if($cont >= 1){
+								for ($i = 0; $i < $cont; $i++) {
+	
+									$data = array(
+										'disdoc_dispensa_id' => $dispensa->dis_id,
+										'disdoc_titulo' => $titulo[$i],
+										'disdoc_arquivo' => $arquivo[$i],
+										'disdoc_tamanho' => $tamanho[$i]
+									);
+									$this->core_model->insert('dispensa_de_licitacao_doc', $data);
+								}
 							}
 						}
+
+						
 
 						$login = [
 							'tipo' => 3,
@@ -292,18 +302,18 @@ class Dispensa_de_licitacao extends CI_Controller
 
 		$dis_id = (int) $dis_id;
 
-		if (!$dis_id || !$dispensa = $this->core_model->get_by_id('pregao', array('dis_id' => $dis_id))) {
-			$this->session->set_flashdata('erro', 'Servidor não foi encontrado');
+		if (!$dis_id || !$dispensa = $this->core_model->get_by_id('dispensa_de_licitacao', array('dis_id' => $dis_id))) {
+			$this->session->set_flashdata('erro', 'Documento não foi encontrado');
 			$this->redirecionar();
 		}
 
-		$this->core_model->delete('pregao', array('dis_id' => $dispensa->dis_id));
+		$this->core_model->delete('dispensa_de_licitacao', array('dis_id' => $dispensa->dis_id));
 
-		$this->core_model->delete('pregao_doc', array('disdoc_dispensa_id' => $dispensa->dis_id));
+		$this->core_model->delete('dispensa_de_licitacao_doc', array('disdoc_dispensa_id' => $dispensa->dis_id));
 
 		$login = [
 			'tipo' => 4,
-			'acao' => 'Deletou servidor: ' . $dispensa->dis_titulo
+			'acao' => 'Deletou documento: ' . $dispensa->dis_titulo
 		];
 
 		insert_login($login);
