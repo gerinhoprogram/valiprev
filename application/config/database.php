@@ -83,10 +83,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '192.168.0.11:3030',
-	'username' => 'root',
-	'password' => 'm0507c1106',
-	'database' => 'blog_ncw',
+	'hostname' => 'rogerioweb.com:3306',
+	'username' => 'u281483592_valiprev',
+	'password' => '@Valiprev_2024',
+	'database' => 'u281483592_valiprev',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

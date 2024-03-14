@@ -32,14 +32,14 @@
 									<div class="form-row">
 
 										<div class="form-group col-md-12">
-											<label>* Nome <small class="titulo text-info"></small></label>
+											<label>* Nome <small class="reg_nome text-info"></small></label>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<div class="input-group-text">
 														<i class="fas fa-user-tie text-info"></i>
 													</div>
 												</div>
-												<input id="titulo" type="text" class="form-control" name="reg_nome" value="<?php echo (isset($regimento) ? $regimento->reg_nome : set_value('reg_nome')); ?>">
+												<input id="reg_nome" type="text" class="form-control" name="reg_nome" value="<?php echo (isset($regimento) ? $regimento->reg_nome : set_value('reg_nome')); ?>">
 											</div>
 											<?php echo form_error('reg_nome', '<div class="text-danger">', '</div>'); ?>
 										</div>
@@ -88,12 +88,12 @@
 										<div class="form-group col-md-12">
 											<div id="box-foto-logo">
 												<?php if (isset($regimento)) : ?>
-													<input type="hidden" name="foto_produto" value="<?= $regimento->reg_foto ?>">
+													<input type="hidden" name="reg_foto" value="<?= $regimento->reg_foto ?>">
 
 													<?php if ($regimento->reg_tipo_arquivo != 'pdf') : ?>
 														<img src="<?= base_url('uploads/paginas/conselhos/regimentos/' . $regimento->reg_foto) ?>" style="height: 200px; object-fit: contain">
 													<?php else : ?>
-														<a href="<?= base_url('uploads/paginas/conselhos/regimentos/' . $regimento->reg_foto) ?>">arquivo</a>
+														<a href="<?= base_url('uploads/paginas/conselhos/regimentos/' . $regimento->reg_foto) ?>"><span class='badge badge-info'>Documento</span> </a></a>
 
 													<?php endif ?>
 												<?php endif ?>

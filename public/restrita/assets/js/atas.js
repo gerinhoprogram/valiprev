@@ -31,7 +31,12 @@ var App_sistema = function() {
 
                     if (response.erro === 0) {
 
-						$('#box-foto-logo').html("<input type='hidden' name='logo_foto_troca' value='" + response.foto_nome + "' > <a target='_blank' href='" + BASE_URL + "uploads/paginas/conselhos/atas/" + response.foto_nome + "'>Arquivo </a>");
+						$('#box-foto-logo').html(
+							"<input type='hidden' name='logo_foto_troca' value='" + response.foto_nome + "' >"+
+							"<a target='_blank' href='" + BASE_URL + "uploads/paginas/conselhos/atas/" + response.foto_nome + "'>"+
+							"<span class='badge badge-info'>Documento</span> </a>"+
+							"<input type='text' class='form-control mt-1' readonly name='ata_tamanho' value='" + response.tamanho + "' >"
+							);
 
                         $('#logo_foto_troca').html('<div class="p-1 mt-1 rounded bg-success text-white">' + response.mensagem + '</div>');
 
@@ -91,6 +96,21 @@ jQuery(document).ready(function() {
 				$(".titulo").text("0 " + informativo);
 			} else {
 				$(".titulo").text("(" + caracteresRestantes + " " + informativo + ")");
+			}
+		});
+
+		$(document).on("input", "#ata_ano", function() {
+			var limite = 4;
+			var informativo = "caracteres restantes.";
+			var caracteresDigitados = $(this).val().length;
+			var caracteresRestantes = limite - caracteresDigitados;
+	
+			if (caracteresRestantes <= 0) {
+				var comentario = $("input[name=ata_ano]").val();
+				$("input[name=ata_ano]").val(comentario.substr(0, limite));
+				$(".ata_ano").text("0 " + informativo);
+			} else {
+				$(".ata_ano").text("(" + caracteresRestantes + " " + informativo + ")");
 			}
 		});
 	

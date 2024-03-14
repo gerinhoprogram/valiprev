@@ -162,7 +162,8 @@ class Atas extends CI_Controller
 							$this->input->post()
 						);
 
-						$data['ata_foto'] = $this->input->post('foto_produto');
+						$data['ata_foto'] = $this->input->post('ata_foto');
+						$data['ata_tamanho'] = $this->input->post('ata_tamanho');
 
 						$data = html_escape($data);
 
@@ -210,7 +211,7 @@ class Atas extends CI_Controller
 		$config['upload_path'] = './uploads/paginas/conselhos/atas';
 		$config['allowed_types'] = 'PDF|pdf|png|jpg';
 		$config['encrypt_name'] = false;
-		$config['max_size'] = 9000;
+		$config['max_size'] = 99000;
 
 		$this->load->library('upload', $config);
 

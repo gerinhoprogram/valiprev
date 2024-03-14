@@ -15,7 +15,7 @@ var App_sistema = function() {
             $.ajax({
 
                 type: 'post',
-                url: BASE_URL + 'restrita/regimentos_internos/upload_foto',
+                url: BASE_URL + 'restrita/regimento_interno/upload_foto',
                 dataType: 'json',
                 cache: false,
                 contentType: false,
@@ -32,9 +32,20 @@ var App_sistema = function() {
                     if (response.erro === 0) {
 
 						if(response.tipo != '.pdf'){
-							$('#box-foto-logo').html("<input type='hidden' name='logo_foto_troca' value='" + response.foto_nome + "' > <img src='" + BASE_URL + "uploads/paginas/conselhos/regimentos_internos/" + response.foto_nome + "' style='height: 150px; width: 100%; object-fit: contain'> ");
+							$('#box-foto-logo').html(
+								"<input type='hidden' name='reg_foto' value='" + response.foto_nome + "' >"+
+								"<img src='" + BASE_URL + "uploads/paginas/conselhos/regimentos_internos/" + response.foto_nome + "' style='height: 150px; width: 100%; object-fit: contain'>"+
+								"<input type='text' class='form-control' readonly name='reg_tamanho' value='" + response.tamanho + "' >"+
+								"<input type='text' class='form-control' readonly name='reg_tipo_arquivo' value='" + response.tipo + "' >"
+								);
 						}else{
-							$('#box-foto-logo').html("<input type='hidden' name='logo_foto_troca' value='" + response.foto_nome + "' > <a href='" + BASE_URL + "uploads/paginas/conselhos/regimentos_internos/" + response.foto_nome + "'>Arquivo </a>");
+							$('#box-foto-logo').html(
+								"<input type='hidden' name='reg_foto' value='" + response.foto_nome + "' >"+
+								"<a href='" + BASE_URL + "uploads/paginas/conselhos/regimentos_internos/" + response.foto_nome + "' target='_blank'>"+
+								"<span class='badge badge-info'>Documento</span> </a>"+
+								"<input type='text' class='form-control mt-1' readonly name='reg_tamanho' value='" + response.tamanho + "' >"+
+								"<input type='text' class='form-control mt-1' readonly name='reg_tipo_arquivo' value='" + response.tipo + "' >"
+								);
 
 						}
                         $('#logo_foto_troca').html('<div class="p-1 mt-1 rounded bg-success text-white">' + response.mensagem + '</div>');
@@ -75,6 +86,22 @@ jQuery(document).ready(function() {
         // }
 
     });
+
+	$(document).on("input", "#reg_nome", function() {
+		var limite = 150;
+		var informativo = "caracteres restantes.";
+		var caracteresDigitados = $(this).val().length;
+		var caracteresRestantes = limite - caracteresDigitados;
+
+		if (caracteresRestantes <= 0) {
+			var comentario = $("input[name=reg_nome]").val();
+			$("input[name=reg_nome]").val(comentario.substr(0, limite));
+			$(".reg_nome").text("0 " + informativo);
+		} else {
+			$(".reg_nome").text("(" + caracteresRestantes + " " + informativo + ")");
+		}
+	});
+
 
     App_sistema.init();
 

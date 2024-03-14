@@ -32,14 +32,14 @@
 									<div class="form-row">
 
 										<div class="form-group col-md-12">
-											<label>* Nome <small class="titulo text-info"></small></label>
+											<label>* Nome <small class="ata_nome text-info"></small></label>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<div class="input-group-text">
 														<i class="fas fa-user-tie text-info"></i>
 													</div>
 												</div>
-												<input id="titulo" type="text" class="form-control" name="ata_nome" value="<?php echo (isset($ata) ? $ata->ata_nome : set_value('ata_nome')); ?>">
+												<input id="ata_nome" type="text" class="form-control" name="ata_nome" value="<?php echo (isset($ata) ? $ata->ata_nome : set_value('ata_nome')); ?>">
 											</div>
 											<?php echo form_error('ata_nome', '<div class="text-danger">', '</div>'); ?>
 										</div>
@@ -71,15 +71,15 @@
 
 										</div>
 
-										<div class="form-group col-md-12">
-											<label>* Ano <small class="titulo text-info"></small></label>
+										<div class="form-group col-md-6">
+											<label>* Ano <small class="ata_ano text-info"></small></label>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<div class="input-group-text">
 														<i class="fas fa-user-tie text-info"></i>
 													</div>
 												</div>
-												<input id="ano" type="text" class="form-control" name="ata_ano" value="<?php echo (isset($ata) ? $ata->ata_ano : set_value('ata_ano')); ?>">
+												<input id="ata_ano" type="text" class="form-control" name="ata_ano" value="<?php echo (isset($ata) ? $ata->ata_ano : set_value('ata_ano')); ?>">
 											</div>
 											<?php echo form_error('ata_ano', '<div class="text-danger">', '</div>'); ?>
 										</div>
@@ -101,9 +101,9 @@
 										<div class="form-group col-md-12">
 											<div id="box-foto-logo">
 												<?php if (isset($ata)) : ?>
-													<input type="hidden" name="foto_produto" value="<?= $ata->ata_foto ?>">
+													<input type="hidden" name="ata_foto" value="<?= $ata->ata_foto ?>">
 
-														<a href="<?= base_url('uploads/paginas/conselhos/atas/' . $ata->ata_foto) ?>">arquivo</a>
+														<a href="<?= base_url('uploads/paginas/conselhos/atas/' . $ata->ata_foto) ?>"><span class='badge badge-info'>Documento</span> </a>
 
 												<?php endif ?>
 											</div>

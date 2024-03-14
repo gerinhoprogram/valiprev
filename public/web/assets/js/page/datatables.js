@@ -12,8 +12,8 @@ const DATATABLE_PTBR = {
     "sZeroRecords": "Nenhum registro encontrado",
     "sSearch": "Pesquisar",
     "oPaginate": {
-        "sNext": "Próximo",
-        "sPrevious": "Anterior",
+        "sNext": ">",
+        "sPrevious": "<",
         "sFirst": "Primeiro",
         "sLast": "Último"
     },
@@ -134,76 +134,14 @@ const DATATABLE_PTBR = {
 }
 
 
-
-$('#tableExport').DataTable({
-    oLanguage: DATATABLE_PTBR,
-    "lengthMenu": [
-        [50, 100, 200, -1],
-        [50, 100, 200, "Todos"]
-    ],
-    "order": [],
-    "pagingType": "simple",
-    dom: 'Bfrtip',
-    buttons: [
-        'copy', 'csv', 'excel', 'pdf', 'print'
-    ]
-});
-
-
-$(".data-table").dataTable({
-
-    "order": [], //Remove a ordenação padrão do plguin
-
-    "columnDefs": [
-        { "sortable": false, "targets": ['nosort'] }
-    ]
-});
-
-
-
-$(".artigos-home").dataTable({
-
-    'oLanguage': DATATABLE_PTBR,
-
-    "searching": false,
-
-    "order": [],
-
-    "pagingType": "simple",
-
-    "columnDefs": [
-        { "sortable": false, "targets": ['nosort'] }
-    ]
-});
-
-
-$(".table-artigos").dataTable({
-
-    'oLanguage': DATATABLE_PTBR,
-
-    "order": [],
-
-    "lengthMenu": [
-        [10, 50, 100, -1],
-        [10, 50, 100, "Todos"]
-    ],
-
-    deferRender: true,
-
-    "columnDefs": [
-        { "sortable": false, "targets": ['nosort'] }
-    ]
-});
-
-
 $(".table-web").dataTable({
 
     'oLanguage': DATATABLE_PTBR,
     "order": [], //Remove a ordenação padrão do plugin
 
     "lengthMenu": [
-        [5, 20, 50, -1],
-        [5, 20, 50, "Todos"]
+        [15, 20, 50, -1],
+        [15, 20, 50, "Todos"]
     ],
     "columnDefs": [
         { "sortable": false, "targets": ['nosort'] }

@@ -65,7 +65,7 @@
 																	<?php foreach (submenu_3($pai->pag_id) as $pai_2) : ?>
 																		<li>
 																			<a href="<?= ($pai_2->pag_link_externo ? $pai_2->pag_link : base_url('/' . $men->men_url . '/' . $sub->pag_link . '/' . $pai->pag_link . '/' . $pai_2->pag_link)) ?>">
-																				<?= $pai_2->pag_nome ?>1
+																				<?= $pai_2->pag_nome ?>
 																			</a>
 																		</li>
 																	<?php endforeach ?>

@@ -12,8 +12,8 @@ const DATATABLE_PTBR = {
     "sZeroRecords": "Nenhum registro encontrado",
     "sSearch": "Pesquisar",
     "oPaginate": {
-        "sNext": "Próximo",
-        "sPrevious": "Anterior",
+        "sNext": ">",
+        "sPrevious": "<",
         "sFirst": "Primeiro",
         "sLast": "Último"
     },
@@ -184,8 +184,8 @@ $(".table-artigos").dataTable({
     "order": [],
 
     "lengthMenu": [
-        [10, 50, 100, -1],
-        [10, 50, 100, "Todos"]
+        [20, 50, 100, -1],
+        [20, 50, 100, "Todos"]
     ],
 
     deferRender: true,

@@ -59,7 +59,7 @@
 				<h4>Regimentos Internos do Conselho Fiscal</h4>
 			</div>
 			<div class="colunas lg-12">
-				<div style="background: #ccc">
+				<div>
 				<?php $this->load->view('web/institucional/conselhos/tabela_1'); ?>
 				</div>
 			</div>

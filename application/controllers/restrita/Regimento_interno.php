@@ -93,7 +93,7 @@ class Regimento_interno extends CI_Controller
 						$this->input->post()
 					);
 
-					$data['reg_foto'] = $this->input->post('logo_foto_troca');
+					$data['reg_foto'] = $this->input->post('reg_foto');
 					$data['reg_tamanho'] = $this->input->post('reg_tamanho');
 					$data['reg_tipo_arquivo'] = $this->input->post('reg_tipo_arquivo');
 
@@ -147,7 +147,7 @@ class Regimento_interno extends CI_Controller
 					$this->form_validation->set_rules('reg_nome', 'Nome', 'trim|required|min_length[2]|max_length[150]');
 					$this->form_validation->set_rules('reg_pagina_id', 'Página', 'trim|required');
 
-					if (!$this->input->post('foto_produto')) {
+					if (!$this->input->post('reg_foto')) {
 						$this->form_validation->set_rules('reg_foto', 'Arquivo', 'trim|required');
 					}
 
@@ -161,7 +161,9 @@ class Regimento_interno extends CI_Controller
 							$this->input->post()
 						);
 
-						$data['reg_foto'] = $this->input->post('foto_produto');
+						$data['reg_foto'] = $this->input->post('reg_foto');
+						$data['reg_tamanho'] = $this->input->post('reg_tamanho');
+						$data['reg_tipo_arquivo'] = $this->input->post('reg_tipo_arquivo');
 
 						$data = html_escape($data);
 
